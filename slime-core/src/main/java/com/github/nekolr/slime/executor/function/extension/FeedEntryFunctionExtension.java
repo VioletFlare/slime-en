@@ -17,37 +17,37 @@ public class FeedEntryFunctionExtension implements FunctionExtension {
         return SyndEntry.class;
     }
 
-    @Comment("获取实体的作者")
+    @Comment("Get the author of an entity")
     @Example("${entryVar.author()}")
     public static String author(SyndEntry entry) {
         return FeedUtils.getAuthor(entry);
     }
 
-    @Comment("获取实体的链接")
+    @Comment("Get Link to Entity")
     @Example("${entryVar.link()}")
     public static String link(SyndEntry entry) {
         return FeedUtils.getLink(entry);
     }
 
-    @Comment("获取实体的标题")
+    @Comment("Get the title of an entity")
     @Example("${entryVar.title()}")
     public static String title(SyndEntry entry) {
         return FeedUtils.getTitle(entry);
     }
 
-    @Comment("获取实体的 uri（guid）")
+    @Comment("Get the entities of a concept uri（guid）")
     @Example("${entryVar.uri()}")
     public static String uri(SyndEntry entry) {
         return FeedUtils.getUri(entry);
     }
 
-    @Comment("获取实体的描述")
+    @Comment("Get the description of an entity")
     @Example("${entryVar.desc()}")
     public static String desc(SyndEntry entry) {
         return FeedUtils.getDescription(entry);
     }
 
-    @Comment("获取实体的发布时间")
+    @Comment("Get the publish time of an entity")
     @Example("${entryVar.pubDate()}")
     public static Date pubDate(SyndEntry entry) {
         return FeedUtils.getPublishedDate(entry);

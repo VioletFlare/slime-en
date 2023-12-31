@@ -32,7 +32,7 @@ public class AstInterpreter {
             if (t instanceof TemplateException) {
                 throw (TemplateException) t;
             } else {
-                ExpressionError.error("执行表达式出错 " + t.getMessage(), template.getNodes().get(0).getSpan(), t);
+                ExpressionError.error("Executing expression errors " + t.getMessage(), template.getNodes().get(0).getSpan(), t);
                 return null; // never reached
             }
         }

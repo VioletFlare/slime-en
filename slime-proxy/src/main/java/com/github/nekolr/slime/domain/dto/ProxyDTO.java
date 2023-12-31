@@ -19,30 +19,30 @@ public class ProxyDTO {
     private Long id;
 
     /**
-     * IP 地址
+     * IP Address
      */
-    @NotBlank(message = "代理的 IP 地址不能为空")
+    @NotBlank(message = "代理的 IP Address cannot be empty")
     private String ip;
 
     /**
-     * 端口号
+     * Port number
      */
-    @NotBlank(message = "代理的端口号不能为空")
+    @NotBlank(message = "The port number to proxy secure HTTP through is not set.")
     private Integer port;
 
     /**
-     * 类型
+     * Type
      */
-    @NotBlank(message = "代理的类型不能为空")
+    @NotBlank(message = "The type of the assistant page")
     private String type;
 
     /**
-     * 是否高匿
+     * Is it a secret
      */
     private Boolean anonymous;
 
     /**
-     * 验证时间
+     * Certificate expiry
      */
     private Date validTime;
 

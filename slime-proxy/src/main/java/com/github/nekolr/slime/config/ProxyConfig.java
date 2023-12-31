@@ -11,19 +11,19 @@ import java.time.Duration;
 public class ProxyConfig {
 
     /**
-     * 检测代理是否有效时使用的地址
+     * The URL used when checking if the proxy is effective.
      */
     @Value("${spider.proxy.check-url}")
     private String checkUrl;
 
     /**
-     * 检测代理是否有效的超时时间，单位毫秒
+     * The timeout for checking if the proxy is effective，Seconds
      */
     @Value("${spider.proxy.check-timeout}")
     private Integer checkTimeout;
 
     /**
-     * 检测时间间隔
+     * Check interval
      */
     @Value("${spider.proxy.check-interval}")
     private Duration checkInterval;

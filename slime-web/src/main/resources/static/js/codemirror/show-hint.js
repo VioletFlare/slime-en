@@ -288,7 +288,7 @@
     var winW = window.innerWidth || Math.max(document.body.offsetWidth, document.documentElement.offsetWidth);
     var hints = this.hints = document.createElement("ul");
       var hints2 = this.hints2 = document.createElement("ul");
-    //文档说明提示框
+    //Documentation comment box
     var completions = data.list;
     hints.className = "CodeMirror-hints";
     this.selectedHint = data.selectedHint || 0;
@@ -537,7 +537,7 @@
       this.completion.widget = null;
       this.hints.parentNode.removeChild(this.hints);
       try{
-        this.hints2.parentNode.removeChild(this.hints2);//此处消失
+        this.hints2.parentNode.removeChild(this.hints2);//Here you go missing
       }catch(e){
 
       }
@@ -589,7 +589,7 @@
       this.completion.widget = null;
       this.hints.parentNode.removeChild(this.hints);
       try{
-        this.hints2.parentNode.removeChild(this.hints2);//此处消失
+        this.hints2.parentNode.removeChild(this.hints2);//Here you go missing
       }catch(e){
 
       }

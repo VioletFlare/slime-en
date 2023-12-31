@@ -1,28 +1,28 @@
 <div class="layui-tab layui-tab-fixed layui-tab-brief">
   <ul class="layui-tab-title">
-    <li class="layui-this">全局配置</li>
-    <li>全局参数</li>
-	<li>全局 Cookie</li>
-    <li>全局 Header</li>
+    <li class="layui-this">Configuration</li>
+    <li>Global Parameters</li>
+	<li>Global Cookie</li>
+    <li>Global Header</li>
   </ul>
   <div class="layui-tab-content editor-form-node">
     <div class="layui-tab-item layui-show">
     	<form class="layui-form layui-row">
 			<div class="layui-col-md4">
-				<label class="layui-form-label">爬虫名称</label>
+				<label class="layui-form-label">Crawler name</label>
 				<div class="layui-input-block">
-					<input type="text" name="spiderName" placeholder="请输入爬虫名称" autocomplete="off" class="layui-input" value="{{d.data.object.spiderName || '未定义名称'}}">
+					<input type="text" name="spiderName" placeholder="Please enter the name of the article" autocomplete="off" class="layui-input" value="{{d.data.object.spiderName || 'Definition'}}">
 				</div>
 			</div>
 			<div class="layui-col-md4">
-				<label class="layui-form-label">最大线程数</label>
+				<label class="layui-form-label">Maximum number of threads</label>
 				<div class="layui-input-block">
-					<input type="number" min="1" name="threadCount" placeholder="请输入线程数" autocomplete="off" class="layui-input" value="{{=d.data.object.threadCount}}">
+					<input type="number" min="1" name="threadCount" placeholder="Please enter the number of threads" autocomplete="off" class="layui-input" value="{{=d.data.object.threadCount}}">
 				</div>
 			</div>
 			<div class="layui-col-md4">
 				<div class="layui-input-block">
-					<input type="checkbox" title="同步执行" value="runSync" lay-skin="primary" {{d.data.object['runSync'] == '1' ? 'checked' : ''}}/>
+					<input type="checkbox" title="Same suit" value="runSync" lay-skin="primary" {{d.data.object['runSync'] == '1' ? 'checked' : ''}}/>
 				</div>
 			</div>
     	</form>
@@ -32,10 +32,10 @@
 			<table class="layui-table" id="global-parameter" data-cell="{{=d.cell.id}}" data-keys="query-param-name,query-param-value,query-param-description"></table>
 	   		<div class="layui-form-item">
 	   			<div class="layui-input-inline">
-	    			<button class="layui-btn table-row-add" type="button" for="global-parameter">添加一个参数</button>
+	    			<button class="layui-btn table-row-add" type="button" for="global-parameter">Add a parameter</button>
 	    		</div>
 				<div class="layui-input-inline">
-					<button class="layui-btn parameter-batch" type="button" for="global-parameter">批量设置参数</button>
+					<button class="layui-btn parameter-batch" type="button" for="global-parameter"> Bulk Setup Parameters</button>
 				</div>
 	    	</div>
 	    </form>
@@ -45,10 +45,10 @@
 		  <table class="layui-table" id="global-cookie" data-cell="{{=d.cell.id}}" data-keys="cookie-name,cookie-value,cookie-description"></table>
 		  <div id="addCookieBtn" class="layui-form-item">
 			  <div class="layui-input-inline">
-				  <button class="layui-btn table-row-add" type="button" for="global-cookie">添加一个 Cookie</button>
+				  <button class="layui-btn table-row-add" type="button" for="global-cookie">Add One Cookie</button>
 			  </div>
 			  <div class="layui-input-inline">
-				  <button class="layui-btn cookie-batch" type="button" for="global-cookie">批量设置 Cookie</button>
+				  <button class="layui-btn cookie-batch" type="button" for="global-cookie"> Bulk Settings Cookie</button>
 			  </div>
 		  </div>
 	  </form>
@@ -57,10 +57,10 @@
    		<form class="layui-form">
 			<table class="layui-table" id="global-header" data-cell="{{=d.cell.id}}" data-keys="header-name,header-value,header-description"></table>
 			<div class="layui-input-inline">
-				<button class="layui-btn table-row-add" type="button" for="global-header">添加一个 Header</button>
+				<button class="layui-btn table-row-add" type="button" for="global-header">Add One Header</button>
 			</div>
 			<div class="layui-input-inline">
-				<button class="layui-btn header-batch" type="button" for="global-header">批量设置 Header</button>
+				<button class="layui-btn header-batch" type="button" for="global-header"> Bulk Settings Header</button>
 			</div>
 	    </form>
     </div>
@@ -72,25 +72,25 @@
 			elem : '#global-parameter',
 			limit: 50,
 			cols : [[{
-				title : '参数名',
+				title : 'Parameter name',
 				width : 150,
 				templet : '#query-param-name-tmpl'
 			},{
-				title : '参数值',
+				title : 'Parameter Value',
 				templet : '#query-param-value-tmpl'
 			},{
-				title : '参数描述',
+				title : 'Description of the parameters',
 				width : 250,
 				templet : '#query-param-description-tmpl'
 			},{
-				title : '操作',
+				title : 'Operation',
 				width : 120,
 				align : 'center',
 				templet : '#common-operation'
 			}]],
 			data : data,
 			text : {
-				none : '暂未设置参数'
+				none : 'No parameters set yet'
 			}
 		})
 	}
@@ -99,25 +99,25 @@
 			elem : '#global-cookie',
 			limit: 50,
 			cols : [[{
-				title : 'Cookie 名',
+				title : 'Cookie Name',
 				width : 150,
 				templet : '#cookie-name-tmpl'
 			},{
-				title : 'Cookie 值',
+				title : 'Cookie Translate the following text to english',
 				templet : '#cookie-value-tmpl'
 			},{
-				title : '描述',
+				title : 'Description',
 				width : 250,
 				templet : '#cookie-description-tmpl'
 			},{
-				title : '操作',
+				title : 'Operation',
 				width : 120,
 				align : 'center',
 				templet : '#common-operation'
 			}]],
 			data : data,
 			text : {
-				none : '暂未设置 Cookie'
+				none : ' (none) Cookie'
 			}
 		})
 	}
@@ -127,26 +127,26 @@
 			elem : '#global-header',
 			limit: 50,
 			cols : [[{
-				title : 'Header 名',
+				title : 'Header Name',
 				width : 150,
 				templet : '#header-name-tmpl'
 			},{
-				title : 'header 值',
+				title : 'header Translate the following text to english',
 				minWidth : 400,
 				templet : '#header-value-tmpl'
 			},{
-				title : '描述',
+				title : 'Description',
 				width : 250,
 				templet : '#header-description-tmpl'
 			},{
-				title : '操作',
+				title : 'Operation',
 				width : 120,
 				align : 'center',
 				templet : '#common-operation'
 			}]],
 			data : data,
 			text : {
-				none : '暂未设置 Header'
+				none : ' (none) Header'
 			}
 		})
 	}

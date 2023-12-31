@@ -5,34 +5,34 @@ import lombok.Setter;
 
 
 /**
- * 图形
+ * 3D
  */
 @Getter
 @Setter
 public class Shape {
 
     /**
-     * 图形名称
+     * Graphical Name
      */
     private String name;
 
     /**
-     * 图形标签
+     * 3D-depth:
      */
     private String label;
 
     /**
-     * 图形标题
+     * 3D-depth:
      */
     private String title;
 
     /**
-     * 图形的链接地址（可以是 BASE64 编码后的图片）
+     * The link address of the graphic（可以是 BASE64 Encoded Image）
      */
     private String image;
 
     /**
-     * 描述
+     * Description
      */
     private String desc;
 }

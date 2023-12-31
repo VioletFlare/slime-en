@@ -12,17 +12,17 @@ public class RandomAccessFileReader implements Closeable {
     private RandomAccessFile raf;
 
     /**
-     * 从 index 位置开始读取
+     * From index Location to read
      */
     private long index;
 
     /**
-     * 读取顺序，默认倒序
+     * Sequence，Default Reverse
      */
     private boolean reversed;
 
     /**
-     * 缓冲区大小
+     * Cushion size
      */
     private int bufSize;
 
@@ -54,13 +54,13 @@ public class RandomAccessFileReader implements Closeable {
     }
 
     /**
-     * 读取n行
+     * Speakn行
      *
-     * @param n         要读取的行数
-     * @param keywords  搜索的关键词
-     * @param matchCase 是否区分大小写
-     * @param regx      是否是正则搜索
-     * @return 返回 Line 对象，包含行的起始位置与终止位置
+     * @param n         How many rows to read
+     * @param keywords  What is your desired Jabber password?
+     * @param matchCase Do not translate the following phrases:
+     * @param regx      Is this a regular expression
+     * @return Back Line 对象，Includes the start and end positions of the row
      */
     public List<Line> readLine(int n, String keywords, boolean matchCase, boolean regx) throws IOException {
         List<Line> lines = new ArrayList<>(n);
@@ -76,26 +76,26 @@ public class RandomAccessFileReader implements Closeable {
                 this.raf.seek(this.index -= buf.length);
             }
             int len = this.raf.read(buf, 0, buf.length);
-            if (len == -1) {    // 已读完
+            if (len == -1) {    // Completed
                 break;
             }
             for (int i = 0; i < len && n > 0; i++) {
                 int readIndex = reversed ? len - i - 1 : i;
-                if (isCRLF(buf[readIndex])) {    // 如果读取到\r或\n
-                    if (Math.abs(this.index + readIndex - lastCRLFIndex) > 1) { // 两行之间的间距，当 =1 时则代表有 \r\n,\n\r,\r\r,\n\n 四种情况之一
-                        long fromIndex = reversed ? this.index + readIndex : lastCRLFIndex;    // 计算起始位置
-                        long endIndex = reversed ? lastCRLFIndex : this.index + readIndex;    // 计算终止位置
+                if (isCRLF(buf[readIndex])) {    // If read receipt requested, reply with\ror\n
+                    if (Math.abs(this.index + readIndex - lastCRLFIndex) > 1) { // The amount of space between two lines，When =1 I represent the \r\n,\n\r,\r\r,\n\n One of the four
+                        long fromIndex = reversed ? this.index + readIndex : lastCRLFIndex;    // Calculate starting position
+                        long endIndex = reversed ? lastCRLFIndex : this.index + readIndex;    // Calculate the stop position
                         Line line = readLine(fromIndex + 1, endIndex);    // 取出文本
-                        if (find || (find = (pattern == null ? find(line.getText(), keywords, matchCase) : find(line.getText(), pattern)))) {    // 定位查找，使被查找的行始终在第一行
+                        if (find || (find = (pattern == null ? find(line.getText(), keywords, matchCase) : find(line.getText(), pattern)))) {    // Location lookup，Make sure that the searched row is always at the top
                             if (reversed) {
-                                lines.add(0, line);    // 反向查找时，插入到 List 头部
+                                lines.add(0, line);    // When Reverse Searching，Insert in List The following text is not translated:
                             } else {
                                 lines.add(line);
                             }
                             n--;
                         }
                     }
-                    lastCRLFIndex = this.index + readIndex;    // 记录上次读取到的 \r 或 \n 的位置
+                    lastCRLFIndex = this.index + readIndex;    // Record the last read at \r or \n Where is the meeting point?
                 }
             }
             if (!reversed) {
@@ -117,11 +117,11 @@ public class RandomAccessFileReader implements Closeable {
     }
 
     /**
-     * 从指定位置读取一行
+     * Please read a row from the given location
      *
-     * @param fromIndex 开始位置
-     * @param endIndex  结束位置
-     * @return 返回Line对象
+     * @param fromIndex Start position
+     * @param endIndex  End Location
+     * @return BackLine对象
      * @throws IOException
      */
     private Line readLine(long fromIndex, long endIndex) throws IOException {

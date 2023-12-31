@@ -54,7 +54,7 @@ LogViewer.prototype.render = function(lines){
         }
         //转义html
         text = text.replace(/</g,'&lt;');
-        //搜索关键词高亮
+        //Search Help
         text = text.replace(/b4430885ba83495_(.*?)_88d1220d37eac831d/g,'<em class="search-finded">$1</em>');
         html.push('<div class="log-row">' + text + '</div>');
     }

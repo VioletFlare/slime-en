@@ -1,7 +1,7 @@
 package com.github.nekolr.slime.constant;
 
 /**
- * 常量
+ * Constant
  */
 public interface Constants {
 
@@ -10,27 +10,27 @@ public interface Constants {
     //*************************************************************************************
 
     /**
-     * 死锁检测对应的 AtomicInteger 的名称
+     * Death Lock Detect AtomicInteger Name of the program
      */
     String ATOMIC_DEAD_CYCLE = "__atomic_dead_cycle";
 
     /**
-     * 节点执行出现异常时向上下文中存放的变量名称
+     * Name of the variable stored in the up- and down-context when a node exited abnormally
      */
     String EXCEPTION_VARIABLE = "__ex";
 
     /**
-     * 上次请求执行的时间对应的变量前缀
+     * The prefix of the variable to which the last request was sent
      */
     String LAST_REQUEST_EXECUTE_TIME = "__last_request_execute_time_";
 
     /**
-     * 响应结果对应的变量名称
+     * Respondent:
      */
     String RESPONSE_VARIABLE = "resp";
 
     /**
-     * SQL 执行的结果对应的变量名称
+     * SQL EXECUTE RESULT AS VARIABLE
      */
     String SQL_RESULT = "rs";
 
@@ -40,12 +40,12 @@ public interface Constants {
     //*************************************************************************************
 
     /**
-     * 线程组名称
+     * Thread Group Name
      */
     String SLIME_THREAD_GROUP_NAME = "slime-thread-group";
 
     /**
-     * 线程名前缀
+     * Thread name prefix
      */
     String SLIME_THREAD_NAME_PREFIX = "slime-thread-";
 
@@ -55,42 +55,42 @@ public interface Constants {
     //*************************************************************************************
 
     /**
-     * 单个流程任务的线程数
+     * Thread count for single process tasks
      */
     String THREAD_COUNT = "threadCount";
 
     /**
-     * 同步执行
+     * Same suit
      */
     String RUN_SYNC = "runSync";
 
     /**
-     * 节点类型
+     * Classify Message as & Spam
      */
     String NODE_TYPE = "shape";
 
     /**
-     * 节点循环执行次数
+     * Repeats the action of the node
      */
     String NODE_LOOP_COUNT = "loopCount";
 
     /**
-     * 节点循环执行时的下标
+     * Subscript when executing node cycles
      */
     String NODE_LOOP_INDEX = "loopIndex";
 
     /**
-     * 节点循环执行时的起始下标
+     * Start index of the node cycle
      */
     String NODE_LOOP_START_INDEX = "loopStartIndex";
 
     /**
-     * 节点循环执行时的结束下标
+     * End subscript of a node cycle
      */
     String NODE_LOOP_END_INDEX = "loopEndIndex";
 
     /**
-     * 函数
+     * Function
      */
     String FUNCTION = "function";
 
@@ -100,7 +100,7 @@ public interface Constants {
     String FLOW_ID = "flowId";
 
     /**
-     * 数据源 ID
+     * Data Sources ID
      */
     String DATASOURCE_ID = "datasourceId";
 
@@ -117,12 +117,12 @@ public interface Constants {
     //*************************************************************************************
 
     /**
-     * 定时任务名称前缀
+     * Default reminder value
      */
     String QUARTZ_JOB_NAME_PREFIX = "SLIME_TASK_";
 
     /**
-     * 定时任务的上下文参数：SpiderFlow 的名称
+     * Context parameters for scheduled tasks：SpiderFlow Name of the program
      */
     String QUARTZ_SPIDER_FLOW_PARAM_NAME = "SLIME_SPIDER_FLOW";
 
@@ -132,17 +132,17 @@ public interface Constants {
     //*************************************************************************************
 
     /**
-     * 代理地址中域名与端口号之间的分隔符
+     * Separator between host name and port number in the proxy host URL
      */
     String PROXY_HOST_PORT_SEPARATOR = ":";
 
     /**
-     * 流程对应的日志目录前缀
+     * Log category prefix where this action was triggered
      */
     String SPIDER_FLOW_LOG_DIR_PREFIX = "slime_spider_flow_";
 
     /**
-     * 流程任务对应的日志目录前缀
+     * Log category prefix for process tasks
      */
     String SPIDER_TASK_LOG_DIR_PREFIX = "slime_spider_task_";
 }

@@ -69,7 +69,7 @@ public class ArrayLikeLambdaExecutor {
             Enumeration<Object> en = (Enumeration<Object>) arrayLike;
             return Collections.list(en);
         }
-        throw new LambdaExecuteException("未实现");
+        throw new LambdaExecuteException("Text not implemented");
     }
 
     @SuppressWarnings("unchecked")
@@ -84,7 +84,7 @@ public class ArrayLikeLambdaExecutor {
         coll.sort((o1, o2) -> {
             Object val = handler.apply(new Object[]{o1, o2});
             if (!(val instanceof Integer)) {
-                throw new IllegalStateException("lambda 函数 sort 必须返回int类型结果");
+                throw new IllegalStateException("lambda Function sort You must returnintType of result");
             }
             return (Integer) val;
         });
@@ -145,7 +145,7 @@ public class ArrayLikeLambdaExecutor {
             }
             Object result = handler.apply(args.toArray());
             if (!(result instanceof Boolean)) {
-                throw new LambdaExecuteException("lambda函数 filter 的结果非布尔类型");
+                throw new LambdaExecuteException("lambdaFunction filter The result of the operation is not boolean");
             }
             if ((Boolean) result) {
                 results.add(obj);
@@ -192,7 +192,7 @@ public class ArrayLikeLambdaExecutor {
             }
             Object result = handler.apply(args.toArray());
             if (!(result instanceof Boolean)) {
-                throw new LambdaExecuteException("lambda函数 every 的结果非布尔类型");
+                throw new LambdaExecuteException("lambdaFunction every The result of the operation is not boolean");
             }
             if (!(Boolean) result) {
                 return Boolean.FALSE;
@@ -216,7 +216,7 @@ public class ArrayLikeLambdaExecutor {
             }
             Object result = handler.apply(args.toArray());
             if (!(result instanceof Boolean)) {
-                throw new LambdaExecuteException("lambda函数 some 的结果非布尔类型");
+                throw new LambdaExecuteException("lambdaFunction some The result of the operation is not boolean");
             }
             if ((Boolean) result) {
                 return Boolean.TRUE;

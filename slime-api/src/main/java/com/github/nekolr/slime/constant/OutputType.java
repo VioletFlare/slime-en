@@ -3,7 +3,7 @@ package com.github.nekolr.slime.constant;
 import lombok.Getter;
 
 /**
- * 输出类型
+ * Output type
  */
 public enum OutputType {
 

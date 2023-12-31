@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * 身份凭证控制器
+ * Certificate Viewer
  */
 @RestController
 @RequestMapping("/auth")

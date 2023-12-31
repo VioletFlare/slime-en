@@ -52,14 +52,14 @@ public class SpiderJobContext extends SpiderContext {
     }
 
     /**
-     * 创建执行上下文
+     * Create Executable Context
      *
-     * @param workspace   工作目录
+     * @param workspace   Working on the To-do
      * @param flowId      流程 ID
-     * @param taskId      任务 ID
-     * @param allowOutput 是否允许输出结果
-     * @return 执行上下文
-     * @throws FileNotFoundException 文件不存在
+     * @param taskId      Tasks ID
+     * @param allowOutput Whether to allow outputting results
+     * @return Executable Context
+     * @throws FileNotFoundException File does not exist
      */
     public static SpiderJobContext create(String workspace, Long flowId, Long taskId,
                                           boolean allowOutput) throws FileNotFoundException {

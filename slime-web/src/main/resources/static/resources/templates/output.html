@@ -1,6 +1,6 @@
 <div class="layui-tab layui-tab-fixed layui-tab-brief">
   <ul class="layui-tab-title">
-    <li class="layui-this">配置</li>
+    <li class="layui-this">Configure KSpread...</li>
   </ul>
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
@@ -8,31 +8,31 @@
 			<div class="layui-row">
 				<div class="layui-col-md3">
 					<div class="layui-form-item">
-						<label class="layui-form-label">节点名称</label>
+						<label class="layui-form-label">Question Name</label>
 						<div class="layui-input-block">
-							<input type="text" name="value" placeholder="请输入节点名称" value="{{=d.value}}" autocomplete="off" class="layui-input">
+							<input type="text" name="value" placeholder="Please enter the first alternative name" value="{{=d.value}}" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md3">
 					<div class="layui-form-item">
-						<label class="layui-form-label">循环变量</label>
+						<label class="layui-form-label">Cycle Variable</label>
 						<div class="layui-input-block">
-							<input type="text" name="loopIndex" placeholder="请输入循环变量" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
+							<input type="text" name="loopIndex" placeholder="Please enter a loop variable" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md3">
 					<div class="layui-form-item">
-						<label class="layui-form-label">循环次数</label>
-						<div class="layui-input-block" codemirror="loopCount" placeholder="请输入循环次数" data-value="{{=d.data.object.loopCount}}"></div>
+						<label class="layui-form-label">Number of cycles</label>
+						<div class="layui-input-block" codemirror="loopCount" placeholder="Enter the number of cycles" data-value="{{=d.data.object.loopCount}}"></div>
 					</div>
 				</div>
 				<div class="layui-col-md3">
 					<div class="layui-form-item">
-						<label class="layui-form-label">输出设置</label>
+						<label class="layui-form-label">Output Settings</label>
 						<div class="layui-input-block">
-							<input type="checkbox" title="输出其他变量（仅在测试时输出到前台）" value="output-others" lay-skin="primary" {{d.data.object['output-others'] == '1' ? 'checked' : ''}}/>
+							<input type="checkbox" title="Other Variables（Only show plain text）" value="output-others" lay-skin="primary" {{d.data.object['output-others'] == '1' ? 'checked' : ''}}/>
 						</div>
 					</div>
 				</div>
@@ -40,16 +40,16 @@
 			<div class="layui-row layui-col-space20">
 				<div class="layui-col-md3">
 					<div class="layui-form-item">
-						<label class="layui-form-label">输出目标</label>
+						<label class="layui-form-label">Output target</label>
 						<div class="layui-input-block">
-							<input type="checkbox" target-div="databaseDiv" title="输出到数据库" value="output-database" lay-skin="primary" {{d.data.object['output-database'] == '1' ? 'checked' : ''}} lay-filter="targetCheck"/>
-							<input type="checkbox" class="oCheckbox" target-div="csvDiv" title="输出到 CSV 文件" value="output-csv" lay-skin="primary" {{d.data.object['output-csv'] == '1' ? 'checked' : ''}} lay-filter="targetCheck"/>
+							<input type="checkbox" target-div="databaseDiv" title="Data Store" value="output-database" lay-skin="primary" {{d.data.object['output-database'] == '1' ? 'checked' : ''}} lay-filter="targetCheck"/>
+							<input type="checkbox" class="oCheckbox" target-div="csvDiv" title="输出到 CSV Files" value="output-csv" lay-skin="primary" {{d.data.object['output-csv'] == '1' ? 'checked' : ''}} lay-filter="targetCheck"/>
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md3 databaseDiv" {{d.data.object['output-database'] == '1' ? '' : 'style="display: none;"'}}>
 					<div class="layui-form-item">
-						<label class="layui-form-label">数据源</label>
+						<label class="layui-form-label">Data Sources</label>
 						<div class="layui-input-block">
 							<select name="datasourceId">
 								{{# layui.each(d.datasources,function(index,datasource){ }}
@@ -61,12 +61,12 @@
 				</div>
 				<div class="layui-col-md2 databaseDiv" {{d.data.object['output-database'] == '1' ? '' : 'style="display: none;"'}}>
 					<div class="layui-form-item">
-						<input type="text" name="tableName" placeholder="请输入表名" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.tableName}}">
+						<input type="text" name="tableName" placeholder="Please enter the table name" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.tableName}}">
 					</div>
 				</div>
 				<div class="layui-col-md2 csvDiv" {{d.data.object['output-csv'] == '1' ? '' : 'style="display: none;"'}}>
 					<div class="layui-form-item">
-						<input type="text" name="csvName" placeholder="请输入文件名" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.csvName}}">
+						<input type="text" name="csvName" placeholder="Please enter the second path." autocomplete="off" class="layui-input input-default" value="{{=d.data.object.csvName}}">
 					</div>
 				</div>
 				<div class="layui-col-md2 csvDiv" {{d.data.object['output-csv'] == '1' ? '' : 'style="display: none;"'}}>
@@ -83,7 +83,7 @@
     		<hr>
     		<div class="layui-form-item">
     			<div class="layui-input-inline">
-	    			<button class="layui-btn table-row-add" type="button" for="spider-output">添加一个输出项</button>
+	    			<button class="layui-btn table-row-add" type="button" for="spider-output">Add an output item</button>
 	    		</div>
 	    	</div>
     	</form>
@@ -96,21 +96,21 @@
 			elem : '#spider-output',
 			limit: 50,
 			cols : [[{
-				title : '输出项',
+				title : 'Output Item',
 				width : 150,
 				templet : '#output-name-tmpl'
 			},{
-				title : '输出值',
+				title : 'Output Value',
 				templet : '#output-value-tmpl'
 			},{
-				title : '操作',
+				title : 'Operation',
 				width : 120,
 				align : 'center',
 				templet : '#common-operation'
 			}]],
 			data : data,
 			text : {
-				none : '暂未设置输出项'
+				none : 'The following sources are available:'
 			}
 		})
 	}

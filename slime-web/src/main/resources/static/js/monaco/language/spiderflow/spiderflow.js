@@ -1,6 +1,6 @@
 function Stack() {
-    this.dataStore = [];//保存栈内元素，初始化为一个空数组
-    this.top = 0;//栈顶位置，初始化为0
+    this.dataStore = [];//Save items in a tree，Initialize as empty array
+    this.top = 0;//Top position，Initialize as0
 }
 
 Stack.prototype.push = function(element){
@@ -151,7 +151,7 @@ Token.prototype.getText = function(){
     return this.span.getText();
 }
 var TokenType = {
-    TextBlock : {error:'一个文本'},
+    TextBlock : {error:'OneText'},
     Period : {literal:'.', error: '.'},
     Lambda : {literal:'->', error:'->'},
     Comma : {literal:',', error: ','},
@@ -183,17 +183,17 @@ var TokenType = {
     Questionmark : {literal:'?', error: '?'},
     DoubleQuote : {literal:'"', error: '"'},
     SingleQuote : {literal:'\'', error: '\''},
-    BooleanLiteral : {error:'true 或 false'},
-    DoubleLiteral : {error:'一个 double 类型数值'},
-    FloatLiteral : {error:'一个 float 类型数值'},
-    LongLiteral : {error:'一个 long 类型数值'},
-    IntegerLiteral : {error:'一个 int 类型数值'},
-    ShortLiteral : {error:'一个 short 类型数值'},
-    ByteLiteral : {error:'一个 byte 类型数据'},
-    CharacterLiteral : {error:'一个 char 类型数据'},
-    StringLiteral : {error:'一个 字符串'},
+    BooleanLiteral : {error:'true or false'},
+    DoubleLiteral : {error:'One double Type Value'},
+    FloatLiteral : {error:'One float Type Value'},
+    LongLiteral : {error:'One long Type Value'},
+    IntegerLiteral : {error:'One int Type Value'},
+    ShortLiteral : {error:'One short Type Value'},
+    ByteLiteral : {error:'One byte Type Data'},
+    CharacterLiteral : {error:'One char Type Data'},
+    StringLiteral : {error:'One String'},
     NullLiteral : {error:'null'},
-    Identifier : {error:'标识符'}
+    Identifier : {error:'Signature'}
 }
 var tokenTypeValues = Object.getOwnPropertyNames(TokenType).map(e=>TokenType[e]);
 TokenType.getSortedValues = function(){
@@ -331,7 +331,7 @@ Tokenizer.prototype.tokenizeCodeSpan = function(span){
                 }
                 stream.consume();
             }
-            if (!matchedEndQuote) throwError("字符串没有结束符\'", stream.endSpan());
+            if (!matchedEndQuote) throwError("String doesn't end with a semicolon\'", stream.endSpan());
             var stringSpan = stream.endSpan();
             stringSpan = new Span(stringSpan.getSource(), stringSpan.getStart() - 1, stringSpan.getEnd());
             tokens.push(new Token(TokenType.StringLiteral, stringSpan));
@@ -353,7 +353,7 @@ Tokenizer.prototype.tokenizeCodeSpan = function(span){
                 }
                 stream.consume();
             }
-            if (!matchedEndQuote) throwError("字符串没有结束符\"", stream.endSpan());
+            if (!matchedEndQuote) throwError("String doesn't end with a semicolon\"", stream.endSpan());
             var stringSpan = stream.endSpan();
             stringSpan = new Span(stringSpan.getSource(), stringSpan.getStart() - 1, stringSpan.getEnd());
             tokens.push(new Token(TokenType.StringLiteral, stringSpan));
@@ -470,18 +470,18 @@ SpiderflowGrammar.prototype.init = function(){
                 insertText : insertText
             };
         }
-        lambdasArrayFunctions.push(makeLambdaFunction('filter', 'List', 'filter(e->expression)', '过滤列表元素，返回符合条件的数据', 'filter(e->${1:true})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('filter', 'List', 'filter((e,i)->expression)', '过滤列表元素，返回符合条件的数据', 'filter((e,i)->${1:true})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('map', 'List', 'map(e->expression)', '将列表中的元素转为其他类型数据', 'map(e->${1:e})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('map', 'List', 'map((e,i)->expression)', '将列表中的元素转为其他类型数据', 'map((e,i)->${1:e})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('reduce', 'Object', 'reduce((a,b)->expression)', '将列表中的元素整合为一个数据', 'reduce((a,b)->${1:a+b})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('sort', 'List', 'sort((a,b)->expression)', '将列表中的元素进行排序', 'sort((a,b)->${1:a-b})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('distinct', 'List', 'distinct(e->expression)', '将列表中的元素按条件去重', 'sort(e->${1:e})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('distinct', 'List', 'distinct((e,i)->expression)', '将列表中的元素按条件去重', 'distinct((e,i)->${1:e})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('every', 'boolean', 'every(e->expression)', '是否每个元素都符合条件', 'every(e->${1:true})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('every', 'boolean', 'every((e,i)->expression)', '是否每个元素都符合条件', 'every((e,i)->${1:true})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('some', 'boolean', 'some(e->expression)', '是否至少有一个元素都符合条件', 'some(e->${1:true})'));
-        lambdasArrayFunctions.push(makeLambdaFunction('some', 'boolean', 'some((e,i)->expression)', '是否至少有一个元素都符合条件', 'some((e,i)->${1:true})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('filter', 'List', 'filter(e->expression)', 'Filter List Items，Return data that matches', 'filter(e->${1:true})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('filter', 'List', 'filter((e,i)->expression)', 'Filter List Items，Return data that matches', 'filter((e,i)->${1:true})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('map', 'List', 'map(e->expression)', 'Convert the elements of a list to other types of data', 'map(e->${1:e})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('map', 'List', 'map((e,i)->expression)', 'Convert the elements of a list to other types of data', 'map((e,i)->${1:e})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('reduce', 'Object', 'reduce((a,b)->expression)', 'Integrate elements of the list into a data', 'reduce((a,b)->${1:a+b})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('sort', 'List', 'sort((a,b)->expression)', 'Sort the elements of a list', 'sort((a,b)->${1:a-b})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('distinct', 'List', 'distinct(e->expression)', 'Sort the items in the list by their conditions', 'sort(e->${1:e})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('distinct', 'List', 'distinct((e,i)->expression)', 'Sort the items in the list by their conditions', 'distinct((e,i)->${1:e})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('every', 'boolean', 'every(e->expression)', 'Is the condition met for every element', 'every(e->${1:true})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('every', 'boolean', 'every((e,i)->expression)', 'Is the condition met for every element', 'every((e,i)->${1:true})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('some', 'boolean', 'some(e->expression)', 'Is at least one of the elements matching', 'some(e->${1:true})'));
+        lambdasArrayFunctions.push(makeLambdaFunction('some', 'boolean', 'some((e,i)->expression)', 'Is at least one of the elements matching', 'some((e,i)->${1:true})'));
         // var types = new Set()
         // for(var k in this.clazz){
         //     this.clazz[k].methods.forEach(e=>types.add(e.returnType))

@@ -1,6 +1,6 @@
 <div class="layui-tab layui-tab-fixed layui-tab-brief">
   <ul class="layui-tab-title">
-    <li class="layui-this">配置</li>
+    <li class="layui-this">Configure KSpread...</li>
   </ul>
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
@@ -8,38 +8,38 @@
 			<div class="layui-row">
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">节点名称</label>
+						<label class="layui-form-label">Question Name</label>
 						<div class="layui-input-block">
-							<input type="text" name="value" placeholder="请输入节点名称" value="{{=d.value}}" autocomplete="off" class="layui-input">
+							<input type="text" name="value" placeholder="Please enter the first alternative name" value="{{=d.value}}" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">次数</label>
-						<div class="layui-input-block" codemirror="loopCount" placeholder="请输入循环次数" data-value="{{=d.data.object.loopCount}}"></div>
+						<label class="layui-form-label">Number of times</label>
+						<div class="layui-input-block" codemirror="loopCount" placeholder="Enter the number of cycles" data-value="{{=d.data.object.loopCount}}"></div>
 					</div>
 				</div>
 			</div>
 			<div class="layui-row">
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">下标变量</label>
+						<label class="layui-form-label">Subscript Variable</label>
 						<div class="layui-input-block">
-							<input type="text" name="loopIndex" placeholder="请输入下标变量" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
+							<input type="text" name="loopIndex" placeholder="Please enter subtitle language" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">开始位置</label>
-						<div class="layui-input-block" codemirror="loopStartIndex" placeholder="请输入循环次数" data-value="{{=d.data.object.loopStartIndex || '0'}}"></div>
+						<label class="layui-form-label">Start position</label>
+						<div class="layui-input-block" codemirror="loopStartIndex" placeholder="Enter the number of cycles" data-value="{{=d.data.object.loopStartIndex || '0'}}"></div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">结束位置</label>
-						<div class="layui-input-block" codemirror="loopEndIndex" placeholder="请输入循环次数" data-value="{{=d.data.object.loopEndIndex || -1}}"></div>
+						<label class="layui-form-label">End Location</label>
+						<div class="layui-input-block" codemirror="loopEndIndex" placeholder="Enter the number of cycles" data-value="{{=d.data.object.loopEndIndex || -1}}"></div>
 					</div>
 				</div>
 			</div>

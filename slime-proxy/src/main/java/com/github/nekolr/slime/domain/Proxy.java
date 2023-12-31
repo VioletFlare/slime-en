@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 代理实体类
+ * Proxy entity class
  */
 @Table(name = "slime_sp_proxy")
 @Entity
@@ -27,28 +27,28 @@ public class Proxy {
     private Long id;
 
     /**
-     * IP 地址
+     * IP Address
      */
     private String ip;
 
     /**
-     * 端口号
+     * Port number
      */
     private Integer port;
 
     /**
-     * 类型
+     * Type
      */
     private String type;
 
     /**
-     * 是否高匿
+     * Is it a secret
      */
     @ColumnDefault("false")
     private Boolean anonymous;
 
     /**
-     * 验证时间
+     * Certificate expiry
      */
     @Column(name = "valid_time", insertable = false)
     @ColumnDefault("CURRENT_TIMESTAMP()")

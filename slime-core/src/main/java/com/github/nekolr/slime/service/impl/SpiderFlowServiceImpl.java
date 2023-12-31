@@ -58,24 +58,24 @@ public class SpiderFlowServiceImpl implements SpiderFlowService {
     private PlatformTransactionManager txManager;
 
     /**
-     * 项目启动后自动添加需要执行的定时任务
+     * Add a new task after the current one
      */
     @PostConstruct
     public void initializeJobs() {
         TransactionTemplate tmpl = new TransactionTemplate(txManager);
         tmpl.execute(new TransactionCallbackWithoutResult() {
             @Override
-            // 保证 doInTransactionWithoutResult 方法里的代码在事务中
+            // 保证 doInTransactionWithoutResult Code in the Methods
             protected void doInTransactionWithoutResult(TransactionStatus status) {
-                // 清空所有流程的下次执行时间
+                // Next run of all processes
                 clearNextExecuteTime();
-                // 获取所有启用定时任务的流程
+                // Get all active scheduled tasks
                 List<SpiderFlow> flows = findByJobEnabled(Boolean.TRUE);
                 if (flows != null && !flows.isEmpty()) {
                     for (SpiderFlow flow : flows) {
                         if (StringUtils.isNotBlank(flow.getCron())) {
                             Date nextTime = spiderJobManager.addJob(flow);
-                            log.info("初始化定时任务：{}，下次执行时间：{}", flow.getName(), TimeUtils.format(nextTime));
+                            log.info("Initializing Scheduled Tasks：{}，Next execution time：{}", flow.getName(), TimeUtils.format(nextTime));
                             if (nextTime != null) {
                                 flow.setNextExecuteTime(nextTime);
                                 updateNextExecuteTime(flow);
@@ -120,18 +120,18 @@ public class SpiderFlowServiceImpl implements SpiderFlowService {
         if (flow.getId() != null) {
             Optional<SpiderFlow> entity = spiderFlowRepository.findById(flow.getId());
             if (entity.isPresent()) {
-                // 以下字段需要回填
+                // Please fill in the following text
                 flow.setCron(entity.get().getCron());
                 flow.setJobEnabled(entity.get().getJobEnabled());
                 flow.setExecuteCount(entity.get().getExecuteCount());
                 flow.setLastExecuteTime(entity.get().getLastExecuteTime());
-                // 如果任务正在执行，则设置下次执行时间
+                // If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.，Next time the action should be run
                 if (StringUtils.isNotBlank(flow.getCron()) && flow.getJobEnabled()) {
                     CronTrigger trigger = TriggerBuilder.newTrigger()
                             .withSchedule(CronScheduleBuilder.cronSchedule(flow.getCron()))
                             .build();
                     flow.setNextExecuteTime(trigger.getFireTimeAfter(null));
-                    // 重新发布任务
+                    // Reissue the task
                     if (spiderJobManager.removeJob(flow.getId())) {
                         spiderJobManager.addJob(flow);
                     }
@@ -187,7 +187,7 @@ public class SpiderFlowServiceImpl implements SpiderFlowService {
         try {
             trigger = TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(cron)).build();
         } catch (Exception e) {
-            throw new RuntimeException("cron 表达式 " + cron + " 有误");
+            throw new RuntimeException("cron Answer " + cron + " 有误");
         }
         List<Date> dates = TriggerUtils.computeFireTimes((OperableTrigger) trigger, null, numTimes);
         for (Date date : dates) {
@@ -199,16 +199,16 @@ public class SpiderFlowServiceImpl implements SpiderFlowService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateCronAndNextExecuteTime(Long id, String cron) {
-        // 创建触发器
+        // Create a trigger
         CronTrigger trigger = TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule(cron)).build();
-        // 删除定时任务
+        // Delete this task
         if (spiderJobManager.removeJob(id)) {
-            // 计算下次执行时间后，更新流程
+            // Next time the alarm will run，Update process
             spiderFlowRepository.updateCronAndNextExecuteTime(id, cron, trigger.getFireTimeAfter(null));
             SpiderFlow flow = getById(id);
-            // 定时任务已开启
+            // Scheduled Tasks
             if (flow.getJobEnabled()) {
-                // 添加任务
+                // Add a new task
                 spiderJobManager.addJob(flow);
             } else {
                 spiderFlowRepository.updateCronAndNextExecuteTime(id, cron, null);
@@ -221,16 +221,16 @@ public class SpiderFlowServiceImpl implements SpiderFlowService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void start(Long id) {
-        // 先尝试删除任务
+        // First try to delete the task
         if (spiderJobManager.removeJob(id)) {
-            // 设置定时任务状态为开启
+            // Set timed task status to 'on'
             spiderFlowRepository.updateJobEnabled(id, Boolean.TRUE);
             SpiderFlow flow = getById(id);
             if (flow != null) {
-                // 添加任务
+                // Add a new task
                 Date nextExecuteTime = spiderJobManager.addJob(flow);
                 if (nextExecuteTime != null) {
-                    // 更新下次执行时间
+                    // Next execution time
                     flow.setNextExecuteTime(nextExecuteTime);
                     spiderFlowRepository.updateNextExecuteTime(flow.getNextExecuteTime(), flow.getId());
                 }
@@ -252,7 +252,7 @@ public class SpiderFlowServiceImpl implements SpiderFlowService {
         if (Objects.isNull(taskId)) {
             Long maxId = spiderTaskService.getMaxTaskIdByFlowId(id);
             if (Objects.isNull(maxId)) {
-                throw new RuntimeException("该流程没有运行过的任务");
+                throw new RuntimeException("There is no task to run");
             } else {
                 taskId = maxId;
             }
@@ -266,9 +266,9 @@ public class SpiderFlowServiceImpl implements SpiderFlowService {
         try (RandomAccessFileReader reader = new RandomAccessFileReader(new RandomAccessFile(logFile, "r"), index == null ? -1 : index, reversed == null || reversed)) {
             lines = reader.readLine(count == null ? 10 : count, keywords, matchCase != null && matchCase, regex != null && regex);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("日志文件不存在", e);
+            throw new RuntimeException("Logfile does not exist", e);
         } catch (IOException e) {
-            throw new RuntimeException("读取日志文件出错", e);
+            throw new RuntimeException("Read error from logfile", e);
         }
         return lines;
     }

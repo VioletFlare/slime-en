@@ -15,7 +15,7 @@ import org.springframework.web.socket.WebSocketSession;
 import java.util.Date;
 
 /**
- * WebSocket 通信时使用的爬虫上下文
+ * WebSocket Communication context to use in replies
  */
 public class SpiderWebSocketContext extends SpiderContext {
 
@@ -61,7 +61,7 @@ public class SpiderWebSocketContext extends SpiderContext {
                 if (this.debug && this.isRunning()) {
                     synchronized (lock) {
                         try {
-                            // 向客户端发送消息
+                            // Send Message to Client
                             write(new WebSocketEvent<>(WebSocketEvent.DEBUG_EVENT_TYPE,
                                     new DebugInfo(nodeId, event, key, value)));
                             lock.wait();
@@ -96,22 +96,22 @@ public class SpiderWebSocketContext extends SpiderContext {
     @AllArgsConstructor
     class DebugInfo {
         /**
-         * 节点 ID
+         * 15th Last ID
          */
         private String nodeId;
 
         /**
-         * 事件名称
+         * Assistant Phone
          */
         private String event;
 
         /**
-         * 属性名称（在调试时，客户端需要知道当前断点所在的属性的名称）
+         * Property name（When debugging，The client needs to know the name of the property the current breakpoint is in）
          */
         private String key;
 
         /**
-         * 属性值（在调试时，客户端需要知道当前断点所在的属性的值，该值由表达式解析器计算得出）
+         * Property Value（When debugging，The client needs to know the value of the property the current breakpoint is in，The value is computed by the expression parser）
          */
         private Object value;
     }

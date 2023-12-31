@@ -1,7 +1,7 @@
 <div class="layui-tab layui-tab-fixed layui-tab-brief">
   <ul class="layui-tab-title">
     <li class="layui-this">基本配置</li>
-    <li>参数</li>
+    <li>Parameters</li>
 	<li>Cookie</li>
     <li>Header</li>
     <li>Body</li>
@@ -12,31 +12,31 @@
 			<div class="layui-row">
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">节点名称</label>
+						<label class="layui-form-label">Question Name</label>
 						<div class="layui-input-block">
-							<input type="text" name="value" placeholder="请输入节点名称" value="{{=d.value}}" autocomplete="off" class="layui-input">
+							<input type="text" name="value" placeholder="Please enter the first alternative name" value="{{=d.value}}" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">循环变量</label>
+						<label class="layui-form-label">Cycle Variable</label>
 						<div class="layui-input-block">
-							<input type="text" name="loopIndex" placeholder="请输入循环变量" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
+							<input type="text" name="loopIndex" placeholder="Please enter a loop variable" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">循环次数</label>
-						<div class="layui-input-block" codemirror="loopCount" placeholder="请输入循环次数" data-value="{{=d.data.object.loopCount}}"></div>
+						<label class="layui-form-label">Number of cycles</label>
+						<div class="layui-input-block" codemirror="loopCount" placeholder="Enter the number of cycles" data-value="{{=d.data.object.loopCount}}"></div>
 					</div>
 				</div>
 			</div>
 			<div class="layui-row">
 				<div class="layui-col-md2">
 					<div class="layui-form-item">
-						<label class="layui-form-label">请求方法</label>
+						<label class="layui-form-label">Request Method</label>
 						<div class="layui-input-block">
 							<select name="method">
 								<option value="GET" {{d.data.object.method == 'GET' ? 'selected':''}}>GET</option>
@@ -61,25 +61,25 @@
 			<div class="layui-row">
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">延迟时间</label>
+						<label class="layui-form-label">Delay time</label>
 						<div class="layui-input-block">
-							<input type="text" name="sleep" placeholder="请输入延迟时间" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.sleep}}">
+							<input type="text" name="sleep" placeholder="Please enter the delay time" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.sleep}}">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">超时时间</label>
+						<label class="layui-form-label">Time Elapsed</label>
 						<div class="layui-input-block">
-							<input type="text" name="request-timeout" placeholder="请输入超时时间" autocomplete="off" class="layui-input input-default" value="{{=d.data.object['request-timeout']}}">
+							<input type="text" name="request-timeout" placeholder="Please enter the overtime hours" autocomplete="off" class="layui-input input-default" value="{{=d.data.object['request-timeout']}}">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">页面编码</label>
+						<label class="layui-form-label">The page code of the page you are looking at.</label>
 						<div class="layui-input-block">
-							<input type="text" name="response-charset" placeholder="请输入页面编码" autocomplete="off" class="layui-input input-default" value="{{=d.data.object['response-charset']}}">
+							<input type="text" name="response-charset" placeholder="Please enter the page code" autocomplete="off" class="layui-input input-default" value="{{=d.data.object['response-charset']}}">
 						</div>
 					</div>
 				</div>
@@ -87,17 +87,17 @@
 			<div class="layui-row">
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">重试次数</label>
+						<label class="layui-form-label">Retry Count</label>
 						<div class="layui-input-block">
-							<input type="text" name="request-retry-count" placeholder="请输入重试次数" autocomplete="off" class="layui-input input-default" value="{{=d.data.object['request-retry-count']}}">
+							<input type="text" name="request-retry-count" placeholder="Please enter the number of retries" autocomplete="off" class="layui-input input-default" value="{{=d.data.object['request-retry-count']}}">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">重试间隔</label>
+						<label class="layui-form-label">Retry delay</label>
 						<div class="layui-input-block">
-							<input type="text" name="request-retry-interval" placeholder="请输入重试间隔" autocomplete="off" class="layui-input input-default" value="{{=d.data.object['request-retry-interval']}}">
+							<input type="text" name="request-retry-interval" placeholder="Please enter the retry delay" autocomplete="off" class="layui-input input-default" value="{{=d.data.object['request-retry-interval']}}">
 						</div>
 					</div>
 				</div>
@@ -111,13 +111,13 @@
 				</div>
 				<div class="layui-col-md8">
 					<div class="layui-form-item">
-						<label class="layui-form-label">请求设置</label>
+						<label class="layui-form-label">Request Settings</label>
 						<div class="layui-input-block">
-							<input type="checkbox" title="跟随重定向" value="request-follow-redirect" lay-skin="primary" {{d.data.object['request-follow-redirect'] == '0' ? '' : 'checked'}}/>
-							<input type="checkbox" title="自动管理 Cookie" value="request-cookie-auto" lay-skin="primary" {{d.data.object['request-cookie-auto'] == '0' ? '' : 'checked'}}/>
-							<input type="checkbox" title="使用随机 User-Agent" value="request-random-useragent" lay-skin="primary" {{d.data.object['request-random-useragent'] == '0' ? '' : 'checked'}}/>
-							<input type="checkbox" title="自动去重" value="repeat-enable" lay-skin="primary" {{d.data.object['repeat-enable'] == '1' ? 'checked' : ''}}/>
-							<input type="checkbox" title="重复不执行后续节点" value="repeat-ignore-execute" lay-skin="primary" {{d.data.object['repeat-ignore-execute'] == '1' ? 'checked' : ''}}/>
+							<input type="checkbox" title="Follow Up" value="request-follow-redirect" lay-skin="primary" {{d.data.object['request-follow-redirect'] == '0' ? '' : 'checked'}}/>
+							<input type="checkbox" title="Auto Management Cookie" value="request-cookie-auto" lay-skin="primary" {{d.data.object['request-cookie-auto'] == '0' ? '' : 'checked'}}/>
+							<input type="checkbox" title="Use a random User-Agent" value="request-random-useragent" lay-skin="primary" {{d.data.object['request-random-useragent'] == '0' ? '' : 'checked'}}/>
+							<input type="checkbox" title="Auto-away" value="repeat-enable" lay-skin="primary" {{d.data.object['repeat-enable'] == '1' ? 'checked' : ''}}/>
+							<input type="checkbox" title="Revert unsaved changes" value="repeat-ignore-execute" lay-skin="primary" {{d.data.object['repeat-ignore-execute'] == '1' ? 'checked' : ''}}/>
 						</div>
 					</div>
 				</div>
@@ -129,10 +129,10 @@
 			<table class="layui-table" id="request-parameter" data-cell="{{=d.cell.id}}" data-keys="query-param-name,query-param-value,query-param-description"></table>
 	   		<div id="addParameterBtn" class="layui-form-item">
 	   			<div class="layui-input-inline">
-	    			<button class="layui-btn table-row-add" type="button" for="request-parameter">添加一个参数</button>
+	    			<button class="layui-btn table-row-add" type="button" for="request-parameter">Add a parameter</button>
 	    		</div>
 				<div class="layui-input-inline">
-					<button class="layui-btn parameter-batch" type="button" for="request-parameter">批量设置参数</button>
+					<button class="layui-btn parameter-batch" type="button" for="request-parameter"> Bulk Setup Parameters</button>
 				</div>
 			</div>
     	</form>
@@ -142,10 +142,10 @@
 			  <table class="layui-table" id="request-cookie" data-cell="{{=d.cell.id}}" data-keys="cookie-name,cookie-value,cookie-description"></table>
 			  <div id="addCookieBtn" class="layui-form-item">
 				  <div class="layui-input-inline">
-					  <button class="layui-btn table-row-add" type="button" for="request-cookie">添加一个 Cookie</button>
+					  <button class="layui-btn table-row-add" type="button" for="request-cookie">Add One Cookie</button>
 				  </div>
 				  <div class="layui-input-inline">
-					  <button class="layui-btn cookie-batch" type="button" for="request-cookie">批量设置 Cookie</button>
+					  <button class="layui-btn cookie-batch" type="button" for="request-cookie"> Bulk Settings Cookie</button>
 				  </div>
 			  </div>
 		  </form>
@@ -155,10 +155,10 @@
 			<table class="layui-table" id="request-header" data-cell="{{=d.cell.id}}" data-keys="header-name,header-value,header-description"></table>
 	   		<div id="addHeaderBtn" class="layui-form-item">
 	   			<div class="layui-input-inline">
-	    			<button class="layui-btn table-row-add" type="button" for="request-header">添加一个 Header</button>
+	    			<button class="layui-btn table-row-add" type="button" for="request-header">Add One Header</button>
 	    		</div>
 				<div class="layui-input-inline">
-					<button class="layui-btn header-batch" type="button" for="request-header">批量设置 Header</button>
+					<button class="layui-btn header-batch" type="button" for="request-header"> Bulk Settings Header</button>
 				</div>
 			</div>
 	    </form>
@@ -167,7 +167,7 @@
 	<div class="layui-tab-item">
 		<form class="layui-form">
 			<div class="layui-form-item">
-				<label class="layui-form-label">类型</label>
+				<label class="layui-form-label">Type</label>
 				<div class="layui-input-block">
 					<select name="body-type" lay-filter="bodyType">
 						<option value="none" {{d.data.object['body-type'] == 'none' ? 'selected':''}}>none</option>
@@ -188,14 +188,14 @@
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">内容</label>
-					<div class="layui-input-block" style="height:200px;" placeholder="请输入内容" codemirror="request-body" data-value="{{=d.data.object['request-body']}}"></div>
+					<div class="layui-input-block" style="height:200px;" placeholder="Please enter the following text:" codemirror="request-body" data-value="{{=d.data.object['request-body']}}"></div>
 				</div>
 			</div>
 			<div class="form-body-form-data" {{d.data.object['body-type'] != 'form-data' ? 'style="display:none;"':''}}>
 				<table class="layui-table" id="body-parameter" data-cell="{{=d.cell.id}}" data-keys="form-param-name,form-param-value,form-param-type,form-param-filename,form-param-description"></table>
 				<div class="layui-form-item">
 					<div class="layui-input-inline">
-						<button class="layui-btn table-row-add" type="button" for="body-parameter">添加一个参数</button>
+						<button class="layui-btn table-row-add" type="button" for="body-parameter">Add a parameter</button>
 					</div>
 				</div>
 			</div>
@@ -212,25 +212,25 @@
 				elem : '#request-parameter',
 				limit: 50,
 				cols : [[{
-					title : '参数名',
+					title : 'Parameter name',
 					width : 150,
 					templet : '#query-param-name-tmpl'
 				},{
-					title : '参数值',
+					title : 'Parameter Value',
 					templet : '#query-param-value-tmpl'
 				},{
-					title : '参数描述',
+					title : 'Description of the parameters',
 					width : 250,
 					templet : '#query-param-description-tmpl'
 				},{
-					title : '操作',
+					title : 'Operation',
 					width : 120,
 					align : 'center',
 					templet : '#common-operation'
 				}]],
 				data : data,
 				text : {
-					none : '暂未设置参数'
+					none : 'No parameters set yet'
 				}
 			})
 		}
@@ -239,25 +239,25 @@
 				elem : '#request-cookie',
 				limit: 50,
 				cols : [[{
-					title : 'Cookie 名',
+					title : 'Cookie Name',
 					width : 150,
 					templet : '#cookie-name-tmpl'
 				},{
-					title : 'Cookie 值',
+					title : 'Cookie Translate the following text to english',
 					templet : '#cookie-value-tmpl'
 				},{
-					title : '描述',
+					title : 'Description',
 					width : 250,
 					templet : '#cookie-description-tmpl'
 				},{
-					title : '操作',
+					title : 'Operation',
 					width : 120,
 					align : 'center',
 					templet : '#common-operation'
 				}]],
 				data : data,
 				text : {
-					none : '暂未设置 Cookie'
+					none : ' (none) Cookie'
 				}
 			})
 		}
@@ -267,26 +267,26 @@
 				elem : '#request-header',
 				limit: 50,
 				cols : [[{
-					title : 'Header 名',
+					title : 'Header Name',
 					width : 150,
 					templet : '#header-name-tmpl'
 				},{
-					title : 'header 值',
+					title : 'header Translate the following text to english',
 					minWidth : 400,
 					templet : '#header-value-tmpl'
 				},{
-					title : '描述',
+					title : 'Description',
 					width : 250,
 					templet : '#header-description-tmpl'
 				},{
-					title : '操作',
+					title : 'Operation',
 					width : 120,
 					align : 'center',
 					templet : '#common-operation'
 				}]],
 				data : data,
 				text : {
-					none : '暂未设置 Header'
+					none : ' (none) Header'
 				}
 			})
 		}
@@ -295,33 +295,33 @@
 			layui.table.render({
 				elem : '#body-parameter',
 				cols : [[{
-					title : '参数名',
+					title : 'Parameter name',
 					width : 150,
 					templet : '#form-param-name-tmpl'
 				},{
-					title : '参数类型',
+					title : 'Parameter type',
 					width : 85,
 					templet : '#form-param-type-tmpl'
 				},{
-					title : '文件名',
+					title : 'File name',
 					width : 195,
 					templet : '#form-param-filename-tmpl'
 				},{
-					title : '参数值',
+					title : 'Parameter Value',
 					templet : '#form-param-value-tmpl'
 				},{
-					title : '参数描述',
+					title : 'Description of the parameters',
 					width : 250,
 					templet : '#form-param-description-tmpl'
 				},{
-					title : '操作',
+					title : 'Operation',
 					width : 120,
 					align : 'center',
 					templet : '#common-operation'
 				}]],
 				data : data,
 				text : {
-					none : '暂未设置参数'
+					none : 'No parameters set yet'
 				}
 			})
 		}

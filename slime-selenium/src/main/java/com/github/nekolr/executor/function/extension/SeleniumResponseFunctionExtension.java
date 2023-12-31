@@ -24,7 +24,7 @@ public class SeleniumResponseFunctionExtension implements FunctionExtension {
         return SeleniumResponse.class;
     }
 
-    @Comment("根据 css 选择器提取请求结果")
+    @Comment("Based on css Choose the best answer to the question")
     @Example("${resp.selector('div > a')}")
     public static WebElementWrapper selector(SeleniumResponse response, String css) {
         try {
@@ -34,7 +34,7 @@ public class SeleniumResponseFunctionExtension implements FunctionExtension {
         }
     }
 
-    @Comment("根据 css 选择器提取请求结果")
+    @Comment("Based on css Choose the best answer to the question")
     @Example("${resp.selectors('div > a')}")
     public static WebElements selectors(SeleniumResponse response, String css) {
         try {
@@ -44,7 +44,7 @@ public class SeleniumResponseFunctionExtension implements FunctionExtension {
         }
     }
 
-    @Comment("根据 xpath 在请求结果中查找")
+    @Comment("Based on xpath Look in the request results for")
     @Example("${resp.xpaths('//a')}")
     public static WebElements xpaths(SeleniumResponse response, String xpath) {
         try {
@@ -54,7 +54,7 @@ public class SeleniumResponseFunctionExtension implements FunctionExtension {
         }
     }
 
-    @Comment("根据 xpath 在请求结果中查找")
+    @Comment("Based on xpath Look in the request results for")
     @Example("${resp.xpath('//a')}")
     public static WebElement xpath(SeleniumResponse response, String xpath) {
         try {
@@ -77,19 +77,19 @@ public class SeleniumResponseFunctionExtension implements FunctionExtension {
         try {
             executor = (JavascriptExecutor) response.getDriver();
         } catch (Throwable e) {
-            throw new RuntimeException("该驱动不支持执行 js");
+            throw new RuntimeException("The following actions are available: js");
         }
         return executor.executeScript(script, arguments);
     }
 
-    @Comment("跳转 URL")
+    @Comment("jump URL")
     @Example("${resp.toUrl(newUrl)}")
     public static SeleniumResponse toUrl(SeleniumResponse response, String newUrl) {
         response.getDriver().get(newUrl);
         return response;
     }
 
-    @Comment("加载 Cookies")
+    @Comment("Loading Cookies")
     @Example("${resp.loadCookies()}")
     public static SeleniumResponse loadCookies(SeleniumResponse response) {
         SpiderContext spiderContext = SpiderContextHolder.get();

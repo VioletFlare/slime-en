@@ -11,18 +11,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 执行器工厂
+ * A_pplication
  */
 @Component
 public class ExecutorFactory {
 
     /**
-     * 所有的节点执行器集合，通过容器注入
+     * All nodelets collect，Infected by what?
      */
     private List<NodeExecutor> executors;
 
     /**
-     * 节点类型 -> 节点执行器
+     * Classify Message as & Spam -> What is your name?
      */
     private Map<String, NodeExecutor> executor_map;
 
@@ -38,19 +38,19 @@ public class ExecutorFactory {
     }
 
     /**
-     * 获取节点执行器
+     * Get node runner
      *
-     * @param type 节点类型名称
-     * @return 节点执行器
+     * @param type Action type name
+     * @return What is your name?
      */
     public NodeExecutor getExecutor(String type) {
         return executor_map.get(type);
     }
 
     /**
-     * 获取所有的扩展图形
+     * Get all the extensions
      *
-     * @return 所有的扩展图形
+     * @return All Extended Graphics
      */
     public List<Shape> shapes() {
         return executors.stream().filter(e -> e.shape() != null).map(executor -> executor.shape()).collect(Collectors.toList());

@@ -15,32 +15,32 @@ public class WebElementFunctionExtension implements FunctionExtension {
         return WebElement.class;
     }
 
-    @Comment("执行键盘动作")
+    @Comment("Implement keyboard actions")
     @Example("${webElementVar.sendKeys('Hello World!')}")
     public static WebElement sendKeys(WebElement element, String keys) {
         element.sendKeys(keys);
         return element;
     }
 
-    @Comment("获取节点 html 内容")
+    @Comment("Get a node html 内容")
     @Example("${webElementVar.html()}")
     public static String html(WebElement element) {
         return element.getAttribute("innerHTML");
     }
 
-    @Comment("获取节点 text 内容")
+    @Comment("Get a node text 内容")
     @Example("${webElementVar.text()}")
     public static String text(WebElement element) {
         return element.getText();
     }
 
-    @Comment("获取节点属性")
+    @Comment("Getting node properties")
     @Example("${webElementVar.attr('href')}")
     public static String attr(WebElement element, String attributeName) {
         return element.getAttribute(attributeName);
     }
 
-    @Comment("截图")
+    @Comment("Screenshot")
     @Example("${webElementVar.screenshot()}")
     public static byte[] screenshot(WebElement element) {
         return element.getScreenshotAs(OutputType.BYTES);

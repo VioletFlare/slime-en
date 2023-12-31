@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * 自定义访问权限校验过滤器
+ * Custom Access Control List Filter
  */
 @Slf4j
 @Component
@@ -39,7 +39,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
             String username = tokenProvider.getUsername(jwt);
-            // 只有在 Authentication 为空时才会放入
+            // Only on Authentication Fill in when empty
             if (Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
                 User user = userService.findByUsername(username);
                 UsernamePasswordAuthenticationToken authenticationToken =

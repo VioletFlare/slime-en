@@ -1,7 +1,7 @@
 /**
- * 基于layui的tree重写
+ * < < None > >layui的tree重写
  * author: hsianglee
- * 最近修改时间: 2019/01/07
+ * Recent modification time: 2019/01/07
  */
 
 layui.define(["jquery","laytpl"], function (exports) {
@@ -11,9 +11,9 @@ layui.define(["jquery","laytpl"], function (exports) {
 
     var MOD_NAME="eleTree";
     
-    //外部接口
+    //External Interface
     var eleTree={
-        //事件监听
+        //Translate the following text to english: Event Monitoring
         on: function(events, callback){
             return layui.onevent.call(this, MOD_NAME, events, callback);
         },
@@ -27,9 +27,9 @@ layui.define(["jquery","laytpl"], function (exports) {
         var _self=this;
         var options = _self.config;
 
-        // 暴漏外面的方法
+        // Leak Outside
         return {
-            // 接收两个参数，1. 节点 key 2. 节点数据的数组
+            // Receive two arguments，1. 15th Last key 2. The array of node data
             updateKeyChildren: function(key,data) {
                 if(options.data.length===0) return;
                 return _self.updateKeyChildren.call(_self,key,data);
@@ -54,17 +54,17 @@ layui.define(["jquery","laytpl"], function (exports) {
                 if(options.data.length===0) return;
                 return _self.insertAfter.call(_self,key,data);
             },
-            // 接收两个 boolean 类型的参数，1. 是否只是叶子节点，默认值为 false 2. 是否包含半选节点，默认值为 false
+            // Receive two boolean Type of parameter，1. Is this a leaf node，Default Value Set false 2. Whether to include half-selected nodes，Default Value Set false
             getChecked: function(leafOnly, includeHalfChecked) {
                 if(options.data.length===0) return;
                 return _self.getChecked.call(_self,leafOnly, includeHalfChecked);
             },
-            // 接收勾选节点数据的数组
+            // The array of node data to receive
             setChecked: function(data) {
                 if(options.data.length===0) return;
                 return _self.setChecked.call(_self,data);
             },
-            // 取消选中
+            // 取消Select
             unCheckNodes: function() {
                 if(options.data.length===0) return;
                 return _self.unCheckNodes.call(_self);
@@ -87,7 +87,7 @@ layui.define(["jquery","laytpl"], function (exports) {
         }
     }
 
-    // 模板渲染
+    // 2 Extra Bins
     var TPL_ELEM=function(options,floor,parentStatus) {
         return [
             '{{# for(var i=0;i<d.length;i++){ }}',
@@ -166,24 +166,24 @@ layui.define(["jquery","laytpl"], function (exports) {
         config: {
             elem: "",
             data: [],
-            emptText: "暂无数据",        // 内容为空的时候展示的文本
-            renderAfterExpand: true,    // 是否在第一次展开某个树节点后才渲染其子节点
-            highlightCurrent: false,    // 是否高亮当前选中节点，默认值是 false。
-            defaultExpandAll: false,    // 是否默认展开所有节点
-            expandOnClickNode: true,    // 是否在点击节点的时候展开或者收缩节点， 默认值为 true，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点。
-            checkOnClickNode: false,    // 是否在点击节点的时候选中节点，默认值为 false，即只有在点击复选框时才会选中节点。
-            defaultExpandedKeys: [],    // 默认展开的节点的 key 的数组
-            autoExpandParent: true,     // 展开子节点的时候是否自动展开父节点
-            showCheckbox: false,        // 节点是否可被选择
-            checkStrictly: false,       // 在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false
-            defaultCheckedKeys: [],     // 默认勾选的节点的 key 的数组
-            accordion: false,           // 是否每次只打开一个同级树节点展开（手风琴效果）
-            indent: 16,                 // 相邻级节点间的水平缩进，单位为像素
-            lazy: false,                // 是否懒加载子节点，需与 load 方法结合使用
-            load: function() {},        // 加载子树数据的方法，仅当 lazy 属性为true 时生效
-            draggable: false,           // 是否开启拖拽节点功能
-            contextmenuList: [],        // 启用右键菜单，支持的操作有："copy","add","edit","remove"
-            searchNodeMethod: null,     // 对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏
+            emptText: "Data Engine",        // Text to show in the assistant when no description is given.
+            renderAfterExpand: true,    // Whether to expand a node before painting its children
+            highlightCurrent: false,    // Whether to highlight the current node，Default value is false。
+            defaultExpandAll: false,    // Expand all nodes by default
+            expandOnClickNode: true,    // Whether to expand or contract nodes when clicking on them， Default Value Set true，If you don't know the answer to a question, please don't share false information. false，Then expand or collapse nodes only when there are some arrow icons.。
+            checkOnClickNode: false,    // Whether to select the node when clicking on it，Default Value Set false，AnswerOnly when the checkbox is clickedSelect15th Last。
+            defaultExpandedKeys: [],    // Default Expanded Nodes key The following text is a sample answer to the question "What is your name?."
+            autoExpandParent: true,     // Whether to expand the child node when the child node is being expanded
+            showCheckbox: false,        // Whether the node is selectable
+            checkStrictly: false,       // In the case of a check box，Whether to strictly follow the father-son non-relation rule，Default to false
+            defaultCheckedKeys: [],     // Default node to use in the future key The following text is a sample answer to the question "What is your name?."
+            accordion: false,           // Whether to expand the child's menu only when the child's menu is empty（Effect:）
+            indent: 16,                 // Vertical space between two consecutive rows，The unit of the current calculation
+            lazy: false,                // Whether to lazy-load child nodes，with load Combination method
+            load: function() {},        // Loading child data，Only when lazy Property:true When to take effect
+            draggable: false,           // Is the drag and drop function enabled
+            contextmenuList: [],        // Enable Right Menubar，Supported operations are："copy","add","edit","remove"
+            searchNodeMethod: null,     // What method to use when sorting tree nodes，Back true 表示这个节点可以显示，Back false Then hide this node
 
             method: "get",
             url: "",
@@ -213,13 +213,13 @@ layui.define(["jquery","laytpl"], function (exports) {
             }
             var options=this.config;
             options.where=options.where || {};
-            if(!options.elem) return hint.error("缺少elem参数");
+            if(!options.elem) return hint.error("MissingelemParameters");
             options.elem=typeof options.elem === "string" ? $(options.elem) : options.elem;
             this.filter=options.elem.attr("lay-filter");
-            // load加载框
+            // loadLoading Frame
             options.elem.append('<div class="eleTree-loadData"><i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i></div>')
             
-            // 判断加载方式
+            // Load Actions
             if(options.data.length===0){
                 this.ajaxGetData();
             }else{
@@ -228,12 +228,12 @@ layui.define(["jquery","laytpl"], function (exports) {
         },
         renderData: function() {
             var options=this.config;
-            // 渲染第一层
+            // Translate the following text to english
             laytpl(TPL_ELEM(options,0)).render(options.data, function(string){
                 options.elem.html(string).children().show();
             }); 
-            // 懒加载 > 展开所有 > 初始展开项 > 初始渲染所有子节点 > 初始选中项 > 每次点击只渲染当前层（默认）
-            // 判断所有dom是否全部加载
+            // 懒 Load > Expand all > Expand Item > Show all subnodes > Human > Only paint on this layer（Default）
+            // 判断所有domWhether to load all
             if(!options.lazy){
                 if(!options.renderAfterExpand || options.defaultExpandAll || options.defaultExpandedKeys.length>0 || options.defaultCheckedKeys.length>0){
                     this.expandAll(options.data,[],1);
@@ -260,7 +260,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 return;
             }
             var data = $.extend({}, options.where);
-            if(options.contentType && options.contentType.indexOf("application/json") == 0){ //提交 json 格式
+            if(options.contentType && options.contentType.indexOf("application/json") == 0){ //Submit json Text Format
               data = JSON.stringify(data);
             }
 
@@ -273,7 +273,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 ,headers: options.headers || {}
                 ,success: function(res){
                     if(res[options.response.statusName] != options.response.statusCode || !res[options.response.dataName]){
-                        hint.error("请检查数据格式是否符合规范");
+                        hint.error("Please check that the data format conforms to the standard");
                         typeof options.done === 'function' && options.done(res);
                         return;
                     }
@@ -287,8 +287,8 @@ layui.define(["jquery","laytpl"], function (exports) {
             var _self=this;
             if(this.config.data && this.config.data.constructor === Array) this.config.data=[];
             this.config = $.extend({}, this.config, options);
-            $(this.config.elem).off();  // 取消事件绑定，防止多次绑定事件
-            // reload记录选中的数据
+            $(this.config.elem).off();  // The following sources are available: %s，Prevent multiple binding events
+            // reloadRecord selected data
             // this.getChecked().forEach(function(val) {
             //     if($.inArray(val.key,this.config.defaultCheckedKeys)===-1){
             //         this.config.defaultCheckedKeys.push(val.key);
@@ -296,11 +296,11 @@ layui.define(["jquery","laytpl"], function (exports) {
             // },this);
             return eleTree.render(this.config)
         },
-        // 下拉
+        // Pull Down
         eleTreeEvent: function() {
             var _self=this;
             var options=this.config;
-            // 下拉
+            // Pull Down
             var expandOnClickNode=options.expandOnClickNode?".eleTree-node-content":".eleTree-node-content>.eleTree-node-content-icon";
             options.elem.on("click",expandOnClickNode,function(e) {
                 e.stopPropagation();
@@ -309,7 +309,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 var sibNode=eleTreeNodeContent.siblings(".eleTree-node-group");
                 var el=eleTreeNodeContent.children(".eleTree-node-content-icon").children(".layui-icon");
 
-                // 添加active背景
+                // AddactiveBackground
                 if(_self.prevClickEle) _self.prevClickEle.removeClass("eleTree-node-content-active");
                 if(options.highlightCurrent) eleTreeNodeContent.addClass("eleTree-node-content-active");
                 _self.prevClickEle=eleTreeNodeContent;
@@ -317,7 +317,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 
 
                 if(el.hasClass("icon-rotate")){
-                    // 合并
+                    // Merge
                     sibNode.children(".eleTree-node:not(.eleTree-search-hide)").hide("fast");
                     el.removeClass("icon-rotate");
                     return;
@@ -328,7 +328,7 @@ layui.define(["jquery","laytpl"], function (exports) {
 
                     var data=_self.reInitData(eleNode);
                     var d=data.currentData;
-                    // 是否懒加载
+                    // Whether to lazy load
                     if(options.lazy && el.hasClass("lazy-icon")){
                         el.removeClass("layui-icon-triangle-r").addClass("layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop");
                         options.load(d,function(getData) {
@@ -344,7 +344,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                             el.removeClass("lazy-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop").addClass("layui-icon-triangle-r icon-rotate");
                             _self.checkboxRender();
 
-                            // 懒加载子元素选择祖父（待写）
+                            // 10th Last（Please wait while the assistant is working.）
                         })
                     }else{
                         var eletreeStatus=eleTreeNodeContent.children("input.eleTree-hideen").attr("eletree-status");
@@ -352,7 +352,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                             sibNode.append(string);
                         });
 
-                        // 选择祖父
+                        // Select Grandfather
                         var eleNode1=sibNode.children(".eleTree-node").eq(0);
                         if(eleNode1.length===0){
                             _self.checkboxRender();
@@ -364,10 +364,10 @@ layui.define(["jquery","laytpl"], function (exports) {
                         _self.checkboxRender();
                     }
                 }
-                // 显示隐藏没有搜索类的
+                // If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.
                 sibNode.children(".eleTree-node:not(.eleTree-search-hide)").show("fast");
                 el.addClass("icon-rotate");
-                // 手风琴效果
+                // Effect:
                 if(options.accordion){
                     var node=eleTreeNodeContent.parent(".eleTree-node").siblings(".eleTree-node");
                     node.children(".eleTree-node-group").children(".eleTree-node:not(.eleTree-search-hide)").hide("fast");
@@ -375,25 +375,25 @@ layui.define(["jquery","laytpl"], function (exports) {
                 }
             })
         },
-        // checkbox选中
+        // checkboxSelect
         checkboxEvent: function() {
             var options=this.config;
             var _self=this;
             var checkOnClickNode=options.checkOnClickNode?".eleTree-node-content":".eleTree-checkbox";
-            // input添加属性eleTree-status：即input的三种状态，"0":未选中，"1":选中，"2":子孙部分选中
+            // inputAdd AttributeseleTree-status：AnswerinputThree states of matter，"0":YesSelect，"1":Select，"2":Select the children to be picked up
             options.elem.on("click",checkOnClickNode,function(e,type) {
                 e.stopPropagation();
                 var eleTreeNodeContent=$(this).parent(".eleTree-node").length===0?$(this).parent(".eleTree-node-content"):$(this);
                 var checkbox=eleTreeNodeContent.children(".eleTree-checkbox");
                 if(checkbox.hasClass("eleTree-checkbox-disabled")) return;
-                // 获取点击所在数据
+                // Get the click data
                 var node=eleTreeNodeContent.parent(".eleTree-node");
                 // var d=_self.reInitData(node).currentData;
-                // 实际的input
+                // Actuallyinput
                 var inp=checkbox.siblings(".eleTree-hideen").get(0);
                 var childNode=eleTreeNodeContent.siblings(".eleTree-node-group").find("input[name='eleTree-node']");
 
-                // 添加active背景
+                // AddactiveBackground
                 if(_self.prevClickEle) _self.prevClickEle.removeClass("eleTree-node-content-active");
                 if(options.highlightCurrent) eleTreeNodeContent.addClass("eleTree-node-content-active");
                 _self.prevClickEle=eleTreeNodeContent;
@@ -405,7 +405,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 if(inp.checked){
                     // 反选自身
                     $(inp).prop("checked",false).attr("eleTree-status","0");
-                    // 点击祖父层选中子孙层
+                    // Click on Grandfather generation select Great Grandson generation
                     if(!options.checkStrictly){
                         childNode.prop("checked",false);
                         childNode.attr("eleTree-status","0");
@@ -414,17 +414,17 @@ layui.define(["jquery","laytpl"], function (exports) {
                 }else{
                     // 反选自身
                     $(inp).prop("checked",true).attr("eleTree-status","1");
-                    // 点击祖父层选中子孙层
+                    // Click on Grandfather generation select Great Grandson generation
                     if(!options.checkStrictly){
                         childNode.prop("checked",true).attr("eleTree-status","1");
                     }
                 }
 
                 var eleNode=eleTreeNodeContent.parent(".eleTree-node");
-                // 点击子孙层选中祖父层(递归)
+                // Click on Grandfather Layer(递归)
                 if(!options.checkStrictly){
                     var siblingNode=eleNode.siblings(".eleTree-node");
-                    // 点击子孙层选中祖父层(递归)
+                    // Click on Grandfather Layer(递归)
                     _self.selectParents(inp,eleNode,siblingNode);
                 }
                 
@@ -438,58 +438,58 @@ layui.define(["jquery","laytpl"], function (exports) {
                 });
             })
         },
-        // 对后台数据有 checked:true 的默认选中项渲染父子层
+        // Have fun with your new device! checked:true 的默认选中项渲染父子层
         checkboxInit: function() {
             var options=this.config;
             var _self=this;
             options.elem.find("input[eleTree-status='1']").each(function(index,item) {
                 var checkboxEl=$(item).siblings(".eleTree-checkbox");
                 var childNode=checkboxEl.parent(".eleTree-node-content").siblings(".eleTree-node-group").find("input[name='eleTree-node']");
-                // 选择当前
+                // Select current
                 checkboxEl.addClass("eleTree-checkbox-checked");
                 checkboxEl.children("i").addClass("layui-icon-ok").removeClass("eleTree-checkbox-line");
-                // 选择子孙
+                // Select a child
                 childNode.prop("checked","checked").attr("eleTree-status","1");
                 childNode.siblings(".eleTree-checkbox").addClass("eleTree-checkbox-checked");
                 childNode.siblings(".eleTree-checkbox").children("i").addClass("layui-icon-ok").removeClass("eleTree-checkbox-line");
                 
-                // 选择祖父
+                // Select Grandfather
                 var eleNode=checkboxEl.parent(".eleTree-node-content").parent(".eleTree-node");
                 var siblingNode=eleNode.siblings(".eleTree-node");
                 _self.selectParents(item,eleNode,siblingNode);
             })
             _self.checkboxRender();
         },
-        // 通过子元素选中祖父元素
+        // Select the parent of the currently selected element
         selectParents: function(inp,eleNode,siblingNode) {
-            // inp: 实际input(dom元素)
-            // eleNode: input父层类（.eleTree-node）
-            // siblingNode: 父层同级兄弟
+            // inp: Actuallyinput(dom元素)
+            // eleNode: inputClass parent（.eleTree-node）
+            // siblingNode: Child LayerSame suitAnswer: Brother
             while (Number(eleNode.attr("eletree-floor"))!==0) {
-                // 同级input状态存入数组
+                // Same suitinputSave Status to Array
                 var arr=[];
                 arr.push($(inp).attr("eleTree-status"));
                 siblingNode.each(function(index,item) {
                     var siblingIsChecked=$(item).children(".eleTree-node-content").children("input[name='eleTree-node']").attr("eleTree-status");
                     arr.push(siblingIsChecked);
                 })
-                // 父元素的实际input
+                // The actual value of the parent elementinput
                 var parentInput=eleNode.parent(".eleTree-node-group").siblings(".eleTree-node-content").children("input[name='eleTree-node']");
-                // 父元素的checkbox替代
+                // The following sources are available:checkbox替代
                 var parentCheckbox=parentInput.siblings(".eleTree-checkbox");
-                // 子都选中则选中父
+                // If checked, the parent will be selected when the child is selected
                 if(arr.every(function(val) {
                     return val==="1";
                 })){
                     parentInput.prop("checked",true).attr("eleTree-status","1");
                 }
-                // 子有一个未选中则checkbox第三种状态
+                // If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.checkbox第三种状态
                 if(arr.some(function(val) {
                     return val==="0" || val==="2";
                 })){
                     parentInput.attr("eleTree-status","2");
                 }
-                // 子全部未选中则取消父选中(并且取消第三种状态)
+                // Unselect all tracks(And remove the third state)
                 if(arr.every(function(val) {
                     return val==="0";
                 })){
@@ -505,7 +505,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 siblingNode=parentSiblingNode;
             }
         },
-        // 初始展开所有
+        // Expand all
         expandAll: function(data,arr,floor,isMethodsExpandAll) {
             var options=this.config;
             var _self=this;
@@ -518,18 +518,18 @@ layui.define(["jquery","laytpl"], function (exports) {
                     }
                     laytpl(TPL_ELEM(options,floor)).render(val[options.request.children], function(string){
                         el.append(string);
-                        // 判断是否展开所有
+                        // Allows the user to decide whether to expand all
                         if(options.defaultExpandAll || isMethodsExpandAll){
                             el.siblings(".eleTree-node-content").children(".eleTree-node-content-icon").children(".layui-icon").addClass("icon-rotate");
                             el.children().show();
                         }else if(options.defaultExpandedKeys.length>0) {
-                            // 展开指定id项
+                            // Expandid项
                             var id=el.parent(".eleTree-node").attr("data-"+options.request.key);
                             id=isNaN(id) ? id : Number(id);
                             if($.inArray(id,options.defaultExpandedKeys)!==-1){
                                 el.siblings(".eleTree-node-content").children(".eleTree-node-content-icon").children(".layui-icon").addClass("icon-rotate");
                                 el.children().show();
-                                // 展开子项是否继续展开祖父项
+                                // Expand child items of an enclosing group
                                 if(options.autoExpandParent){
                                     var eleP=el.parent(".eleTree-node[data-"+options.request.key+"]").parents(".eleTree-node");
                                     eleP.each(function(i,item) {
@@ -546,13 +546,13 @@ layui.define(["jquery","laytpl"], function (exports) {
                     _self.expandAll(val[options.request.children],arr,floor,isMethodsExpandAll);
                     floor--;
                 }
-                // 重置数组索引
+                // Reset array index
                 arr.pop();
             })
 
             
         },
-        // 初始默认选中
+        // Default to English
         defaultChecked: function() {
             var options=this.config;
             if(options.defaultCheckedKeys.length===0){
@@ -562,14 +562,14 @@ layui.define(["jquery","laytpl"], function (exports) {
             if(options.checkStrictly){
                 options.defaultCheckedKeys.forEach(function(val,index) {
                     var nodeContent=options.elem.find("[data-"+options.request.key+"='"+val+"']").children(".eleTree-node-content");
-                    // 如果当前没选中则选中
+                    // Please select a product
                     if(nodeContent.children(".eleTree-hideen").prop("checked")===false){
                         nodeContent.children(".eleTree-checkbox").trigger("click",["default"]);
                     }
                 })
                 return false;
             }
-            // 父元素优先
+            // Prefer Plain Text
             var arr=$.extend([],options.defaultCheckedKeys);
             options.defaultCheckedKeys.forEach(function(val,index) {
                 options.elem.find("[data-"+options.request.key+"='"+val+"']").find("[data-"+options.request.key+"]").each(function(i,item) {
@@ -583,13 +583,13 @@ layui.define(["jquery","laytpl"], function (exports) {
             })
             arr.forEach(function(val,index) {
                 var nodeContent=options.elem.find("[data-"+options.request.key+"='"+val+"']").children(".eleTree-node-content");
-                // 如果当前没选中则选中
+                // Please select a product
                 if(nodeContent.children(".eleTree-hideen").prop("checked")===false){
                     nodeContent.children(".eleTree-checkbox").trigger("click",["default"]);
                 }
             })
         },
-        // 自定义checkbox解析
+        // 自定义checkboxAnalyse
         checkboxRender: function() {
             var options=this.config;
             options.elem.find(".eleTree-checkbox").remove();
@@ -614,12 +614,12 @@ layui.define(["jquery","laytpl"], function (exports) {
                 
             })
         },
-        // 通过dom节点找对应数据
+        // AnswerdomFind corresponding data in the nodes
         reInitData: function(node) {
             var options=this.config;
             var i=node.index();
             var floor=Number(node.attr("eletree-floor"));
-            var arr=[];     // 节点对应的index
+            var arr=[];     // Corresponding nodeindex
             while (floor>=0) {
                 arr.push(i);
                 floor=floor-1;
@@ -628,9 +628,9 @@ layui.define(["jquery","laytpl"], function (exports) {
             }
             arr=arr.reverse();
             var oData=this.config.data;
-            // 当前节点的父节点数据
+            // Parent node data of the current node
             var parentData=oData[arr[0]];
-            // 当前节点的data数据
+            // Current node'sdataData
             var d = oData[arr[0]];
             for(var i = 1; i<arr.length; i++){
                 d = d[options.request.children]?d[options.request.children][arr[i]]:d;
@@ -648,11 +648,11 @@ layui.define(["jquery","laytpl"], function (exports) {
                 index: arr
             }
         },
-        // 通过key查找数据
+        // AnswerkeyFind Data
         keySearchToOpera: function(key,callback) {
             var options=this.config;
             var _self=this;
-            // 查找数据
+            // Find Data
             var fn=function(data) {
                 var obj={
                     i: 0,
@@ -677,9 +677,9 @@ layui.define(["jquery","laytpl"], function (exports) {
             var _self=this;
             
             this.keySearchToOpera(key,function(d,obj) {
-                // 数据更新
+                // Data Update
                 d[obj.i][options.request.children]=data;
-                // dom更新
+                // domUpdated
                 node.length!==0 && laytpl(TPL_ELEM(options,floor)).render(data, function(string){
                     $(node).children(".eleTree-node-group").empty().append(string);
                     options.defaultExpandAll && $(node).children(".eleTree-node-group").children().show();
@@ -695,7 +695,7 @@ layui.define(["jquery","laytpl"], function (exports) {
             data[options.request.name] && node.children(".eleTree-node-content-label").text(data[options.request.name]);
             data[options.request.disabled] && node.children(".eleTree-hideen").addClass("eleTree-disabled")
                 .siblings(".eleTree-checkbox").addClass("eleTree-checkbox-disabled");
-            // 数据更新
+            // Data Update
             var getData=this.keySearchToOpera(key,function(d,obj) {
                 data[options.request.key]=d[obj.i][options.request.key];
                 data[options.request.children]=d[obj.i][options.request.children];
@@ -707,7 +707,7 @@ layui.define(["jquery","laytpl"], function (exports) {
             var options=this.config;
             var node=options.elem.find("[data-"+options.request.key+"='"+key+"']");
             var pElem=node.parent(".eleTree-node-group");
-            // 数据删除
+            // Data Delete
             this.keySearchToOpera(key,function(data,obj) {
                 data.splice(obj.i,1);
                 obj.i--;
@@ -725,7 +725,7 @@ layui.define(["jquery","laytpl"], function (exports) {
             var options=this.config;
             var node=options.elem.find("[data-"+options.request.key+"='"+key+"']");
             var floor=Number(node.attr("eletree-floor"))+1;
-            // 数据更新
+            // Data Update
             this.keySearchToOpera(key,function(d,obj) {
                 if(d[obj.i][options.request.children]){
                     d[obj.i][options.request.children].push(data);
@@ -733,7 +733,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                     d[obj.i][options.request.children]=[data];
                 }
                 var arr=d[obj.i][options.request.children];
-                // 添加之后长度为1，则原来没有三角，添加三角
+                // Add Length1，Then there are no triangles，Add Triangle
                 if(arr.length===1){
                     node.children(".eleTree-node-content").find(".eleTree-node-content-icon .layui-icon").removeAttr("style").addClass("icon-rotate");
                 }
@@ -750,7 +750,7 @@ layui.define(["jquery","laytpl"], function (exports) {
             var options=this.config;
             var node=options.elem.find("[data-"+options.request.key+"='"+key+"']");
             var floor=Number(node.attr("eletree-floor"));
-            // 数据更新
+            // Data Update
             this.keySearchToOpera(key,function(d,obj) {
                 d.splice(obj.i,0,data);
                 obj.i++;
@@ -768,7 +768,7 @@ layui.define(["jquery","laytpl"], function (exports) {
             var options=this.config;
             var node=options.elem.find("[data-"+options.request.key+"='"+key+"']");
             var floor=Number(node.attr("eletree-floor"));
-            // 数据更新
+            // Data Update
             this.keySearchToOpera(key,function(d,obj) {
                 d.splice(obj.i+1,0,data);
                 obj.i++;
@@ -835,11 +835,11 @@ layui.define(["jquery","laytpl"], function (exports) {
                 .parent(".eleTree-node-content-icon").parent(".eleTree-node-content")
                 .siblings(".eleTree-node-group").children(".eleTree-node").hide();
         },
-        // 节点事件
+        // Events
         nodeEvent: function() {
             var _self=this;
             var options=this.config;
-            // 节点被点击的回调事件
+            // Callback to be issued when a node is clicked
             options.elem.on("click",".eleTree-node-content",function(e) {
                 var eleNode=$(this).parent(".eleTree-node");
                 $("#tree-menu").hide().remove();
@@ -849,7 +849,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                     event: e
                 });
             })
-            // 节点右键的回调事件
+            // Callback Events
             options.elem.on("contextmenu",".eleTree-node-content",function(e) {
                 var eleNode=$(this).parent(".eleTree-node");
                 layui.event.call(eleNode, MOD_NAME, 'nodeContextmenu('+ _self.filter +')', {
@@ -858,7 +858,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                     event: e
                 });
             })
-            // 节点被拖拽的回调事件
+            // Callback events when a node is dragged
             options.draggable && options.elem.on("mousedown",".eleTree-node-content",function(e) {
                 var time=0;
                 var eleNode=$(this).parent(".eleTree-node");
@@ -886,11 +886,11 @@ layui.define(["jquery","laytpl"], function (exports) {
                 var isStop=false;
 
                 $(document).on("mousemove",function(e) {
-                    // t为了区别click事件
+                    // tFor distinctionclickEvents
                     time++;
                     if(time>2){
                         var xx=e.clientX-options.elem.offset().left+10;
-                        var yy=e.clientY-options.elem.offset().top+$(document).scrollTop()-5;   // 加上浏览器滚动高度
+                        var yy=e.clientY-options.elem.offset().top+$(document).scrollTop()-5;   // Add a browser scroll height
 
                         cloneNode.css({
                             display: "block",
@@ -907,20 +907,20 @@ layui.define(["jquery","laytpl"], function (exports) {
                     
                     // 当前点击的是否时最外层
                     var isCurrentOuterMost=eleNode.parent().get(0).isEqualNode(options.elem.get(0))
-                    // 目标是否时最外层
+                    // Is the target the outermost layer
                     var isTargetOuterMost=$(e.target).get(0).isEqualNode(options.elem.get(0))
                     if(isTargetOuterMost){
                         target=options.elem;
                     }
-                    // 判断是否超出边界
+                    // Determine if it's outside the boundary
                     if(target.parents(options.elem).length===0 && !isTargetOuterMost){
                         return;
                     }
-                    // 判断初始与结束是否是同一个节点
+                    // Is the start and end node the same?
                     if(target.get(0).isEqualNode(eleNode.get(0))){
                         return;
                     }
-                    // 判断是否是父节点放到子节点
+                    // Is the parent node a child node
                     var tFloor=target.attr("eletree-floor");
                     var isInChild=false;
                     eleNode.find("[eletree-floor='"+tFloor+"']").each(function() {
@@ -946,27 +946,27 @@ layui.define(["jquery","laytpl"], function (exports) {
                             isStop=true;
                         }
                     });
-                    // 拖拽是否取消
+                    // If you don't know the answer to a question, please don't share false information.
                     if(isStop){
                         return false;
                     }
 
-                    // 数据更改
+                    // Data changed
                     var currList=currentData.parentData.data[options.request.children]
                     var currIndex=currentData.parentData.childIndex
                     var currData=currentData.currentData;
                     var tarData=targetData.currentData;
-                    // 当前是否是最外层
+                    // Is this the outermost layer
                     isCurrentOuterMost ? options.data.splice(currIndex,1) : currList.splice(currIndex,1)
-                    // 目标是否是最外层
+                    // Is the target the outermost layer
                     isTargetOuterMost ? options.data.push(currData) : (function() {
                         !tarData[options.request.children] ? tarData[options.request.children]=[] : "";
                         tarData[options.request.children].push(currData);
                     })()
 
-                    // dom互换
+                    // dom Swap
                     eleNode.remove();
-                    // 最外层判断
+                    // Top-Level Decision
                     if(isTargetOuterMost){
                         target.append(temNode);
                         var floor=0;
@@ -977,19 +977,19 @@ layui.define(["jquery","laytpl"], function (exports) {
                     // 加floor和padding
                     temNode.attr("eletree-floor",String(floor));
                     temNode.children(".eleTree-node-content").css("padding-left",floor*options.indent+"px");
-                    // 通过floor差值计算子元素的floor
+                    // AnswerfloorValue of the progress barfloor
                     var countFloor=eleFloor-floor;
                     temNode.find(".eleTree-node").each(function(index,item) {
                         var f=Number($(item).attr("eletree-floor"))-countFloor;
                         $(item).attr("eletree-floor",String(f));
                         $(item).children(".eleTree-node-content").css("padding-left",f*options.indent+"px");
                     })
-                    // 原dom去三角
+                    // 原domGo to the Triangle
                     var leaf=groupNode.children(".eleTree-node").length===0;
                         leaf && groupNode.siblings(".eleTree-node-content")
                         .children(".eleTree-node-content-icon").children(".layui-icon")
                         .removeClass("icon-rotate").css("color","transparent");
-                    // 当前的增加三角
+                    // Currently selected text in editor
                     var cLeaf=target.children(".eleTree-node-group").children(".eleTree-node").length===0;
                         !cLeaf && target.children(".eleTree-node-content")
                         .children(".eleTree-node-content-icon").children(".layui-icon")
@@ -1011,26 +1011,26 @@ layui.define(["jquery","laytpl"], function (exports) {
                 $("#tree-menu").hide().remove();
             });
             var menuStr=['<ul id="tree-menu">'
-                ,$.inArray("copy",options.contextmenuList)!==-1?'<li class="copy"><a href="javascript:;">复制</a></li>':''
-                ,$.inArray("add",options.contextmenuList)!==-1?'<li class="add"><a href="javascript:;">新增</a></li>'+
-                    '<li class="insertBefore"><a href="javascript:;">插入节点前</a></li>'+
-                    '<li class="insertAfter"><a href="javascript:;">插入节点后</a></li>'+
-                    '<li class="append"><a href="javascript:;">插入子节点</a></li>' : ""
-                ,$.inArray("edit",options.contextmenuList)!==-1?'<li class="edit"><a href="javascript:;">修改</a></li>':''
-                ,$.inArray("remove",options.contextmenuList)!==-1?'<li class="remove"><a href="javascript:;">删除</a></li>':''
+                ,$.inArray("copy",options.contextmenuList)!==-1?'<li class="copy"><a href="javascript:;">Copy</a></li>':''
+                ,$.inArray("add",options.contextmenuList)!==-1?'<li class="add"><a href="javascript:;">Add</a></li>'+
+                    '<li class="insertBefore"><a href="javascript:;">Before Insert Polyline</a></li>'+
+                    '<li class="insertAfter"><a href="javascript:;">After Inserting a node</a></li>'+
+                    '<li class="append"><a href="javascript:;">Inserting child node</a></li>' : ""
+                ,$.inArray("edit",options.contextmenuList)!==-1?'<li class="edit"><a href="javascript:;">Edit</a></li>':''
+                ,$.inArray("remove",options.contextmenuList)!==-1?'<li class="remove"><a href="javascript:;">12</a></li>':''
             ,'</ul>'].join("");
             this.treeMenu=$(menuStr);
             options.elem.off("contextmenu").on("contextmenu",".eleTree-node-content",function(e) {
                 var that=this;
                 e.stopPropagation();
                 e.preventDefault();
-                // 添加active背景
+                // AddactiveBackground
                 if(_self.prevClickEle) _self.prevClickEle.removeClass("eleTree-node-content-active");
                 $(this).addClass("eleTree-node-content-active");
                 var eleNode=$(this).parent(".eleTree-node");
                 var nodeData=_self.reInitData(eleNode);
 
-                // 菜单位置
+                // Menu position
                 $(document.body).after(_self.treeMenu);
                 $("#tree-menu li.insertBefore,#tree-menu li.insertAfter,#tree-menu li.append").hide();
                 $("#tree-menu li.copy,#tree-menu li.add,#tree-menu li.edit,#tree-menu li.remove").show();
@@ -1038,7 +1038,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                     left: e.pageX,
                     top: e.pageY
                 }).show();
-                // 复制
+                // Copy
                 $("#tree-menu li.copy").off().on("click",function() {
                     var el = $(that).children(".eleTree-node-content-label").get(0);
                     var selection = window.getSelection();
@@ -1049,16 +1049,16 @@ layui.define(["jquery","laytpl"], function (exports) {
                     document.execCommand('Copy', 'false', null);
                     selection.removeAllRanges();
                 });
-                // 新增
+                // Add
                 $("#tree-menu li.add").off().on("click",function(e) {
                     e.stopPropagation();
                     $(this).hide().siblings("li.copy,li.edit,li.remove").hide();
                     $(this).siblings(".append,li.insertAfter,li.insertBefore").show();
                 })
-                // 添加的默认数据
+                // Added default data
                 var obj={};
                 obj[options.request.key]=_self.addKeyIndex;
-                obj[options.request.name]="未命名"+_self.nameIndex;
+                obj[options.request.name]="Name of the current action."+_self.nameIndex;
                 
                 var arr=["Append","InsertBefore","InsertAfter"];
                 arr.forEach(function(val) {
@@ -1072,12 +1072,12 @@ layui.define(["jquery","laytpl"], function (exports) {
                         layui.event.call(node, MOD_NAME, 'node'+val+'('+ _self.filter +')', {
                             node: node,
                             data: nodeData.currentData,
-                            // 重新设置数据
+                            // Please set the data again
                             setData: function(o) {
                                 _self[s](key,$.extend({},obj,o));
                                 isStop=true;
                             },
-                            // 停止添加
+                            // Adding stopped
                             stop: function() {
                                 isStop=true;
                             }
@@ -1089,7 +1089,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                     })
                 })
                 
-                // 编辑
+                // Edit
                 $("#tree-menu li.edit").off().on("click",function(e) {
                     e.stopPropagation();
                     $("#tree-menu").hide().remove();
@@ -1108,7 +1108,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                             node: node,
                             value: val,
                             data: nodeData.currentData,
-                            // 停止添加
+                            // Adding stopped
                             stop: function() {
                                 isStop=true;
                                 $(inpThis).siblings(".eleTree-node-content-label").show();
@@ -1116,17 +1116,17 @@ layui.define(["jquery","laytpl"], function (exports) {
                             }
                         });
                         if(isStop) return;
-                        // 修改数据
+                        // Edit Data
                         _self.reInitData(eleNode).currentData[options.request.name]=val;
-                        // 修改dom
+                        // Editdom
                         $(this).siblings(".eleTree-node-content-label").text(val).show();
                         $(this).remove();
                     }).on("mousedown",function(e) {
-                        // 防止input拖拽
+                        // Preventinput拖拽
                         e.stopPropagation();
                     })
                 })
-                // 删除
+                // 12
                 $("#tree-menu li.remove").off().on("click",function(e) {
                     var node=$(that).parent(".eleTree-node");
                     var key=node.attr("data-"+options.request.key);
@@ -1135,7 +1135,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                     layui.event.call(node, MOD_NAME, 'nodeRemove('+ _self.filter +')', {
                         node: node,
                         data: nodeData.currentData,
-                        // 停止添加
+                        // Adding stopped
                         stop: function() {
                             isStop=true;
                         }
@@ -1153,15 +1153,15 @@ layui.define(["jquery","laytpl"], function (exports) {
                 return;
             }
             var data=options.data;
-            // 数据递归
+            // Data Retention
             var traverse=function(data) {
                 data.forEach(function(val,index) {
-                    // 所有查找到的节点增加属性
+                    // Add properties to all found nodes
                     val.visible=options.searchNodeMethod(value,val);
                     if(val[options.request.children] && val[options.request.children].length>0){
                         traverse(val[options.request.children]);
                     }
-                    //如果当前节点属性为隐藏，判断其子节点是否有显示的，如果有，则当前节点改为显示
+                    //If the current node's properties are hidden，Is the assistant's child node visible，If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.，Then the current node will be displayed
                     if(!val.visible){
                         let childSomeShow = false;
                         if(val[options.request.children] && val[options.request.children].length>0){
@@ -1171,11 +1171,11 @@ layui.define(["jquery","laytpl"], function (exports) {
                         }
                         val.visible = childSomeShow;
                     }
-                    // 通过节点的属性，显示隐藏各个节点，并添加删除搜索类
+                    // Through the properties of the node，Show hidden nodes，Adding the search provider failed
                     var el=options.elem.find("[data-"+options.request.key+"='"+val[options.request.key]+"']");
                     if(val.visible){
                         el.removeClass("eleTree-search-hide");
-                        // 判断父节点是否展开，如果父节点没有展开，则子节点也不要显示
+                        // Is the father node expanded，If the parent node is not expanded，Do not show me this dialog again
                         var parentEl=el.parent(".eleTree-node-group").parent(".eleTree-node");
                         var isParentOpen=parentEl.children(".eleTree-node-content").children(".eleTree-node-content-icon").children(".layui-icon.layui-icon-triangle-r").hasClass("icon-rotate")
                         if((parentEl.length>0 && isParentOpen) || parentEl.length===0){
@@ -1184,7 +1184,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                     }else{
                         el.hide().addClass("eleTree-search-hide");
                     }
-                    // 删除子层属性
+                    // Add Layer Attributes
                     if(val[options.request.children] && val[options.request.children].length>0){
                         val[options.request.children].forEach(function(v,i) {
                             delete v.visible;
@@ -1193,13 +1193,13 @@ layui.define(["jquery","laytpl"], function (exports) {
                 })
             }
             traverse(data);
-            // 删除最外层属性
+            // Remove the outermost property
             var arr=[];
             data.forEach(function(val) {
                 arr.push(val.visible);
                 delete val.visible;
             })
-            // 如果第一层的所有的都隐藏，则显示文本
+            // If the first layer's all hidden，Text to show in the assistant when no default application is found to handle the type of file the user has selected.
             if(arr.every(function(v) {
                 return v===false;
             })){

@@ -71,9 +71,9 @@ public class DataSourceServiceImpl implements DataSourceService {
                 connection = DriverManager.getConnection(url);
             }
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("找不到驱动包：" + dataSource.getDriverClassName());
+            throw new RuntimeException("Find not the driver package：" + dataSource.getDriverClassName());
         } catch (Exception e) {
-            throw new RuntimeException("连接失败，" + e.getMessage());
+            throw new RuntimeException("The connection to the server has failed.，" + e.getMessage());
         } finally {
             if (connection != null) {
                 try {

@@ -14,14 +14,14 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 延迟执行器
+ * Delay Executor
  */
 @Component
 @Slf4j
 public class DelayExecutor implements NodeExecutor {
 
     /**
-     * 延迟执行时间
+     * Delay before executing a command
      */
     private static final String DELAY_TIME = "delayTime";
 
@@ -43,16 +43,16 @@ public class DelayExecutor implements NodeExecutor {
                     times = (Long) value;
                 }
                 if (times > 0) {
-                    // 睡眠
+                    // Sleep
                     try {
-                        log.info("设置延迟执行时间：{} ms", times);
+                        log.info("Please set a delay for the action：{} ms", times);
                         TimeUnit.MILLISECONDS.sleep(times);
                     } catch (Throwable t) {
-                        log.error("设置延迟执行时间失败", t);
+                        log.error("Failed to set delay before executing a command", t);
                     }
                 }
             } catch (Exception e) {
-                log.error("解析延迟执行时间：{} 失败", delayTimes, e);
+                log.error("Delay before executing a command：{} Failure", delayTimes, e);
             }
         }
     }

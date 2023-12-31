@@ -18,49 +18,49 @@ public class FeedFunctionExtension implements FunctionExtension {
         return SyndFeed.class;
     }
 
-    @Comment("获取作者")
+    @Comment("Get Author")
     @Example("${feedVar.author()}")
     public static String author(SyndFeed feed) {
         return FeedUtils.getAuthor(feed);
     }
 
-    @Comment("获取标题")
+    @Comment("Get Title")
     @Example("${feedVar.title()}")
     public static String title(SyndFeed feed) {
         return FeedUtils.getTitle(feed);
     }
 
-    @Comment("获取生成器")
+    @Comment("Get generator")
     @Example("${feedVar.generator()}")
     public static String generator(SyndFeed feed) {
         return FeedUtils.getGenerator(feed);
     }
 
-    @Comment("获取链接")
+    @Comment("Get Link")
     @Example("${feedVar.link()}")
     public static String link(SyndFeed feed) {
         return FeedUtils.getLink(feed);
     }
 
-    @Comment("获取站长")
+    @Comment("Get Involved")
     @Example("${feedVar.webMaster()}")
     public static String webMaster(SyndFeed feed) {
         return FeedUtils.getWebMaster(feed);
     }
 
-    @Comment("获取描述")
+    @Comment("Get help")
     @Example("${feedVar.desc()}")
     public static String desc(SyndFeed feed) {
         return FeedUtils.getDescription(feed);
     }
 
-    @Comment("获取实体集合")
+    @Comment("Get Entity Sets")
     @Example("${feedVar.entries()}")
     public static List<SyndEntry> entries(SyndFeed feed) {
         return FeedUtils.getEntries(feed);
     }
 
-    @Comment("获取某个实体")
+    @Comment("Get an entity")
     @Example("${feedVar.entries(0)}")
     public static SyndEntry entries(SyndFeed feed, int index) {
         return FeedUtils.getEntry(feed, index).orElse(null);

@@ -7,10 +7,10 @@ import com.github.nekolr.slime.executor.FunctionExecutor;
 import org.springframework.stereotype.Component;
 
 /**
- * Json 和 String 互相转换
+ * Json 和 String  Configure KSpread...
  */
 @Component
-@Comment("json 常用方法")
+@Comment("json Common Methods")
 public class JsonFunctionExecutor implements FunctionExecutor {
 
     @Override
@@ -18,13 +18,13 @@ public class JsonFunctionExecutor implements FunctionExecutor {
         return "json";
     }
 
-    @Comment("将字符串转为 json 对象")
+    @Comment("Turn string into json 对象")
     @Example("${json.parse('{code : 1}')}")
     public static Object parse(String jsonString) {
         return jsonString != null ? JSON.parse(jsonString) : null;
     }
 
-    @Comment("将对象转为 json 字符串")
+    @Comment("Object To json String")
     @Example("${json.stringify(objVar)}")
     public static String stringify(Object object) {
         return object != null ? JSON.toJSONString(object) : null;

@@ -35,30 +35,30 @@
 		<div class="layui-row">
 			<div class="layui-col-md6">
 				<div class="layui-form-item">
-					<label class="layui-form-label">函数名称</label>
+					<label class="layui-form-label">Function name</label>
 					<div class="layui-input-block">
-						<input type="text" name="name" placeholder="请输入函数名" autocomplete="off" class="layui-input" lay-verify="required"/>
+						<input type="text" name="name" placeholder="Please enter function name" autocomplete="off" class="layui-input" lay-verify="required"/>
 					</div>
 				</div>
 			</div>
 			<div class="layui-col-md6">
 				<div class="layui-form-item">
-					<label class="layui-form-label">函数入参</label>
+					<label class="layui-form-label">Function Parameters</label>
 					<div class="layui-input-block">
-						<input type="text" name="parameter" placeholder="请输入函数入参,多个用逗号隔开" autocomplete="off" class="layui-input"/>
+						<input type="text" name="parameter" placeholder="Please enter the second argument of the function,Multiple Choice" autocomplete="off" class="layui-input"/>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">脚本</label>
+			<label class="layui-form-label">Scripts</label>
 			<div class="layui-input-block" style="height: 450px">
 				<textarea name="script" id="script"></textarea>
 			</div>
 		</div>
    		<div class="btns-submit">
-			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">保存</button>
-			<button class="layui-btn layui-btn-primary btn-return" type="button" onclick="history.go(-1);">返回</button>
+			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">Save</button>
+			<button class="layui-btn layui-btn-primary btn-return" type="button" onclick="history.go(-1);">Back</button>
 		</div>
 	</form>
 	<script>
@@ -100,9 +100,9 @@
 				success : function(data){
 					if(data){
 						var message = data.replace(/\n/g,'<br>').replace(/ /g,'&nbsp;').replace(/\t/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
-						layui.layer.alert('<div style="font-weight: bold;font-family:Consolas;font-size:12px;">' + message + '</div>',{title : '保存出错',area:['800px','400px']});
+						layui.layer.alert('<div style="font-weight: bold;font-family:Consolas;font-size:12px;">' + message + '</div>',{title : 'Save Error',area:['800px','400px']});
 					}else{
-						layui.layer.msg('保存成功',{
+						layui.layer.msg('Save successful',{
 							time : 800
 						},function(){
 							location.href = 'functions.html';
@@ -110,7 +110,7 @@
 					}
 				},
 				error : function(){
-					layui.layer.msg('请求失败');
+					layui.layer.msg('Text to translate: Request failed');
 				}
 			})
 			return false;

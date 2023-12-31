@@ -32,129 +32,129 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 请求执行器
+ * Request Executor
  */
 @Component
 @Slf4j
 public class RequestExecutor implements NodeExecutor, Grammarly {
 
     /**
-     * 请求的延迟时间
+     * Delay the request by
      */
     private static final String REQUEST_SLEEP = "sleep";
 
     /**
-     * 请求的 URL
+     * The following text is a request URL
      */
     private static final String REQUEST_URL = "url";
 
     /**
-     * 请求的代理
+     * The requested proxy
      */
     private static final String REQUEST_PROXY = "proxy";
 
     /**
-     * 请求的方法
+     * Request Method
      */
     private static final String REQUEST_METHOD = "method";
 
     /**
-     * 请求的查询参数名称
+     * Query parameter name requested
      */
     private static final String REQUEST_QUERY_PARAM_NAME = "query-param-name";
 
     /**
-     * 请求的查询参数值
+     * Query parameter value requested
      */
     private static final String REQUEST_QUERY_PARAM_VALUE = "query-param-value";
 
     /**
-     * 请求的表单参数名称
+     * Form action parameter name
      */
     private static final String FORM_PARAM_NAME = "form-param-name";
 
     /**
-     * 请求的表单参数值
+     * Form parameter value requested
      */
     private static final String FORM_PARAM_VALUE = "form-param-value";
 
     /**
-     * 请求的表单参数类型
+     * Form parameter type requested
      */
     private static final String FORM_PARAM_TYPE = "form-param-type";
 
     /**
-     * 请求的表单中文件的名称
+     * Form input type
      */
     private static final String FORM_PARAM_FILENAME = "form-param-filename";
 
     /**
-     * 请求体的类型
+     * Request type
      */
     private static final String BODY_TYPE = "body-type";
 
     /**
-     * 请求体的正文类型（MIME Type）
+     * Request body type（MIME Type）
      */
     private static final String BODY_CONTENT_TYPE = "body-content-type";
 
     /**
-     * 请求体
+     * Request body
      */
     private static final String REQUEST_BODY = "request-body";
 
     /**
-     * 请求的 Cookie 名称
+     * The following text is a request Cookie Name
      */
     private static final String REQUEST_COOKIE_NAME = "cookie-name";
 
     /**
-     * 请求的 Cookie 值
+     * The following text is a request Cookie Translate the following text to english
      */
     private static final String REQUEST_COOKIE_VALUE = "cookie-value";
 
     /**
-     * 请求头名称
+     * Request Name
      */
     private static final String REQUEST_HEADER_NAME = "header-name";
 
     /**
-     * 请求头的值
+     * Request Header Value
      */
     private static final String REQUEST_HEADER_VALUE = "header-value";
 
     /**
-     * 请求超时时间
+     * Request timed out
      */
     private static final String REQUEST_TIMEOUT = "request-timeout";
 
     /**
-     * 请求失败后的重试次数
+     * Failed attempt limit
      */
     private static final String REQUEST_RETRY_COUNT = "request-retry-count";
 
     /**
-     * 重试间隔
+     * Retry delay
      */
     private static final String REQUEST_RETRY_INTERVAL = "request-retry-interval";
 
     /**
-     * 跟随重定向
+     * Follow Up
      */
     private static final String REQUEST_FOLLOW_REDIRECT = "request-follow-redirect";
 
     /**
-     * 自动管理 Cookie
+     * Auto Management Cookie
      */
     private static final String REQUEST_AUTO_COOKIE = "request-cookie-auto";
 
     /**
-     * 随机 User-Agent
+     * Random User-Agent
      */
     private static final String RANDOM_USERAGENT = "request-random-useragent";
 
     /**
-     * 响应内容编码
+     * Respond to the content code
      */
     private static final String RESPONSE_CHARSET = "response-charset";
 
@@ -168,81 +168,81 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
 
     @Override
     public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-        // 设置延迟时间
+        // Please set a delay
         this.setupSleepTime(node, context);
         // 执行
         this.doExecute(node, context, variables);
     }
 
     private void doExecute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-        // 请求体类型
+        // Request type
         RequestBodyType bodyType = RequestBodyType.geRequestBodyType(node.getJsonProperty(BODY_TYPE, "none"));
-        // 重试次数
+        // Retry Count
         int retryCount = NumberUtils.toInt(node.getJsonProperty(REQUEST_RETRY_COUNT), 0);
-        // 重试间隔，单位毫秒
+        // Retry delay，Seconds
         long retryInterval = NumberUtils.toLong(node.getJsonProperty(REQUEST_RETRY_INTERVAL), 0L);
 
         boolean success = false;
         for (int i = 0; i < retryCount + 1 && !success; i++) {
             HttpRequest request = HttpRequest.create();
-            // 设置 URL
+            // 1 hour before appointment URL
             String url = this.setupUrl(request, node, context, variables);
-            // 设置请求超时时间
+            // Please set the request timeout
             this.setupTimeout(request, node);
-            // 设置请求方法
+            // Set Request Method
             this.setupMethod(request, node);
-            // 设置是否跟随重定向
+            // Whether to follow redirects
             this.setupFollowRedirects(request, node);
-            // 设置随机 User-Agent
+            // Set Random User-Agent
             this.setupRandomUserAgent(request, node);
-            // 设置头部信息
+            // Set Headers
             this.setupHeaders(request, node, context, variables);
-            // 设置 Cookies
+            // 1 hour before appointment Cookies
             this.setupCookies(request, node, context, variables);
 
             List<InputStream> streams = null;
             switch (bodyType) {
                 case RAW_BODY_TYPE:
-                    // 设置请求体
+                    // Set Request Body
                     this.setupRequestBody(request, node, context, variables);
                     break;
                 case FORM_DATA_BODY_TYPE:
-                    // 设置请求表单
+                    // Set Up Request Form
                     streams = this.setupRequestFormParam(request, node, context, variables);
                     break;
                 default:
-                    // 设置请求参数
+                    // Set Request Parameters
                     this.setupQueryParams(request, node, context, variables);
             }
 
-            // 设置代理
+            // Set Up Proxy
             this.setupProxy(request, node, context, variables);
 
             Throwable throwable = null;
             try {
-                // 发起请求
+                // Launch Request
                 HttpResponse response = request.execute();
                 if (success = response.getStatusCode() == 200) {
-                    // 设置响应编码
+                    // Set Encoding
                     String charset = node.getJsonProperty(RESPONSE_CHARSET);
                     if (StringUtils.isNotBlank(charset)) {
                         response.setCharset(charset);
-                        log.debug("设置响应的编码：{}", charset);
+                        log.debug("Set the response encoding：{}", charset);
                     }
-                    // 是否自动管理 Cookie
+                    // Whether to auto-manage Cookie
                     String cookeAuto = node.getJsonProperty(REQUEST_AUTO_COOKIE);
                     if (Constants.YES.equals(cookeAuto)) {
-                        // 将响应的 Cookie 放入 Cookie 上下文中
+                        // Will respond to Cookie Add to Cookie In and Out
                         context.getCookieContext().putAll(response.getCookies());
                     }
-                    // 将结果放入要传递的变量集合中
+                    // Add the results to the given variable collection
                     variables.put(Constants.RESPONSE_VARIABLE, response);
                 }
             } catch (IOException e) {
                 success = false;
                 throwable = e;
             } finally {
-                // 关闭流
+                // Close stream
                 if (streams != null) {
                     for (InputStream is : streams) {
                         try {
@@ -253,16 +253,16 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
                 }
                 if (!success) {
                     if (i < retryCount) {
-                        // 睡眠一段时间后重试
+                        // Sleep on it. Retry after a while.
                         if (retryInterval > 0) {
                             try {
                                 TimeUnit.MILLISECONDS.sleep(retryInterval);
                             } catch (InterruptedException ignored) {
                             }
                         }
-                        log.info("第 {} 次重试 URL：{}", i + 1, url);
+                        log.info("1st {} Next Retry URL：{}", i + 1, url);
                     } else {
-                        log.error("请求 URL：{} 出错", url, throwable);
+                        log.error("Request URL：{} Error", url, throwable);
                     }
                 }
             }
@@ -270,11 +270,11 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
     }
 
     /**
-     * 设置代理
+     * Set Up Proxy
      *
-     * @param request   请求包装对象
-     * @param node      节点
-     * @param variables 传递的变量与值
+     * @param request   Request Package
+     * @param node      15th Last
+     * @param variables Passed Variable & Value
      */
     private void setupProxy(HttpRequest request, SpiderNode node, SpiderContext context, Map<String, Object> variables) {
         String proxy = node.getJsonProperty(REQUEST_PROXY);
@@ -285,57 +285,57 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
                     String[] proxyArr = StringUtils.split((String) value, Constants.PROXY_HOST_PORT_SEPARATOR);
                     if (proxyArr.length == 2) {
                         context.pause(node.getNodeId(), WebSocketEvent.COMMON_EVENT, REQUEST_PROXY, value);
-                        log.info("设置代理地址：{}", value);
+                        log.info("Proxy configuration mode：{}", value);
                         request.proxy(proxyArr[0], Integer.parseInt(proxyArr[1]));
                     }
                 }
             } catch (Exception e) {
-                log.error("设置代理出错", e);
+                log.error("Set Proxy Error", e);
             }
         }
     }
 
     /**
-     * 设置 Cookies
+     * 1 hour before appointment Cookies
      *
-     * @param request   请求包装对象
-     * @param node      节点
-     * @param context   执行上下文
-     * @param variables 传递的变量与值
+     * @param request   Request Package
+     * @param node      15th Last
+     * @param context   Executable Context
+     * @param variables Passed Variable & Value
      */
     private void setupCookies(HttpRequest request, SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-        // 获取根节点
+        // Get root node
         SpiderNode root = context.getRoot();
 
-        // 根节点（全局）的 Cookie
+        // 根15th Last（Global）的 Cookie
         Map<String, String> cookies = this.getCookies(root.getJsonArrayProperty(REQUEST_COOKIE_NAME, REQUEST_COOKIE_VALUE), context, root, variables);
         request.cookies(cookies);
 
-        // Cookie 上下文，包含之前设置的 Cookie
+        // Cookie Contexte，Previously On This is Us...1 hour before appointment的 Cookie
         Map<String, String> cookieContext = context.getCookieContext();
         String cookeAuto = node.getJsonProperty(REQUEST_AUTO_COOKIE);
         if (Constants.YES.equals(cookeAuto) && !context.getCookieContext().isEmpty()) {
             context.pause(node.getNodeId(), WebSocketEvent.REQUEST_AUTO_COOKIE_EVENT, REQUEST_AUTO_COOKIE, cookieContext);
             request.cookies(cookieContext);
-            log.info("自动设置 Cookies：{}", cookieContext);
+            log.info("Auto Setup Cookies：{}", cookieContext);
         }
 
-        // 当前节点的 Cookie
+        // Current node's Cookie
         cookies = this.getCookies(node.getJsonArrayProperty(REQUEST_COOKIE_NAME, REQUEST_COOKIE_VALUE), context, node, variables);
         request.cookies(cookies);
 
-        // 将当前设置的全局 Cookie 和节点 Cookie 都放入 Cookie 上下文中
+        // Save current settings as global settings Cookie And nodes Cookie Add Sphere Cookie In and Out
         if (Constants.YES.equals(cookeAuto)) {
             cookieContext.putAll(cookies);
         }
     }
 
     /**
-     * 解析 Cookies
+     * Analyse Cookies
      *
-     * @param cookies   需要解析的 Cookies
-     * @param variables 传递的变量与值
-     * @return 解析后的 Cookies
+     * @param cookies   Needs analysis Cookies
+     * @param variables Passed Variable & Value
+     * @return Analysed Cookies
      */
     private Map<String, String> getCookies(List<Map<String, String>> cookies, SpiderContext context, SpiderNode node, Map<String, Object> variables) {
         Map<String, String> result = new HashMap<>();
@@ -348,9 +348,9 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
                         Object value = expressionParser.parse(cookieValue, variables);
                         result.put(cookieName, (String) value);
                         context.pause(node.getNodeId(), WebSocketEvent.REQUEST_COOKIE_EVENT, cookieName, value);
-                        log.info("设置 Cookie：{} = {}", cookieName, value);
+                        log.info("1 hour before appointment Cookie：{} = {}", cookieName, value);
                     } catch (Exception e) {
-                        log.error("解析请求 Cookie：{} 出错", cookieName, e);
+                        log.error("Analysing request Cookie：{} Error", cookieName, e);
                     }
                 }
             }
@@ -359,12 +359,12 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
     }
 
     /**
-     * 设置请求体
+     * Set Request Body
      *
-     * @param request   请求包装对象
-     * @param node      节点
-     * @param context   执行上下文
-     * @param variables 传递的变量与值
+     * @param request   Request Package
+     * @param node      15th Last
+     * @param context   Executable Context
+     * @param variables Passed Variable & Value
      */
     private void setupRequestBody(HttpRequest request, SpiderNode node, SpiderContext context, Map<String, Object> variables) {
         String contentType = node.getJsonProperty(BODY_CONTENT_TYPE);
@@ -373,20 +373,20 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
             Object requestBody = expressionParser.parse(node.getJsonProperty(REQUEST_BODY), variables);
             context.pause(node.getNodeId(), WebSocketEvent.REQUEST_BODY_EVENT, REQUEST_BODY, requestBody);
             request.requestBody(requestBody);
-            log.info("设置请求 Body：{}", requestBody);
+            log.info("Setup Request Body：{}", requestBody);
         } catch (Exception e) {
-            log.debug("设置请求 Body 出错", e);
+            log.debug("Setup Request Body Error", e);
         }
     }
 
     /**
-     * 设置请求表单参数
+     * Set Request Form Parameters
      *
-     * @param request   请求包装对象
-     * @param node      节点
-     * @param context   执行上下文
-     * @param variables 传递的变量与值
-     * @return 表单中的二进制数据输入流集合
+     * @param request   Request Package
+     * @param node      15th Last
+     * @param context   Executable Context
+     * @param variables Passed Variable & Value
+     * @return Form input binary data array
      */
     private List<InputStream> setupRequestFormParam(HttpRequest request, SpiderNode node, SpiderContext context, Map<String, Object> variables) {
         List<Map<String, String>> formParams = node.getJsonArrayProperty(FORM_PARAM_NAME, FORM_PARAM_VALUE, FORM_PARAM_TYPE, FORM_PARAM_FILENAME);
@@ -415,17 +415,17 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
                                 streams.add(stream);
                                 request.data(paramName, paramFilename, stream);
                                 context.pause(node.getNodeId(), WebSocketEvent.REQUEST_BODY_EVENT, paramName, paramFilename);
-                                log.info("设置请求表单参数：{} = {}", paramName, paramFilename);
+                                log.info("Set Request Form Parameters：{} = {}", paramName, paramFilename);
                             } else {
-                                log.warn("设置请求表单参数：{} 失败，无二进制内容", paramName);
+                                log.warn("Set Request Form Parameters：{} Failure，No binary content", paramName);
                             }
                         } else {
                             request.data(paramName, value);
                             context.pause(node.getNodeId(), WebSocketEvent.REQUEST_BODY_EVENT, paramName, value);
-                            log.info("设置请求表单参数：{} = {}", paramName, value);
+                            log.info("Set Request Form Parameters：{} = {}", paramName, value);
                         }
                     } catch (Exception e) {
-                        log.error("设置请求表单参数：{} 出错", paramName, e);
+                        log.error("Set Request Form Parameters：{} Error", paramName, e);
                     }
                 }
             }
@@ -434,30 +434,30 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
     }
 
     /**
-     * 设置查询参数
+     * Set Query Parameters
      *
-     * @param request   请求包装对象
-     * @param node      节点
-     * @param context   执行上下文
-     * @param variables 传递的变量与值
+     * @param request   Request Package
+     * @param node      15th Last
+     * @param context   Executable Context
+     * @param variables Passed Variable & Value
      */
     private void setupQueryParams(HttpRequest request, SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-        // 获取根节点
+        // Get root node
         SpiderNode root = context.getRoot();
-        // 设置根节点（全局）的查询参数
+        // Please set the root node（Global）Query Parameters
         List<Map<String, String>> rootParams = root.getJsonArrayProperty(REQUEST_QUERY_PARAM_NAME, REQUEST_QUERY_PARAM_VALUE);
         this.setQueryParams(request, root, rootParams, context, variables);
-        // 设置当前节点的查询参数
+        // Please set the query parameters for the current node
         List<Map<String, String>> params = node.getJsonArrayProperty(REQUEST_QUERY_PARAM_NAME, REQUEST_QUERY_PARAM_VALUE);
         this.setQueryParams(request, node, params, context, variables);
     }
 
     /**
-     * 设置查询参数
+     * Set Query Parameters
      *
-     * @param request   请求包装对象
+     * @param request   Request Package
      * @param params    解析后的查询参数
-     * @param variables 传递的变量与值
+     * @param variables Passed Variable & Value
      */
     private void setQueryParams(HttpRequest request, SpiderNode node, List<Map<String, String>> params, SpiderContext context, Map<String, Object> variables) {
         if (params != null) {
@@ -469,9 +469,9 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
                         Object value = expressionParser.parse(paramValue, variables);
                         request.data(paramName, value);
                         context.pause(node.getNodeId(), WebSocketEvent.REQUEST_PARAM_EVENT, paramName, value);
-                        log.info("设置请求查询参数：{} = {}", paramName, value);
+                        log.info("Set Request Query Parameters：{} = {}", paramName, value);
                     } catch (Exception e) {
-                        log.error("设置请求查询参数：{} 出错", paramName, e);
+                        log.error("Set Request Query Parameters：{} Error", paramName, e);
                     }
                 }
             }
@@ -479,46 +479,46 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
     }
 
     /**
-     * 设置随机 User-Agent
+     * Set Random User-Agent
      *
-     * @param request 请求包装对象
+     * @param request Request Package
      */
     private void setupRandomUserAgent(HttpRequest request, SpiderNode node) {
-        // 是否使用随机 User-Agent
+        // Whether to use a random User-Agent
         boolean randomUserAgent = Constants.YES.equals(node.getJsonProperty(RANDOM_USERAGENT));
         if (randomUserAgent) {
             String userAgent = userAgentManager.getRandom();
-            log.info("设置请求 Header：{} = {}", "User-Agent", userAgent);
+            log.info("Setup Request Header：{} = {}", "User-Agent", userAgent);
             request.header("User-Agent", userAgent);
         }
     }
 
 
     /**
-     * 设置头部信息
+     * Set Headers
      *
-     * @param request   请求包装对象
-     * @param node      节点
-     * @param context   执行上下文
-     * @param variables 传递的变量与值
+     * @param request   Request Package
+     * @param node      15th Last
+     * @param context   Executable Context
+     * @param variables Passed Variable & Value
      */
     private void setupHeaders(HttpRequest request, SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-        // 获取根节点
+        // Get root node
         SpiderNode root = context.getRoot();
-        // 设置根节点（全局）的头部信息
+        // Please set the root node（Global）The following text is from the applet server at %s
         List<Map<String, String>> rootHeaders = root.getJsonArrayProperty(REQUEST_HEADER_NAME, REQUEST_HEADER_VALUE);
         this.setHeaders(request, rootHeaders, context, root, variables);
-        // 设置当前节点的头部信息
+        // Please set the title of the current node
         List<Map<String, String>> headers = node.getJsonArrayProperty(REQUEST_HEADER_NAME, REQUEST_HEADER_VALUE);
         this.setHeaders(request, headers, context, node, variables);
     }
 
     /**
-     * 设置头部信息
+     * Set Headers
      *
-     * @param request   请求包装对象
-     * @param headers   解析后的头部信息
-     * @param variables 传递的变量与值
+     * @param request   Request Package
+     * @param headers   The following text is not translated:
+     * @param variables Passed Variable & Value
      */
     private void setHeaders(HttpRequest request, List<Map<String, String>> headers, SpiderContext context, SpiderNode node, Map<String, Object> variables) {
         if (headers != null) {
@@ -530,9 +530,9 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
                         Object value = expressionParser.parse(headerValue, variables);
                         request.header(headerName, value);
                         context.pause(node.getNodeId(), WebSocketEvent.REQUEST_HEADER_EVENT, headerName, value);
-                        log.info("设置请求 Header：{} = {}", headerName, value);
+                        log.info("Setup Request Header：{} = {}", headerName, value);
                     } catch (Exception e) {
-                        log.error("设置请求 Header：{} 出错", headerName, e);
+                        log.error("Setup Request Header：{} Error", headerName, e);
                     }
                 }
             }
@@ -540,97 +540,97 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
     }
 
     /**
-     * 设置是否跟随重定向
+     * Whether to follow redirects
      *
-     * @param request 请求包装对象
-     * @param node    节点
+     * @param request Request Package
+     * @param node    15th Last
      */
     private void setupFollowRedirects(HttpRequest request, SpiderNode node) {
         String followRedirect = node.getJsonProperty(REQUEST_FOLLOW_REDIRECT);
         boolean following = Constants.YES.equals(followRedirect);
-        log.debug("设置是否跟随重定向：{}", following);
+        log.debug("Whether to follow redirects：{}", following);
         request.followRedirects(following);
     }
 
     /**
-     * 设置请求方法
+     * Set Request Method
      *
-     * @param request 请求包装对象
-     * @param node    节点
+     * @param request Request Package
+     * @param node    15th Last
      */
     private void setupMethod(HttpRequest request, SpiderNode node) {
         String method = node.getJsonProperty(REQUEST_METHOD, "GET");
-        log.debug("设置请求方法：{}", method);
+        log.debug("Set Request Method：{}", method);
         request.method(method);
     }
 
     /**
-     * 设置请求超时时间
+     * Please set the request timeout
      *
-     * @param request 请求包装对象
-     * @param node    节点
+     * @param request Request Package
+     * @param node    15th Last
      */
     private void setupTimeout(HttpRequest request, SpiderNode node) {
-        // 默认 20s
+        // Default 20s
         int timeout = NumberUtils.toInt(node.getJsonProperty(REQUEST_TIMEOUT), 20000);
-        log.debug("设置请求超时时间：{} ms", timeout);
+        log.debug("Please set the request timeout：{} ms", timeout);
         request.timeout(timeout);
     }
 
     /**
-     * 设置 URL
+     * 1 hour before appointment URL
      *
-     * @param request   请求包装对象
-     * @param node      节点
-     * @param variables 传递的变量与值
+     * @param request   Request Package
+     * @param node      15th Last
+     * @param variables Passed Variable & Value
      */
     private String setupUrl(HttpRequest request, SpiderNode node, SpiderContext context, Map<String, Object> variables) {
         String url = null;
         try {
             url = (String) expressionParser.parse(node.getJsonProperty(REQUEST_URL), variables);
             context.pause(node.getNodeId(), WebSocketEvent.COMMON_EVENT, REQUEST_URL, url);
-            log.info("设置请求 URL：{}", url);
+            log.info("Setup Request URL：{}", url);
             request.url(url);
         } catch (Exception e) {
-            log.error("设置请求 URL 出错", e);
-            // 直接抛出异常
+            log.error("Setup Request URL Error", e);
+            // Throw exception directly
             ExceptionUtils.wrapAndThrow(e);
         }
         return url;
     }
 
     /**
-     * 设置延迟时间
+     * Please set a delay
      *
-     * @param node    节点
-     * @param context 执行上下文
+     * @param node    15th Last
+     * @param context Executable Context
      */
     private void setupSleepTime(SpiderNode node, SpiderContext context) {
-        // 获取睡眠时间
+        // Getting sleep times
         String sleep = node.getJsonProperty(REQUEST_SLEEP);
         long sleepTime = NumberUtils.toLong(sleep, 0L);
         try {
-            // 实际等待的时间 = 上次执行的时间 + 睡眠的时间 - 当前时间
+            // Expected Time = Next time the alarm will be triggered + Sleep time - Current Time
             Long lastTime = (Long) context.getExtends_map().get(Constants.LAST_REQUEST_EXECUTE_TIME + node.getNodeId());
             if (lastTime != null) {
                 sleepTime = lastTime + sleepTime - System.currentTimeMillis();
             }
             if (sleepTime > 0) {
                 context.pause(node.getNodeId(), WebSocketEvent.COMMON_EVENT, REQUEST_SLEEP, sleepTime);
-                log.debug("设置延迟时间：{} ms", sleepTime);
-                // 睡眠
+                log.debug("Please set a delay：{} ms", sleepTime);
+                // Sleep
                 TimeUnit.MILLISECONDS.sleep(sleepTime);
             }
-            // 更新上次执行的时间
+            // Last time a question was answered
             context.getExtends_map().put(Constants.LAST_REQUEST_EXECUTE_TIME + node.getNodeId(), System.currentTimeMillis());
         } catch (Throwable t) {
-            log.error("设置延迟时间失败", t);
+            log.error("Failed to set delay.", t);
         }
     }
 
     @PostConstruct
     void initialize() {
-        // 允许设置被限制的请求头
+        // Allow setting of restricted request headers
         System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
     }
 
@@ -644,7 +644,7 @@ public class RequestExecutor implements NodeExecutor, Grammarly {
         List<Grammar> grammars = Grammar.findGrammars(SpiderResponse.class, "resp", "SpiderResponse", false);
         Grammar grammar = new Grammar();
         grammar.setFunction("resp");
-        grammar.setComment("抓取结果");
+        grammar.setComment("Fetch Results");
         grammar.setOwner("SpiderResponse");
         grammars.add(grammar);
         return grammars;

@@ -31,12 +31,12 @@ public class UserAgentManager {
             String json = IOUtils.toString(input, StandardCharsets.UTF_8);
             user_agents = JSON.parseArray(json, BrowserUserAgent.class);
         } catch (IOException e) {
-            log.error("读取 {} 文件出错", USERAGENT_FILE_PATH, e);
+            log.error("Speak {} 1 hour before appointment", USERAGENT_FILE_PATH, e);
         } finally {
             try {
                 IOUtils.close(input);
             } catch (IOException e) {
-                log.error("关闭流失败", e);
+                log.error("Failed to turn off", e);
             }
         }
     }
@@ -48,9 +48,9 @@ public class UserAgentManager {
     }
 
     /**
-     * 获取一个随机的 User-Agent
+     * Get a random User-Agent
      *
-     * @return 一个随机的 User-Agent
+     * @return A random User-Agent
      */
     public String getRandom() {
         int browserIndex = RandomUtils.nextInt(0, user_agents.size());
@@ -60,9 +60,9 @@ public class UserAgentManager {
     }
 
     /**
-     * 获取任意一款浏览器最新的 User-Agent
+     * Get the latest version of any browser User-Agent
      *
-     * @return 一个最新的 User-Agent
+     * @return A most recent User-Agent
      */
     public String getNewest() {
         int browserIndex = RandomUtils.nextInt(0, user_agents.size());
@@ -70,27 +70,27 @@ public class UserAgentManager {
     }
 
     /**
-     * 获取 Chrome 浏览器最新的 User-Agent
+     * Get Chrome What is the latest version of the browser? User-Agent
      *
-     * @return 一个最新的 User-Agent
+     * @return A most recent User-Agent
      */
     public String getChromeNewest() {
         return user_agents.get(0).useragent.get(0);
     }
 
     /**
-     * 获取 FireFox 浏览器最新的 User-Agent
+     * Get FireFox What is the latest version of the browser? User-Agent
      *
-     * @return 一个最新的 User-Agent
+     * @return A most recent User-Agent
      */
     public String getFireFoxNewest() {
         return user_agents.get(1).useragent.get(0);
     }
 
     /**
-     * 获取 Edge 浏览器最新的 User-Agent
+     * Get Edge What is the latest version of the browser? User-Agent
      *
-     * @return 一个最新的 User-Agent
+     * @return A most recent User-Agent
      */
     public String getEdgeNewest() {
         return user_agents.get(2).useragent.get(0);

@@ -27,7 +27,7 @@ public class SpiderTaskController {
 
     @PostMapping("/remove")
     public ResponseEntity remove(Long id) {
-        // 删除任务记录之前先停止
+        // Stop before deleting the memo list
         SpiderContext context = SpiderJob.getSpiderContext(id);
         if (context != null) {
             context.setRunning(false);

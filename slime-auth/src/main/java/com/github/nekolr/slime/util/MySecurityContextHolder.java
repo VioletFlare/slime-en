@@ -11,7 +11,7 @@ public class MySecurityContextHolder {
         try {
             user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         } catch (Exception e) {
-            throw new BadRequestException("未授权");
+            throw new BadRequestException("Authorization");
         }
         return user;
     }

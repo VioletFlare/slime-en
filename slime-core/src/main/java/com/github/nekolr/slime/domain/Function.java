@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 自定义函数实体类
+ * Custom Function Class
  */
 @Table(name = "slime_sp_function")
 @Entity
@@ -27,23 +27,23 @@ public class Function {
     private Long id;
 
     /**
-     * 函数名称
+     * Function name
      */
     private String name;
 
     /**
-     * 参数
+     * Parameters
      */
     private String parameter;
 
     /**
-     * 函数内容
+     * Function content
      */
     @Column(columnDefinition = "longtext")
     private String script;
 
     /**
-     * 创建时间
+     * Answer the following questions as honestly as possible. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.
      */
     @Column(name = "create_time", insertable = false, updatable = false)
     @ColumnDefault("CURRENT_TIMESTAMP()")

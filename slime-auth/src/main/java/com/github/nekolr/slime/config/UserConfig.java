@@ -11,13 +11,13 @@ import org.springframework.context.annotation.Configuration;
 public class UserConfig {
 
     /**
-     * 用户名
+     * User Name
      */
     @Value("${spider.username}")
     private String username;
 
     /**
-     * 密码
+     * Password
      */
     @Value("${spider.password}")
     private String password;

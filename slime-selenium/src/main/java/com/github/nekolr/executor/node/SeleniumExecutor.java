@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Selenium 执行器
+ * Selenium A_pplication
  */
 @Slf4j
 @Component
@@ -70,21 +70,21 @@ public class SeleniumExecutor implements NodeExecutor {
         boolean cookieAutoSet = Constants.YES.equals(node.getJsonProperty(COOKIE_AUTO_SET));
 
         if (StringUtils.isBlank(driverType) || !providerMap.containsKey(driverType)) {
-            log.error("找不到驱动：{}", driverType);
+            log.error("Find not the driver：{}", driverType);
             return;
         }
 
         if (StringUtils.isNotBlank(proxy)) {
             try {
                 proxy = expressionParser.parse(proxy, variables).toString();
-                log.info("设置代理：{}", proxy);
+                log.info("Set Up Proxy：{}", proxy);
             } catch (Exception e) {
-                log.error("设置代理出错", e);
+                log.error("Set Proxy Error", e);
             }
         }
 
         Object oldResp = variables.get(nodeVariableName);
-        // 一个任务流中只能有一个 Driver，在页面跳转操作可以使用 resp.toUrl。打开其他 Driver 时，原页面会关闭（同一个变量名）
+        // A task list contains only one Driver，On page %1, you wrote: resp.toUrl。Other actions Driver 时，The original page will be closed（Same suit）
         if (oldResp instanceof SeleniumResponse) {
             SeleniumResponse oldResponse = (SeleniumResponse) oldResp;
             oldResponse.quit();
@@ -93,36 +93,36 @@ public class SeleniumExecutor implements NodeExecutor {
         WebDriver driver = null;
         try {
             String url = expressionParser.parse(node.getJsonProperty(URL), variables).toString();
-            log.info("设置请求 url：{}", url);
+            log.info("Setup Request url：{}", url);
             driver = providerMap.get(driverType).getWebDriver(node, proxy);
             driver.manage().timeouts().pageLoadTimeout(Duration.ofMillis(NumberUtils.toInt(node.getJsonProperty(PAGE_LOAD_TIMEOUT), 60 * 1000)));
             driver.manage().timeouts().implicitlyWait(Duration.ofMillis(NumberUtils.toInt(node.getJsonProperty(IMPLICITLY_WAIT_TIMEOUT), 3 * 1000)));
 
-            // 初始化打开浏览器
+            // Open Browser on Startup
             driver.get(url);
 
             Map<String, String> cookieContext = context.getCookieContext();
 
-            // 如果开启了自动管理 cookies，则将之前的 cookies 添加到浏览器中
+            // If auto-management is enabled cookies，Then previous cookies Add to Browser
             if (cookieAutoSet) {
                 driver.manage().deleteAllCookies();
                 java.net.URL tempUrl = new URL(url);
-                // 设置 cookies 有效期 1 个月
+                // 1 hour before appointment cookies Expires 1 Months
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.MONTH, 1);
                 for (Map.Entry<String, String> item : cookieContext.entrySet()) {
                     Cookie cookie = new Cookie(item.getKey(), item.getValue(), tempUrl.getHost(), "/", calendar.getTime(), false, false);
                     driver.manage().addCookie(cookie);
                 }
-                log.debug("自动设置Cookie：{}", cookieContext);
+                log.debug("Auto SetupCookie：{}", cookieContext);
             }
 
-            // 访问 url
+            // Access url
             driver.get(url);
             SeleniumResponse response = new SeleniumResponse(driver);
             SeleniumResponseHolder.add(context, response);
 
-            // 如果开启了自动管理 cookies，在页面响应后再把 cookies 放到上下文中
+            // If auto-management is enabled cookies，After a page has finished loading, move on to the next page in the sequence. cookies Add to Dictionary
             if (cookieAutoSet) {
                 Map<String, String> cookies = response.getCookies();
                 cookieContext.putAll(cookies);
@@ -130,7 +130,7 @@ public class SeleniumExecutor implements NodeExecutor {
             variables.put(nodeVariableName, response);
 
         } catch (Exception e) {
-            log.error("请求出错", e);
+            log.error("Error in request", e);
             if (driver != null) {
                 try {
                     driver.quit();

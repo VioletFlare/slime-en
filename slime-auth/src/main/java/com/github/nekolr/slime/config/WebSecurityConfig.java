@@ -23,9 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
 
-                // 关闭登出
+                // Close Other
                 .logout().disable()
-                // 关闭 csrf
+                // Off csrf
                 .csrf().disable()
 
                 // X-Frame-Options: SAMEORIGIN
@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .xssProtection()
                 .xssProtectionEnabled(true)
 
-                // 授权异常处理
+                // Grant access to perform unusual actions
                 .and().and()
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint)
@@ -54,28 +54,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-                // 过滤请求
+                // The following text is not translated:
                 .and()
                 .authorizeRequests()
-                // OPTIONS 预检请求可以匿名访问
+                // OPTIONS The pre-flight check can be accessed anonymously
                 .antMatchers(HttpMethod.OPTIONS, "/**").anonymous()
-                // 静态资源可以匿名访问
+                // Public resources can be accessed anonymously
                 .antMatchers(HttpMethod.GET, "/js/**").anonymous()
                 .antMatchers(HttpMethod.GET, "/css/**").anonymous()
                 .antMatchers(HttpMethod.GET, "/images/**").anonymous()
                 .antMatchers(HttpMethod.GET, "/*.html").anonymous()
-                // 主页可以匿名访问
+                // Home page is accessible without registration
                 .antMatchers(HttpMethod.GET, "/").anonymous()
-                // 登录请求不拦截（如果登录请求头包含 Authorization: Bearer 任意字符，那么还是会进行校验）
+                // Log in request pending（If the login request contains Authorization: Bearer Any Character，Then we will proceed to the verification.）
                 .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                // 允许 websocket 请求
+                // Allow websocket Request
                 .antMatchers("/ws").permitAll()
 
-                // 其他所有请求都要经过验证
+                // Other Requests Will Require Authentication
                 .anyRequest().authenticated();
 
         httpSecurity
-                // 添加登录和权限校验的两个过滤器
+                // Add two filters for adding logins and permission checks
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

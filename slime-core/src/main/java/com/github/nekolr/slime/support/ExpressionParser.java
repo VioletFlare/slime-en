@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * 表达式解析器
+ * An expression parser
  */
 @Component
 @Slf4j
 public class ExpressionParser {
 
     /**
-     * 表达式引擎
+     * Question Engine
      */
     private ExpressionEngine engine;
 

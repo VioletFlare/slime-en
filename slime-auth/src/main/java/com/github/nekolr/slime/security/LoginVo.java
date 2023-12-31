@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.io.Serializable;
 
 /**
- * 签发令牌后返回给前端的实体
+ * Sign the message and return it to the frontend's entity
  */
 @Getter
 @AllArgsConstructor

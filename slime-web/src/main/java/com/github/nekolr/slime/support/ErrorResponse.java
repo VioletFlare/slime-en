@@ -7,7 +7,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * 错误响应实体
+ * The error response from the server was: %1
  */
 @Data
 public class ErrorResponse {

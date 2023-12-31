@@ -24,7 +24,7 @@ public class FunctionServiceImpl implements FunctionService {
     private FunctionRepository functionRepository;
 
     /**
-     * 初始化或者重置自定义函数
+     * Initialize or reset custom function
      */
     @PostConstruct
     private void initializeFunctions() {
@@ -54,11 +54,11 @@ public class FunctionServiceImpl implements FunctionService {
         try {
             ScriptManager.validScript(function.getName(), function.getParameter(), function.getScript());
             Function entity = functionRepository.save(function);
-            // 重新加载自定义函数
+            // Reload Custom Functions
             initializeFunctions();
             return entity;
         } catch (Exception e) {
-            throw new RuntimeException("自定义函数不符合规范");
+            throw new RuntimeException("Custom function does not conform to standard");
         }
     }
 

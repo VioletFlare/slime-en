@@ -29,20 +29,20 @@
 			}
 		},
 		cols : [[{
-			title : '序号',
+			title : 'Serial Number',
 			width : 60,
 			type : 'numbers',
 			align : 'center'
 		},{
-			title : '任务开始时间',
+			title : 'Start time of the to-do',
 			field : 'beginTime',
 			align : 'center'
 		},{
-			title : '任务结束时间',
+			title : 'End time of the to-do',
 			field : 'endTime',
 			align : 'center'
 		},{
-			title : '操作',
+			title : 'Operation',
 			width : 200,
 			align : 'center',
 			templet : '#buttons'
@@ -50,8 +50,8 @@
 	})
 	$("body").on('click','.btn-remove',function(){
 		var id = $(this).data('id');
-		layui.layer.confirm('您确定要删除此记录吗？',{
-			title : '删除'
+		layui.layer.confirm('Are you sure you want to delete this record?？',{
+			title : '12'
 		},function(index){
 			$table.reload();
 			$.ajax({
@@ -61,20 +61,20 @@
 					id : id
 				},
 				success : function(){
-					layui.layer.msg('删除成功',{time : 500},function(){
+					layui.layer.msg('The following text has been successfully translated:',{time : 500},function(){
 						$table.reload();
 					})
 				},
 				error : function(){
-					layui.layer.msg('删除失败')
+					layui.layer.msg('Failed to delete.')
 				}
 			})
 			layui.layer.close(index);
 		})
 	}).on('click','.btn-stop',function(){
 		var id = $(this).data('id');
-		layui.layer.confirm('您确定要停止该任务吗？',{
-			title : '停止任务'
+		layui.layer.confirm('Are you sure you want to stop this task?？',{
+			title : 'Stop Operation'
 		},function(index){
 			$table.reload();
 			$.ajax({
@@ -83,26 +83,26 @@
 					id : id
 				},
 				success : function(){
-					layui.layer.msg('后台运行停止中...',{time : 2000},function(){
+					layui.layer.msg('Background process stop failed...',{time : 2000},function(){
 						$table.reload();
 					})
 				},
 				error : function(){
-					layui.layer.msg('停止任务失败')
+					layui.layer.msg('Stop Operation Failed')
 				}
 			})
 			layui.layer.close(index);
 		})
 	}).on('click','.btn-log',function(){
-		parent.openTab(decodeURIComponent(decodeURIComponent(getQueryString('name'))) + '-日志',$(this).data('id') + '-log','log.html?id=' + $(this).data('id') + "&taskId=" + $(this).data("task"));
+		parent.openTab(decodeURIComponent(decodeURIComponent(getQueryString('name'))) + '-Log',$(this).data('id') + '-log','log.html?id=' + $(this).data('id') + "&taskId=" + $(this).data("task"));
 	})
 </script>
 <script type="text/html" id="buttons">
 	{{# if(!d.endTime){ }}
-		<a class="layui-btn layui-btn-sm btn-stop" data-id="{{d.id}}">停止</a>
+		<a class="layui-btn layui-btn-sm btn-stop" data-id="{{d.id}}">Stop</a>
 	{{# } }}
-	<a class="layui-btn layui-btn-sm btn-log" data-id="{{d.flowId}}" data-task="{{d.id}}">查看日志</a>
-	<a class="layui-btn layui-btn-sm btn-remove" data-id="{{d.id}}">删除记录</a>
+	<a class="layui-btn layui-btn-sm btn-log" data-id="{{d.flowId}}" data-task="{{d.id}}">View Log</a>
+	<a class="layui-btn layui-btn-sm btn-remove" data-id="{{d.id}}">Remove Record</a>
 </script>
 </body>
 </html>

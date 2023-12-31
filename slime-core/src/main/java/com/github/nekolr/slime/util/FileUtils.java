@@ -11,7 +11,7 @@ import java.io.*;
 import java.net.*;
 
 /**
- * 文件处理工具类
+ * File Management Tools
  */
 @Slf4j
 @Component
@@ -22,10 +22,10 @@ public class FileUtils {
     public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";
 
     /**
-     * 输出指定文件的 byte 数组
+     * Output version information byte The following text is a sample answer to the question "What is your name?":My name is John Doe.
      *
-     * @param filePath 文件路径
-     * @param os       输出流
+     * @param filePath File Path
+     * @param os       Output stream
      * @return
      */
     public static void writeBytes(String filePath, OutputStream os) throws IOException {
@@ -62,15 +62,15 @@ public class FileUtils {
     }
 
     /**
-     * 删除文件
+     * Remove Files
      *
-     * @param filePath 文件
+     * @param filePath Files
      * @return
      */
     public static boolean deleteFile(String filePath) {
         boolean flag = false;
         File file = new File(filePath);
-        // 路径为文件且不为空则进行删除
+        // Delete the given paths if they are not already deleted.
         if (file.isFile() && file.exists()) {
             file.delete();
             flag = true;
@@ -79,24 +79,24 @@ public class FileUtils {
     }
 
     /**
-     * 文件名称验证
+     * File name verification
      *
-     * @param filename 文件名称
-     * @return true 正常 false 非法
+     * @param filename File name
+     * @return true Normal false Illegal
      */
     public static boolean isValidFilename(String filename) {
         return filename.matches(FILENAME_PATTERN);
     }
 
     /**
-     * 文件下载状态
+     * Downloading started
      */
     public enum DownloadStatus {
-        URL_ERROR(1, "URL 错误"),
-        FILE_EXIST(2, "文件存在"),
-        TIME_OUT(3, "连接超时"),
-        DOWNLOAD_FAIL(4, "下载失败"),
-        DOWNLOAD_SUCCESS(5, "下载成功");
+        URL_ERROR(1, "URL The text you entered is not valid. Please correct it and try again."),
+        FILE_EXIST(2, "File Exists"),
+        TIME_OUT(3, "Connection timed out"),
+        DOWNLOAD_FAIL(4, "Download failed"),
+        DOWNLOAD_SUCCESS(5, "Download started");
 
         private int code;
 
@@ -144,7 +144,7 @@ public class FileUtils {
             }
 
         } catch (MalformedURLException e) {
-            log.error("URL 异常", e);
+            log.error("URL 1 hour before appointment", e);
             return DownloadStatus.URL_ERROR;
         }
         File path = new File(savePath);
@@ -156,7 +156,7 @@ public class FileUtils {
             if (downNew) {
                 file.delete();
             } else {
-                log.info("文件已存在，不重新下载");
+                log.info("The file already exists，Don't Reload");
                 return DownloadStatus.FILE_EXIST;
             }
         } else if (!file.getParentFile().exists() && saveOriginPath) {
@@ -169,15 +169,15 @@ public class FileUtils {
                     InetSocketAddress socketAddress = new InetSocketAddress(proxyArr[0], Integer.parseInt(proxyArr[1]));
                     Proxy p = new Proxy(Proxy.Type.HTTP, socketAddress);
                     httpUrl = (HttpURLConnection) fileUrl.openConnection(p);
-                    log.info("设置下载代理：{}:{}", proxyArr[0], proxyArr[1]);
+                    log.info("Set Up Download Proxy：{}:{}", proxyArr[0], proxyArr[1]);
                 }
             } else {
                 httpUrl = (HttpURLConnection) fileUrl.openConnection();
             }
             httpUrl.setRequestProperty("User-Agent", userAgentManager.getChromeNewest());
-            // 读取超时时间
+            // Accessibility Support
             httpUrl.setReadTimeout(60000);
-            // 连接超时时间
+            // Connection timed out
             httpUrl.setConnectTimeout(60000);
             httpUrl.connect();
             bis = new BufferedInputStream(httpUrl.getInputStream());
@@ -188,16 +188,16 @@ public class FileUtils {
             while ((readLen = bis.read(buf)) != -1) {
                 bos.write(buf, 0, readLen);
             }
-            log.info("远程文件下载成功：" + url);
+            log.info("Remote file download successful：" + url);
             bos.flush();
             bis.close();
             httpUrl.disconnect();
             return DownloadStatus.DOWNLOAD_SUCCESS;
         } catch (SocketTimeoutException e) {
-            log.error("读取文件超时", e);
+            log.error("Read file timed out", e);
             return DownloadStatus.TIME_OUT;
         } catch (Exception e) {
-            log.error("远程文件下载失败", e);
+            log.error("Failed to download remote file.", e);
             return DownloadStatus.DOWNLOAD_FAIL;
         } finally {
             try {
@@ -208,7 +208,7 @@ public class FileUtils {
                     bos.close();
                 }
             } catch (Exception e) {
-                log.error("下载出错", e);
+                log.error("Download error", e);
             }
         }
     }

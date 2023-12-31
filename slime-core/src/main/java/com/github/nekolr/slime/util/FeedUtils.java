@@ -24,7 +24,7 @@ public class FeedUtils {
             document = saxBuilder.build(reader);
             feed = feedInput.build(document);
         } catch (Exception e) {
-            log.error("解析 feed 失败", e);
+            log.error("Analyse feed Failure", e);
         } finally {
             reader.close();
         }

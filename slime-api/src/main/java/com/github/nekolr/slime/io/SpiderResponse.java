@@ -9,41 +9,41 @@ import java.util.Map;
 
 public interface SpiderResponse {
 
-    @Comment("获取返回状态码")
+    @Comment("Get the return value")
     @Example("${resp.statusCode}")
     int getStatusCode();
 
-    @Comment("获取网页标题")
+    @Comment("Get web page title")
     @Example("${resp.title}")
     String getTitle();
 
-    @Comment("获取网页 html")
+    @Comment("Get Web Page html")
     @Example("${resp.html}")
     String getHtml();
 
-    @Comment("获取 json")
+    @Comment("Get json")
     @Example("${resp.json}")
     default Object getJson() {
         return JSON.parse(getHtml());
     }
 
-    @Comment("获取 cookies")
+    @Comment("Get cookies")
     @Example("${resp.cookies}")
     Map<String, String> getCookies();
 
-    @Comment("获取 headers")
+    @Comment("Get headers")
     @Example("${resp.headers}")
     Map<String, String> getHeaders();
 
-    @Comment("获取 byte[]")
+    @Comment("Get byte[]")
     @Example("${resp.bytes}")
     byte[] getBytes();
 
-    @Comment("获取 ContentType")
+    @Comment("Get ContentType")
     @Example("${resp.contentType}")
     String getContentType();
 
-    @Comment("获取当前 url")
+    @Comment("Get current url")
     @Example("${resp.url}")
     String getUrl();
 

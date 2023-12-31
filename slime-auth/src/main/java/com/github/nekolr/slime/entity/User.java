@@ -14,10 +14,10 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class User {
 
-    @NotBlank(message = "用户名不能为空")
+    @NotBlank(message = "Name of the current user")
     private String username;
 
-    @NotBlank(message = "密码不能为空")
+    @NotBlank(message = "Password cannot be empty")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 

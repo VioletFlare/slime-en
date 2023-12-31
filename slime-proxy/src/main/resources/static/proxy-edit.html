@@ -31,17 +31,17 @@
 		<div class="layui-form-item">
    			<label class="layui-form-label">代理 IP</label>
    			<div class="layui-input-block">
-   				<input type="text" name="ip" placeholder="请输入代理 IP" autocomplete="off" class="layui-input" lay-verify="required"/>
+   				<input type="text" name="ip" placeholder="Please enter proxy configuration details: IP" autocomplete="off" class="layui-input" lay-verify="required"/>
    			</div>
    		</div>
 		<div class="layui-form-item">
-   			<label class="layui-form-label">代理端口号</label>
+   			<label class="layui-form-label">Port forwarding number</label>
    			<div class="layui-input-block">
-   				<input type="text" name="port" placeholder="请输入代理端口号" autocomplete="off" class="layui-input"  lay-verify="required"/>
+   				<input type="text" name="port" placeholder="Please enter proxy port number" autocomplete="off" class="layui-input"  lay-verify="required"/>
    			</div>
    		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">代理类型</label>
+			<label class="layui-form-label">Proxy Type</label>
 			<div class="layui-input-block">
 				<select name="type" lay-search  lay-verify="required">
 					<option value="http">http</option>
@@ -50,15 +50,15 @@
 			</div>
 		</div>
    		<div class="layui-form-item">
-   			<label class="layui-form-label">是否高匿</label>
+   			<label class="layui-form-label">Is it a secret</label>
 			<div class="layui-input-block">
-				<input type="checkbox" title="高匿" name="anonymous" value="true" lay-skin="primary" {{d.data.object['anonymous'] ? 'checked' : ''}}/>
+				<input type="checkbox" title="Hidden" name="anonymous" value="true" lay-skin="primary" {{d.data.object['anonymous'] ? 'checked' : ''}}/>
 			</div>
    		</div>
    		<div class="btns-submit">
-			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">保存</button>
-			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="test" type="button">测试延迟</button>
-			<button class="layui-btn layui-btn-primary btn-return" type="button" onclick="history.go(-1);">返回</button>
+			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">Save</button>
+			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="test" type="button">Test delay</button>
+			<button class="layui-btn layui-btn-primary btn-return" type="button" onclick="history.go(-1);">Back</button>
 		</div>
 	</form>
 	<script>
@@ -73,9 +73,9 @@
 			addSelectListener();
 		});
 
-		// 移除 search 的 blur 事件，作用可以让用户手动输入
+		// Remove search 的 blur Events，Role can be manually triggered by the user
 		function resetSelect(selValue) {
-			// 移除事件
+			// Remove Events
 			var driverClassElement = $("select[name='type']").next().find("input");
 			driverClassElement.unbind("blur");
 			if(selValue){
@@ -84,7 +84,7 @@
 			return driverClassElement;
 		}
 
-		// 添加 search 监听，为了移除它默认选中最后一个
+		// Add search Listen，Select the last one to remove it by default
 		function addSelectListener() {
 			$("select[name='type']").next().find("input").focus(function () {
 				window.setTimeout(function() {
@@ -126,17 +126,17 @@
 				},
 				success : function(success) {
 					if (success) {
-						layui.layer.msg('保存成功', {
+						layui.layer.msg('Save successful', {
 							time : 800
 						},function(){
 							location.href = 'proxy.html';
 						})
 					} else {
-						layui.layer.msg('保存失败');
+						layui.layer.msg('Save Failed');
 					}
 				},
 				error : function(){
-					layui.layer.msg('请求失败');
+					layui.layer.msg('Text to translate: Request failed');
 				}
 			})
 			return false;
@@ -152,13 +152,13 @@
 					type : resetSelect().val()
 				},
 				success : function(data) {
-					layui.layer.msg("延迟 " + data + " 毫秒");
+					layui.layer.msg("Delay " + data + " Seconds");
 				},
 				error : function(errorInfo) {
 					if (errorInfo.responseText !== null && errorInfo.responseText !== '') {
 						layui.layer.msg(errorInfo.responseText);
 					} else {
-						layui.layer.msg('请求失败');
+						layui.layer.msg('Text to translate: Request failed');
 					}
 				}
 			});

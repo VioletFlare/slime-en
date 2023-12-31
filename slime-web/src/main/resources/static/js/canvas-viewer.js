@@ -68,7 +68,7 @@ function CanvasViewer(options) {
         } else {
             _this.canvas.style.cursor = 'default';
         }
-        //鼠标按下且有纵向滚动条
+        //Mouse button with horizontal scrollbar
         if (_this.mouseEvent == 1 && _this.hasScroll) {
             _this.scrollTo(Math.max(Math.min(Math.floor((y / (_this.canvas.height - 8)) * _this.lines.length - _this.maxRows / 2), _this.lines.length - _this.maxRows), 0));
         }
@@ -82,7 +82,7 @@ function CanvasViewer(options) {
 
     }
     this.canvas.onmousewheel = function (e) {
-        if (e.wheelDelta > 0) {	//向上滚动
+        if (e.wheelDelta > 0) {	//Roll Up
             _this.scrollTo(Math.max(_this.startIndex - 2, 0));
         } else {
             _this.scrollTo(Math.max(Math.min(_this.startIndex + 1, _this.lines.length - _this.maxRows), 0));

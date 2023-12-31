@@ -44,81 +44,81 @@ public class ChromeDriverProvider implements DriverProvider {
         ChromeOptions options = new ChromeOptions();
 
         String userAgent = node.getJsonProperty(USER_AGENT);
-        // 设置 User-Agent
+        // 1 hour before appointment User-Agent
         if (StringUtils.isNotBlank(userAgent)) {
             options.addArguments(String.format(USER_AGENT_OPTION, userAgent));
         }
 
-        // 禁用 JS
+        // Use JS
         if (Constants.YES.equals(node.getJsonProperty(JAVASCRIPT_DISABLED))) {
             options.addArguments(DISABLED_JAVASCRIPT_OPTION);
         }
 
-        // 不加载图片
+        // No picture loaded
         if (Constants.YES.equals(node.getJsonProperty(IMAGE_DISABLED))) {
             options.addArguments(IMAGES_DISABLED_OPTION);
         }
 
-        // 隐藏滚动条
+        // Hide Scrollbars
         if (Constants.YES.equals(node.getJsonProperty(HIDE_SCROLLBAR))) {
             options.addArguments(HIDE_SCROLLBARS_OPTION);
         }
 
-        // 无头模式
+        // Headless Mode
         if (Constants.YES.equals(node.getJsonProperty(HEADLESS))) {
             options.setHeadless(true);
         }
 
-        // 禁用沙盒模式
+        // Enable sandbox mode
         if (Constants.YES.equals(node.getJsonProperty(NO_SANDBOX))) {
             options.addArguments(NO_SANDBOX_OPTION);
         }
 
-        // 隐身模式
+        // Invisible Mode
         if (Constants.YES.equals(node.getJsonProperty(INCOGNITO))) {
             options.addArguments(INCOGNITO_OPTION);
         }
 
-        // 禁用插件
+        // The plugin list contains some obsolete plugins. Enabling them will not have any effect.
         if (Constants.YES.equals(node.getJsonProperty(PLUGIN_DISABLE))) {
             options.addArguments(DISABLE_PLUGINS_OPTION);
         }
 
-        // 禁用 Java
+        // Use Java
         if (Constants.YES.equals(node.getJsonProperty(JAVA_DISABLE))) {
             options.addArguments(DISABLE_JAVA_OPTION);
         }
 
-        // 设置窗口大小
+        // Please set the window size
         String windowSize = node.getJsonProperty(WINDOW_SIZE);
         if (StringUtils.isNotBlank(windowSize)) {
             options.addArguments(String.format(WINDOW_SIZE_OPTION, windowSize));
         }
 
-        // 最大化
+        // Maximize
         if (Constants.YES.equals(node.getJsonProperty(MAXIMIZED))) {
             options.addArguments(MAXIMIZED_OPTION);
         }
 
-        // 禁用 gpu 加速
+        // Use gpu Accelerator
         if (Constants.YES.equals(node.getJsonProperty(GPU_DISABLE))) {
             options.addArguments(DISABLE_GPU_OPTION);
         }
 
-        // 设置其他参数
+        // Set other options
         String arguments = node.getJsonProperty(ARGUMENTS);
         if (StringUtils.isNotBlank(arguments)) {
             options.addArguments(Arrays.asList(arguments.split("\r\n")));
         }
 
-        // 设置代理
+        // Set Up Proxy
         if (StringUtils.isNotBlank(proxyStr)) {
             Proxy proxy = new Proxy();
             proxy.setHttpProxy(proxyStr);
             options.setProxy(proxy);
         }
 
-        // 默认去掉 “chrome 正受到自动测试软件的控制” 的通知
+        // Default Remove “chrome Under automatic test software control”  of the following text
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", Collections.singleton("enable-automation"));
 

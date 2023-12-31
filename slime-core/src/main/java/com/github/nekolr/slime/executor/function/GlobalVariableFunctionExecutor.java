@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@Comment("全局变量相关方法")
+@Comment("Global Variable Methods")
 public class GlobalVariableFunctionExecutor implements FunctionExecutor {
 
     private static VariableService variableService;
@@ -18,7 +18,7 @@ public class GlobalVariableFunctionExecutor implements FunctionExecutor {
         return "gv";
     }
 
-    @Comment("更新全局变量")
+    @Comment("Update global variable")
     @Example("${gv.update('variableName', '1')}")
     public static void update(String variableName, String variableValue) {
         variableService.update(variableName, variableValue);

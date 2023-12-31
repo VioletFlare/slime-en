@@ -37,32 +37,32 @@ public class FireFoxDriverProvider implements DriverProvider {
             profile.setPreference("network.proxy.http_port", NumberUtils.toInt(hp[1], 8080));
         }
 
-        // 设置 User-Agent
+        // 1 hour before appointment User-Agent
         String userAgent = node.getJsonProperty(USER_AGENT);
         if (StringUtils.isNotBlank(userAgent)) {
             profile.setPreference("general.useragent.override", userAgent);
         }
 
-        // 无头模式
+        // Headless Mode
         if (Constants.YES.equals(node.getJsonProperty(HEADLESS))) {
             options.setHeadless(true);
         }
 
-        // 是否启用 js firefox 必须启用 javascript
+        // Whether to enable js firefox 必须启用 javascript
         // profile.setPreference("javascript.enabled",!"1".equals(node.getJsonProperty(JAVASCRIPT_DISABLED)));
 
-        // 禁止加载图片
+        // Loading images is forbidden
         if (Constants.YES.equals(node.getJsonProperty(IMAGE_DISABLED))) {
             profile.setPreference("permissions.default.image", 2);
         }
 
-        // 设置窗口大小
+        // Please set the window size
         String windowSize = node.getJsonProperty(WINDOW_SIZE);
         if (StringUtils.isNotBlank(windowSize)) {
             options.addArguments("--window-size=" + windowSize);
         }
 
-        // 设置其他参数
+        // Set other options
         String arguments = node.getJsonProperty(ARGUMENTS);
         if (StringUtils.isNotBlank(arguments)) {
             options.addArguments(Arrays.asList(arguments.split("\r\n")));
@@ -92,7 +92,7 @@ public class FireFoxDriverProvider implements DriverProvider {
         String remoteWebdriverUrl = node.getJsonProperty(REMOTE_WEBDRIVER_URL, DEFAULT_REMOTE_WEBDRIVER_URL);
         WebDriver webDriver = new RemoteWebDriver(new URL(remoteWebdriverUrl), options);
 
-        // 最大化
+        // Maximize
         if (Constants.YES.equals(node.getJsonProperty(MAXIMIZED))) {
             webDriver.manage().window().maximize();
         }

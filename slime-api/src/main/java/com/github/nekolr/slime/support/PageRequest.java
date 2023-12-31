@@ -8,23 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 分页请求
+ * Pagination Request
  */
 @Getter
 public class PageRequest {
 
     /**
-     * 页号，第一页为 1
+     * Page number，First page will be 1
      */
     private int page;
 
     /**
-     * 每页记录数
+     * Number of records per page
      */
     private int size;
 
     /**
-     * 排序列表
+     * Sort List
      */
     private List<Sort.Order> sorts = new ArrayList<>();
 
@@ -35,12 +35,12 @@ public class PageRequest {
     }
 
     public PageRequest(int page, int size) {
-        // 当传递页号小于等于 0 时，默认为第一页
+        // When passing a page number less or equal 0 时，Default to first page
         if (page <= 0) {
             page = 1;
         }
 
-        // 当传递每页记录数小于 1 时，默认为 1
+        // When passing each page number to 1 时，Default to 1
         if (size < 1) {
             size = 1;
         }
@@ -64,18 +64,18 @@ public class PageRequest {
     }
 
     /**
-     * 添加一个排序
+     * Add a sorting
      *
-     * @param property 排序字段
+     * @param property Sort Text
      */
     public void addAscOrder(String property) {
         sorts.add(new Sort.Order(Sort.Direction.ASC, property));
     }
 
     /**
-     * 添加一个排序
+     * Add a sorting
      *
-     * @param property 排序字段
+     * @param property Sort Text
      */
     public void addDescOrder(String property) {
         sorts.add(new Sort.Order(Sort.Direction.DESC, property));
@@ -83,7 +83,7 @@ public class PageRequest {
 
 
     /**
-     * 生成 Pageable
+     * Generating Pageable
      *
      * @return
      */

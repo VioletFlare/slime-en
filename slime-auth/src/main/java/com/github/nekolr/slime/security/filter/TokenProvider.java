@@ -53,22 +53,22 @@ public class TokenProvider {
                     .parseClaimsJws(token);
             return true;
         } catch (ExpiredJwtException e) {
-            // token 过期
+            // token Overdue
             log.error("Token has expired: {}", e.getMessage());
         } catch (UnsupportedJwtException e) {
-            // token 格式错误
+            // token Text to translate: Format error
             log.error("Token format error: {}", e.getMessage());
         } catch (MalformedJwtException e) {
-            // token 构造错误
+            // token Construct Error
             log.error("Token construct error: {}", e.getMessage());
         } catch (SignatureException e) {
-            // 签名失败
+            // Signature Failed
             log.error("Signature failed: {}", e.getMessage());
         } catch (IllegalArgumentException e) {
-            // 非法参数
+            // Illegal Parameters
             log.error("Illegal argument: {}", e.getMessage());
         } catch (JwtException e) {
-            // 其他异常
+            // Other abnormalities
             log.error("Other exception: {}", e.getMessage());
         }
         return false;

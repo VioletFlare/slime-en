@@ -6,7 +6,7 @@ import com.github.nekolr.slime.executor.FunctionExecutor;
 import org.springframework.stereotype.Component;
 
 @Component
-@Comment("thread 常用方法")
+@Comment("thread Common Methods")
 public class ThreadFunctionExecutor implements FunctionExecutor {
 
     @Override
@@ -14,7 +14,7 @@ public class ThreadFunctionExecutor implements FunctionExecutor {
         return "thread";
     }
 
-    @Comment("线程休眠")
+    @Comment("Threads")
     @Example("${thread.sleep(1000L)}")
     public static void sleep(Long sleepTime) {
         try {

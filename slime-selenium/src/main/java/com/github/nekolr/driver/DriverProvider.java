@@ -8,17 +8,17 @@ import java.net.MalformedURLException;
 public interface DriverProvider {
 
     /**
-     * 默认的远程 WebDriver 地址
+     * Default Remote WebDriver Address
      */
     String DEFAULT_REMOTE_WEBDRIVER_URL = "http://localhost:4444";
 
     /**
-     * 远程 WebDriver 地址
+     * Remote WebDriver Address
      */
     String REMOTE_WEBDRIVER_URL = "remote-webdriver-url";
 
     /**
-     * 禁用 js
+     * Use js
      */
     String JAVASCRIPT_DISABLED = "javascript-disabled";
 
@@ -28,69 +28,69 @@ public interface DriverProvider {
     String USER_AGENT = "user-agent";
 
     /**
-     * 无头模式
+     * Headless Mode
      */
     String HEADLESS = "headless";
 
     /**
-     * 不加载图片
+     * No picture loaded
      */
     String IMAGE_DISABLED = "image-disabled";
 
     /**
-     * 隐藏滚动条（有时候需要通过隐藏滚动条来应对某些页面）
+     * Hide Scrollbars（Sometimes you need to deal with a page that has a scrollbar hidden）
      */
     String HIDE_SCROLLBAR = "hide-scrollbar";
 
     /**
-     * 禁用插件
+     * The plugin list contains some obsolete plugins. Enabling them will not have any effect.
      */
     String PLUGIN_DISABLE = "plugin-disable";
 
     /**
-     * 禁用 java
+     * Use java
      */
     String JAVA_DISABLE = "java-disable";
 
     /**
-     * 隐身模式（无痕模式）
+     * Invisible Mode（No trace mode）
      */
     String INCOGNITO = "incognito";
 
     /**
-     * 禁用沙盒模式
+     * Enable sandbox mode
      */
     String NO_SANDBOX = "no-sandbox";
 
     /**
-     * 窗口大小
+     * Size of the assistant window
      */
     String WINDOW_SIZE = "window-size";
 
     /**
-     * 最大化
+     * Maximize
      */
     String MAXIMIZED = "maximized";
 
     /**
-     * 禁用 gpu 加速
+     * Use gpu Accelerator
      */
     String GPU_DISABLE = "gpu-disable";
 
     /**
-     * 其他参数
+     * Other Parameters
      */
     String ARGUMENTS = "arguments";
 
     /**
-     * 返回支持的浏览器
+     * Please translate the following text to english
      */
     String support();
 
     /**
-     * 获取 WebDriver
+     * Get WebDriver
      *
-     * @param node     节点
+     * @param node     15th Last
      * @param proxyStr 代理
      * @return WebDriver
      */

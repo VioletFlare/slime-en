@@ -31,7 +31,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Bean
     public ServletServerContainerFactoryBean createWebSocketContainer() {
         ServletServerContainerFactoryBean container = new ServletServerContainerFactoryBean();
-        // 设置文本缓存 1 MB
+        // Set Text Cache 1 MB
         container.setMaxTextMessageBufferSize(1024 * 1024);
         return container;
     }

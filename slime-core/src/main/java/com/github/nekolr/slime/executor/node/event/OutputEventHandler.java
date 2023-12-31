@@ -32,17 +32,17 @@ import java.util.stream.Collectors;
 public class OutputEventHandler {
 
     /**
-     * 输出到数据库中的表名
+     * Table name to output to
      */
     String OUTPUT_TABLE_NAME = "tableName";
 
     /**
-     * CSV 文件的名称
+     * CSV The name of the file
      */
     String OUTPUT_CSV_NAME = "csvName";
 
     /**
-     * CSV 文件的编码
+     * CSV The file encoding
      */
     String OUTPUT_CSV_ENCODING = "csvEncoding";
 
@@ -58,15 +58,15 @@ public class OutputEventHandler {
         SpiderNode node = eventBean.getNode();
         List<OutputItem> outputItems = eventBean.getOutputItems();
 
-        // 获取数据源 ID
+        // Fetching data source ID
         String dsId = node.getJsonProperty(Constants.DATASOURCE_ID);
-        // 获取表名
+        // Get table name
         String tableName = node.getJsonProperty(OUTPUT_TABLE_NAME);
 
         if (StringUtils.isBlank(dsId)) {
-            log.warn("数据源 ID 不能为空");
+            log.warn("Data Sources ID Cannot be empty");
         } else if (StringUtils.isBlank(tableName)) {
-            log.warn("表名不能为空");
+            log.warn("Name cannot be empty");
         } else {
             if (outputItems == null || outputItems.isEmpty()) {
                 return;
@@ -79,7 +79,7 @@ public class OutputEventHandler {
             preSql.append(" (");
             StringBuilder nextSql = new StringBuilder(" VALUES (");
 
-            // 设置字段名和对应的占位符
+            // Please set the field name and the corresponding placeholder
             for (int i = 0; i < outputItems.size(); i++) {
                 OutputItem item = outputItems.get(i);
                 if (StringUtils.isNotBlank(item.getName())) {
@@ -102,7 +102,7 @@ public class OutputEventHandler {
                     // 执行 sql
                     template.update(preSql.append(nextSql).toString(), values.toArray());
                 } catch (Exception e) {
-                    log.error("执行 sql 出错", e);
+                    log.error("执行 sql Error", e);
                     ExceptionUtils.wrapAndThrow(e);
                 }
             }
@@ -115,7 +115,7 @@ public class OutputEventHandler {
         SpiderNode node = eventBean.getNode();
         List<OutputItem> outputItems = eventBean.getOutputItems();
 
-        // 获取文件名
+        // Get filename
         String csvName = node.getJsonProperty(OUTPUT_CSV_NAME);
         if (outputItems == null || outputItems.isEmpty()) {
             return;
@@ -124,9 +124,9 @@ public class OutputEventHandler {
         Map<String, CSVPrinter> cachePrinter = OutputExecutor.getCachePrinter();
         CSVPrinter printer = cachePrinter.get(key);
 
-        // 所有的记录值
+        // All Record Values
         List<String> records = new ArrayList<>(outputItems.size());
-        // 生成头部列表
+        // Generate a list of headers
         List<String> headers = outputItems.stream().map(item -> item.getName()).collect(Collectors.toList());
 
         try {
@@ -150,14 +150,14 @@ public class OutputEventHandler {
                 }
             }
 
-            // 转储数据
+            // Data Store
             for (int i = 0; i < headers.size(); i++) {
                 OutputItem item = outputItems.get(i);
                 if (item.getValue() != null) {
                     records.add(item.getValue().toString());
                 }
             }
-            // 打印数据
+            // Print data
             synchronized (cachePrinter) {
                 if (!records.isEmpty()) {
                     printer.printRecord(records);
@@ -165,7 +165,7 @@ public class OutputEventHandler {
             }
 
         } catch (IOException e) {
-            log.error("文件输出出现错误", e);
+            log.error("The file output failed", e);
             ExceptionUtils.wrapAndThrow(e);
         }
     }

@@ -19,55 +19,55 @@ public class ElementsFunctionExtension implements FunctionExtension {
         return Elements.class;
     }
 
-    @Comment("根据 xpath 提取内容")
+    @Comment("Based on xpath Extract Contents")
     @Example("${elementsVar.xpath('//title/text()')}")
     public static String xpath(Elements elements, String xpath) {
         return ExtractUtils.getValueByXPath(elements, xpath);
     }
 
-    @Comment("根据 xpath 提取内容")
+    @Comment("Based on xpath Extract Contents")
     @Example("${elementsVar.xpaths('//h2/text()')}")
     public static List<String> xpaths(Elements elements, String xpath) {
         return ExtractUtils.getValuesByXPath(elements, xpath);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementsVar.regx('<title>(.*?)</title>')}")
     public static String regx(Elements elements, String regx) {
         return ExtractUtils.getFirstMatcher(elements.html(), regx, true);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementsVar.regx('<title>(.*?)</title>',1)}")
     public static String regx(Elements elements, String regx, int groupIndex) {
         return ExtractUtils.getFirstMatcher(elements.html(), regx, groupIndex);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementsVar.regx('<a href=\"(.*?)\">(.*?)</a>',[1,2])}")
     public static List<String> regx(Elements elements, String regx, List<Integer> groups) {
         return ExtractUtils.getFirstMatcher(elements.html(), regx, groups);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementsVar.regxs('<h2>(.*?)</h2>')}")
     public static List<String> regxs(Elements elements, String regx) {
         return ExtractUtils.getMatchers(elements.html(), regx, true);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementsVar.regxs('<h2>(.*?)</h2>',1)}")
     public static List<String> regxs(Elements elements, String regx, int groupIndex) {
         return ExtractUtils.getMatchers(elements.html(), regx, groupIndex);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementsVar.regxs('<a href=\"(.*?)\">(.*?)</a>',[1,2])}")
     public static List<List<String>> regxs(Elements elements, String regx, List<Integer> groups) {
         return ExtractUtils.getMatchers(elements.html(), regx, groups);
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${elementsVar.selector('div > a')}")
     public static Element selector(Elements elements, String selector) {
         Elements foundElements = elements.select(selector);
@@ -77,7 +77,7 @@ public class ElementsFunctionExtension implements FunctionExtension {
         return null;
     }
 
-    @Comment("返回所有 attr")
+    @Comment("All attr")
     @Example("${elementsVar.attrs('href')}")
     public static List<String> attrs(Elements elements, String key) {
         List<String> list = new ArrayList<>(elements.size());
@@ -87,7 +87,7 @@ public class ElementsFunctionExtension implements FunctionExtension {
         return list;
     }
 
-    @Comment("返回所有 value")
+    @Comment("All value")
     @Example("${elementsVar.vals()}")
     public static List<String> vals(Elements elements) {
         List<String> list = new ArrayList<>(elements.size());
@@ -97,7 +97,7 @@ public class ElementsFunctionExtension implements FunctionExtension {
         return list;
     }
 
-    @Comment("返回所有 text")
+    @Comment("All text")
     @Example("${elementsVar.texts()}")
     public static List<String> texts(Elements elements) {
         List<String> list = new ArrayList<>(elements.size());
@@ -107,7 +107,7 @@ public class ElementsFunctionExtension implements FunctionExtension {
         return list;
     }
 
-    @Comment("返回所有 html")
+    @Comment("All html")
     @Example("${elementsVar.htmls()}")
     public static List<String> htmls(Elements elements) {
         List<String> list = new ArrayList<>(elements.size());
@@ -117,7 +117,7 @@ public class ElementsFunctionExtension implements FunctionExtension {
         return list;
     }
 
-    @Comment("返回所有 outerHtml")
+    @Comment("All outerHtml")
     @Example("${elementsVar.outerHtmls()}")
     public static List<String> outerHtmls(Elements elements) {
         List<String> list = new ArrayList<>(elements.size());
@@ -127,7 +127,7 @@ public class ElementsFunctionExtension implements FunctionExtension {
         return list;
     }
 
-    @Comment("返回所有 ownTexts")
+    @Comment("All ownTexts")
     @Example("${elementsVar.ownTexts()}")
     public static List<String> ownTexts(Elements elements) {
         List<String> list = new ArrayList<>(elements.size());
@@ -137,7 +137,7 @@ public class ElementsFunctionExtension implements FunctionExtension {
         return list;
     }
 
-    @Comment("返回所有 wholeText")
+    @Comment("All wholeText")
     @Example("${elementsVar.wholeTexts()}")
     public static List<String> wholeTexts(Elements elements) {
         List<String> list = new ArrayList<>(elements.size());
@@ -147,13 +147,13 @@ public class ElementsFunctionExtension implements FunctionExtension {
         return list;
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${elementsVar.selectors('div > a')}")
     public static Elements selectors(Elements elements, String selector) {
         return elements.select(selector);
     }
 
-    @Comment("获取上级节点")
+    @Comment("Get parent node")
     @Example("${elementsVar.parents()}")
     public static Elements parents(Elements elements) {
         return elements.parents();

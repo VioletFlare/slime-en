@@ -17,25 +17,25 @@ public class ArrayFunctionExtension implements FunctionExtension {
         return Object[].class;
     }
 
-    @Comment("获取数组的长度")
+    @Comment("Get the length of an array")
     @Example("${arrayVar.size()}")
     public static int size(Object[] objs) {
         return objs.length;
     }
 
-    @Comment("将数组用 separator 拼接起来")
+    @Comment("Use array separator 拼接起来")
     @Example("${arrayVar.join('-')}")
     public static String join(Object[] objs, String separator) {
         return StringUtils.join(objs, separator);
     }
 
-    @Comment("将数组拼接起来")
+    @Comment("10 MB")
     @Example("${arrayVar.join()}")
     public static String join(Object[] objs) {
         return StringUtils.join(objs);
     }
 
-    @Comment("将数组转为 List")
+    @Comment("Turn array to List")
     @Example("${arrayVar.toList()}")
     public static List<?> toList(Object[] objs) {
         return Arrays.asList(objs);

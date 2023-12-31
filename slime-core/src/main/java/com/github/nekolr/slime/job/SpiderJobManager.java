@@ -33,32 +33,32 @@ public class SpiderJobManager {
     }
 
     /**
-     * 创建定时任务
+     * Create a new task
      *
      * @param flow 流程
-     * @return 下次执行时间
+     * @return Next execution time
      */
     public Date addJob(SpiderFlow flow) {
         try {
-            // 构建任务
+            // Create Task
             JobDetail job = JobBuilder.newJob(SpiderJob.class).withIdentity(getJobKey(flow.getId())).build();
             job.getJobDataMap().put(Constants.QUARTZ_SPIDER_FLOW_PARAM_NAME, flow);
-            // 设置触发时间
+            // Please set a trigger time
             CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(flow.getCron())
                     .withMisfireHandlingInstructionDoNothing();
-            // 创建触发器
+            // Create a trigger
             CronTrigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity(getTriggerKey(flow.getId())).withSchedule(cronScheduleBuilder).build();
 
             return quartzScheduler.scheduleJob(job, trigger);
         } catch (SchedulerException e) {
-            log.error("创建定时任务出错", e);
+            log.error("Create a new task", e);
             return null;
         }
     }
 
     /**
-     * 直接运行
+     * Run directly
      *
      * @param flowId 流程 ID
      */
@@ -67,23 +67,23 @@ public class SpiderJobManager {
     }
 
     /**
-     * 删除定时任务
+     * Delete this task
      *
      * @param flowId 流程 ID
-     * @return 是否成功
+     * @return Is successful
      */
     public boolean removeJob(Long flowId) {
         try {
             quartzScheduler.deleteJob(getJobKey(flowId));
             return true;
         } catch (SchedulerException e) {
-            log.error("删除定时任务失败", e);
+            log.error("Failed to delete scheduled task", e);
             return false;
         }
     }
 
     /**
-     * 获取 JobKey
+     * Get JobKey
      *
      * @param flowId 流程 ID
      * @return JobKey
@@ -93,7 +93,7 @@ public class SpiderJobManager {
     }
 
     /**
-     * 获取 TriggerKey
+     * Get TriggerKey
      *
      * @param flowId 流程 ID
      * @return TriggerKey

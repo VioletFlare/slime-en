@@ -4,23 +4,23 @@ package com.github.nekolr.slime.domain.mapper;
 import java.util.List;
 
 /**
- * 实体映射接口
+ * Interface to map a physical device
  *
- * @param <E> entity 类型
- * @param <D> dto 类型
+ * @param <E> entity Type
+ * @param <D> dto Type
  */
 public interface EntityMapper<E, D> {
 
     /**
-     * 将 entity 映射为 dto
+     * Email entity Image map area dto
      *
-     * @param entity 类型
+     * @param entity Type
      * @return
      */
     D toDto(E entity);
 
     /**
-     * 将 dto 映射为 entity
+     * Email dto Image map area entity
      *
      * @param dto
      * @return
@@ -28,7 +28,7 @@ public interface EntityMapper<E, D> {
     E toEntity(D dto);
 
     /**
-     * entity 结合映射为 dto 集合
+     * entity Combining Prohibited Characters dto Conversation
      *
      * @param entityList
      * @return
@@ -36,7 +36,7 @@ public interface EntityMapper<E, D> {
     List<D> toDto(List<E> entityList);
 
     /**
-     * dto 集合映射为 entity 集合
+     * dto Map to Assistant entity Conversation
      *
      * @param dtoList
      * @return

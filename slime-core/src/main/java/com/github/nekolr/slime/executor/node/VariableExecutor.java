@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 定义变量执行器
+ * Define a variable action
  */
 @Component
 @Slf4j
@@ -43,10 +43,10 @@ public class VariableExecutor implements NodeExecutor {
             String variableValue = nameValue.get(VARIABLE_VALUE);
             try {
                 value = expressionParser.parse(variableValue, variables);
-                log.debug("设置变量 {} = {}", variableName, value);
+                log.debug("Set Variable {} = {}", variableName, value);
                 context.pause(node.getNodeId(), WebSocketEvent.COMMON_EVENT, variableName, value);
             } catch (Exception e) {
-                log.error("设置变量 {} 出错", variableName, e);
+                log.error("Set Variable {} Error", variableName, e);
                 ExceptionUtils.wrapAndThrow(e);
             }
             variables.put(variableName, value);

@@ -19,7 +19,7 @@ public class WebElementWrapperFunctionExtension implements FunctionExtension {
         return WebElementWrapper.class;
     }
 
-    @Comment("根据 css 选择器提取请求结果")
+    @Comment("Based on css Choose the best answer to the question")
     @Example("${elementVar.selector('div > a')}")
     public static WebElementWrapper selector(WebElementWrapper element, String css) {
         try {
@@ -29,7 +29,7 @@ public class WebElementWrapperFunctionExtension implements FunctionExtension {
         }
     }
 
-    @Comment("根据 css 选择器提取请求结果")
+    @Comment("Based on css Choose the best answer to the question")
     @Example("${elementVar.selector('div > a')}")
     public static WebElements selectors(WebElementWrapper element, String css) {
         try {
@@ -39,7 +39,7 @@ public class WebElementWrapperFunctionExtension implements FunctionExtension {
         }
     }
 
-    @Comment("根据 xpath 在请求结果中查找")
+    @Comment("Based on xpath Look in the request results for")
     @Example("${elementVar.xpaths('//a')}")
     public static List<WebElement> xpaths(WebElementWrapper wrapper, String xpath) {
         try {
@@ -49,7 +49,7 @@ public class WebElementWrapperFunctionExtension implements FunctionExtension {
         }
     }
 
-    @Comment("根据 xpath 在请求结果中查找")
+    @Comment("Based on xpath Look in the request results for")
     @Example("${elementVar.xpath('//a')}")
     public static WebElement xpath(WebElementWrapper wrapper, String xpath) {
         try {
@@ -59,7 +59,7 @@ public class WebElementWrapperFunctionExtension implements FunctionExtension {
         }
     }
 
-    @Comment("点击并且不释放")
+    @Comment("Click and don't release")
     @Example("${elementVar.clickAndHold()}")
     public static WebElementWrapper clickAndHold(WebElementWrapper element) {
         element.action().clickAndHold(element.element());
@@ -73,14 +73,14 @@ public class WebElementWrapperFunctionExtension implements FunctionExtension {
         return element;
     }
 
-    @Comment("移动鼠标")
+    @Comment("Move Mouse")
     @Example("${elementVar.move(15,0)}")
     public static WebElementWrapper move(WebElementWrapper element, int x, int y) {
         element.action().moveToElement(element.element(), x, y);
         return element;
     }
 
-    @Comment("移动鼠标到该节点上")
+    @Comment("Please move the mouse to the node")
     @Example("${elementVar.move()}")
     public static WebElementWrapper move(WebElementWrapper element) {
         element.action().moveToElement(element.element());
@@ -94,14 +94,14 @@ public class WebElementWrapperFunctionExtension implements FunctionExtension {
         return element;
     }
 
-    @Comment("暂缓")
+    @Comment("_Pause")
     @Example("${elementVar.pause(500)}")
     public static WebElementWrapper pause(WebElementWrapper element, int pause) {
         element.action().pause(pause);
         return element;
     }
 
-    @Comment("执行动作")
+    @Comment("Executable")
     @Example("${elementVar.perform()}")
     public static WebElementWrapper perform(WebElementWrapper element) {
         element.action().perform();

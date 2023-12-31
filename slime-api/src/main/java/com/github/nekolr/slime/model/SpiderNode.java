@@ -12,84 +12,84 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 节点
+ * 15th Last
  */
 public class SpiderNode {
 
     /**
-     * 节点 ID
+     * 15th Last ID
      */
     @Getter
     @Setter
     private String nodeId;
 
     /**
-     * 节点名称
+     * Question Name
      */
     @Getter
     @Setter
     private String nodeName;
 
     /**
-     * 用来计算当前节点正在执行中的任务个数
+     * The current node is running %d tasks.
      */
     private AtomicInteger taskCounter = new AtomicInteger();
 
     /**
-     * 节点属性
+     * Add a new node
      */
     @Setter
     private Map<String, Object> jsonProperty = new HashMap<>();
 
     /**
-     * 前面的节点列表
+     * List of nodes in front of you
      */
     private List<SpiderNode> prevNodes = new ArrayList<>();
 
     /**
-     * 后面的节点列表
+     * List of nodes below
      */
     @Getter
     private List<SpiderNode> nextNodes = new ArrayList<>();
 
     /**
-     * 存放的是是否需要将上一节点的变量和值传递到当前节点的设置（1 表示需要 0 表示不需要）
+     * Whether to pass the variables and values of the previous node to the current node as default values.（1 Needs action 0 Not required）
      */
     private Map<String, String> transmitVariables = new HashMap<>();
 
     /**
-     * 存放的是上一节点流转到当前节点的条件表达式
+     * Save the condition expression that got the last node into the current node
      */
     private Map<String, String> conditions = new HashMap<>();
 
     /**
-     * 存放的是上一节点流转到当前节点的条件类型
+     * Save the current condition type to the given node
      *
      * @see ConditionType
      */
     private Map<String, String> conditionTypes = new HashMap<>();
 
     /**
-     * 获取节点属性值
+     * Getting node properties
      *
-     * @param key 属性名称
-     * @return 属性值
+     * @param key Property name
+     * @return Property Value
      */
     public String getJsonProperty(String key) {
         String value = (String) this.jsonProperty.get(key);
         if (value != null) {
-            // 取消转义
+            // Remove Escaping
             value = StringEscapeUtils.unescapeHtml4(value);
         }
         return value;
     }
 
     /**
-     * 获取节点属性值
+     * Getting node properties
      *
-     * @param key          属性名称
-     * @param defaultValue 默认值
-     * @return 属性值
+     * @param key          Property name
+     * @param defaultValue Default Value
+     * @return Property Value
      */
     public String getJsonProperty(String key, String defaultValue) {
         String value = this.getJsonProperty(key);
@@ -97,9 +97,9 @@ public class SpiderNode {
     }
 
     /**
-     * 添加下一个节点
+     * Add the following node
      *
-     * @param nextNode 下一个节点
+     * @param nextNode Next Activity
      */
     public void addNextNode(SpiderNode nextNode) {
         nextNode.prevNodes.add(this);
@@ -107,10 +107,10 @@ public class SpiderNode {
     }
 
     /**
-     * 获取节点的多个属性值，这些属性值都是 JSON 数组
+     * Get multiple values for a node，These property values are JSON The following text is a sample answer to the question "What is your name?":My name is John Doe.
      *
-     * @param keys 属性名数组
-     * @return 多个属性值
+     * @param keys Property name array
+     * @return Multiple Value
      */
     public List<Map<String, String>> getJsonArrayProperty(String... keys) {
         int size = -1;
@@ -119,11 +119,11 @@ public class SpiderNode {
         for (int i = 0; i < keys.length; i++) {
             JSONArray jsonArray = (JSONArray) this.jsonProperty.get(keys[i]);
             if (jsonArray != null) {
-                // 保证 size 只赋值一次
+                // 保证 size Only set it once
                 if (size == -1) {
                     size = jsonArray.size();
                 }
-                // 确保它们的元素个数一致
+                // Ensure consistent element count
                 if (size != jsonArray.size()) {
                     throw new ArrayIndexOutOfBoundsException();
                 }
@@ -145,45 +145,45 @@ public class SpiderNode {
     }
 
     /**
-     * 是否需要将上一节点的变量和值传递到当前节点
+     * Whether to pass the variables and values of the previous node to the current node
      *
-     * @param fromNodeId 上一节点的 ID
-     * @return 是否需要传递变量和值
+     * @param fromNodeId Last Output ID
+     * @return Do I need to pass a variable and a value
      */
     public boolean needTransmit(String fromNodeId) {
         String value = this.transmitVariables.get(fromNodeId);
-        // 如果值为空则默认需要传递变量
+        // If value is empty, default to passing variables
         return StringUtils.isBlank(value) || Constants.YES.equals(value);
     }
 
     /**
-     * 正在执行的任务数 +1
+     * The following tasks are currently being executed: +1
      */
     public void increment() {
         taskCounter.incrementAndGet();
     }
 
     /**
-     * 正在执行的任务数 -1
+     * The following tasks are currently being executed: -1
      */
     public void decrement() {
         taskCounter.decrementAndGet();
     }
 
     /**
-     * 当前节点以及它前面的节点的任务是否全部完成
+     * Whether the current node and all of its parent's tasks are finished
      *
-     * @return 是否全部完成
+     * @return Are all of the tasks complete
      */
     public boolean isDone() {
         return isDone(new HashSet<>());
     }
 
     /**
-     * 当前节点以及它前面的节点的任务是否全部完成
+     * Whether the current node and all of its parent's tasks are finished
      *
-     * @param visited 记录访问过的节点
-     * @return 是否全部完成
+     * @param visited Record visited nodes
+     * @return Are all of the tasks complete
      */
     public boolean isDone(Set<String> visited) {
         if (this.taskCounter.get() == 0) {
@@ -198,50 +198,50 @@ public class SpiderNode {
     }
 
     /**
-     * 上一节点流转到当前节点的条件表达式
+     * Next activity in %1Condition expression
      *
-     * @param fromNodeId 上一节点的 ID
-     * @return 条件表达式
+     * @param fromNodeId Last Output ID
+     * @return Condition expression
      */
     public String getCondition(String fromNodeId) {
         return this.conditions.get(fromNodeId);
     }
 
     /**
-     * 上一节点流转到当前节点的条件类型
+     * Next activity in %1Condition type
      *
-     * @param fromNodeId 上一节点的 ID
-     * @return 条件类型
+     * @param fromNodeId Last Output ID
+     * @return Condition type
      */
     public String getConditionType(String fromNodeId) {
         return this.conditionTypes.get(fromNodeId);
     }
 
     /**
-     * 设置是否需要将上一节点的变量和值传递到当前节点
+     * Whether to pass the variables and values of the previous node to the current node
      *
-     * @param fromNodeId 上一节点的 ID
-     * @param value      是否需要传递变量和值的设置
+     * @param fromNodeId Last Output ID
+     * @param value      Whether to pass the variable and value settings
      */
     public void setTransmitVariable(String fromNodeId, String value) {
         this.transmitVariables.put(fromNodeId, value);
     }
 
     /**
-     * 设置上一节点流转到当前节点的条件表达式
+     * Set the condition expression for the last node to the current node
      *
-     * @param fromNodeId 上一节点的 ID
-     * @param value      条件表达式
+     * @param fromNodeId Last Output ID
+     * @param value      Condition expression
      */
     public void setCondition(String fromNodeId, String value) {
         this.conditions.put(fromNodeId, value);
     }
 
     /**
-     * 设置上一节点流转到当前节点的条件类型
+     * Set the condition type for the last node to the current node
      *
-     * @param fromNodeId 上一节点的 ID
-     * @param value      条件类型
+     * @param fromNodeId Last Output ID
+     * @param value      Condition type
      */
     public void setConditionType(String fromNodeId, String value) {
         this.conditionTypes.put(fromNodeId, value);

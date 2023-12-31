@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 函数执行器
+ * Function Executor
  */
 @Component
 @Slf4j
@@ -31,10 +31,10 @@ public class FunctionExecutor implements NodeExecutor {
             String function = item.get(Constants.FUNCTION);
             if (StringUtils.isNotBlank(function)) {
                 try {
-                    log.debug("执行函数 {}", function);
+                    log.debug("Answer Function {}", function);
                     expressionParser.parse(function, variables);
                 } catch (Exception e) {
-                    log.error("执行函数 {} 失败", function, e);
+                    log.error("Answer Function {} Failure", function, e);
                     ExceptionUtils.wrapAndThrow(e);
                 }
             }

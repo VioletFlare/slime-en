@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * List 工具类
- * 添加了类似 python 的 split 方法
+ * List Class Instance
+ * Added similar python 的 split Method
  */
 @Component
-@Comment("list 常用方法")
+@Comment("list Common Methods")
 public class ListFunctionExecutor implements FunctionExecutor {
 
     @Override
@@ -22,7 +22,7 @@ public class ListFunctionExecutor implements FunctionExecutor {
         return "list";
     }
 
-    @Comment("获取 list 的长度")
+    @Comment("Get list The length of the text")
     @Example("${list.length(listVar)}")
     public static int length(List<?> list) {
         return list != null ? list.size() : 0;
@@ -30,8 +30,8 @@ public class ListFunctionExecutor implements FunctionExecutor {
 
     /**
      * @param list 原 List
-     * @param len  按多长进行分割
-     * @return List<List < ?>> 分割后的数组
+     * @param len  How many pieces go into the split
+     * @return List<List < ?>> Shared Music
      */
     @Comment("分割 List")
     @Example("${list.split(listVar,10)}")
@@ -49,13 +49,13 @@ public class ListFunctionExecutor implements FunctionExecutor {
         return result;
     }
 
-    @Comment("截取 List")
+    @Comment("Intercept List")
     @Example("${list.sublist(listVar,fromIndex,toIndex)}")
     public static List<?> sublist(List<?> list, int fromIndex, int toIndex) {
         return list != null ? list.subList(fromIndex, toIndex) : new ArrayList<>();
     }
 
-    @Comment("过滤字符串 list 元素")
+    @Comment("Filter Strings list 元素")
     @Example("${listVar.filterStr(pattern)}")
     public static List<String> filterStr(List<String> list, String pattern) {
         if (list == null || list.isEmpty()) {

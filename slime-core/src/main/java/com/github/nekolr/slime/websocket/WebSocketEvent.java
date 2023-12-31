@@ -4,13 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * WebSocket 事件
+ * WebSocket Events
  */
 @Getter
 @Setter
 public class WebSocketEvent<T> {
 
-    // 事件类型
+    // Event Type
     public static final String LOG_EVENT_TYPE = "log";
     public static final String DEBUG_EVENT_TYPE = "debug";
     public static final String OUTPUT_EVENT_TYPE = "output";
@@ -20,7 +20,7 @@ public class WebSocketEvent<T> {
     public static final String STOP_EVENT_TYPE = "stop";
     public static final String RESUME_EVENT_TYPE = "resume";
 
-    // 事件名称
+    // Assistant Phone
     public static final String COMMON_EVENT = "common";
     public static final String REQUEST_PARAM_EVENT = "request-param";
     public static final String REQUEST_HEADER_EVENT = "request-header";
@@ -30,17 +30,17 @@ public class WebSocketEvent<T> {
 
 
     /**
-     * 事件类型
+     * Event Type
      */
     private String eventType;
 
     /**
-     * 时间戳
+     * Time Tracker
      */
     private String timestamp;
 
     /**
-     * 消息
+     * Messages
      */
     private T message;
 

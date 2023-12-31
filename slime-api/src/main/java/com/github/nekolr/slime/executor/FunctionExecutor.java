@@ -1,14 +1,14 @@
 package com.github.nekolr.slime.executor;
 
 /**
- * 函数执行器
+ * Function Executor
  */
 public interface FunctionExecutor {
 
     /**
-     * 获取函数前缀
+     * Get function prefix
      *
-     * @return 函数前缀
+     * @return Function prefix
      */
     String getFunctionPrefix();
 

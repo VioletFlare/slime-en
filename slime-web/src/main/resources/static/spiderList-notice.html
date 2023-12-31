@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>流程通知设置</title>
+	<title>Translation of the following text: Process notification settings</title>
 	<link rel="stylesheet" href="js/layui/css/layui.css" />
 	<script type="text/javascript" src="js/layui/layui.all.js"></script>
 </head>
@@ -13,32 +13,32 @@
 		<form class="layui-form" action="" lay-filter="flowNotice" id="formFlowNotice">
 			<input type="hidden" name="id" />
 			<div class="layui-form-item">
-				<label class="layui-form-label">收件人</label>
+				<label class="layui-form-label">Recipient</label>
 				<div class="layui-input-block">
-					<textarea name="recipients" placeholder="请输入收件人" class="layui-textarea"></textarea>
+					<textarea name="recipients" placeholder="Please enter the recipient" class="layui-textarea"></textarea>
 				</div>
 				<div class="layui-form-mid layui-word-aux">
-					<p>收件人,多个收件人用","隔开，每个收件人可添加单独通知标记,如不添加通知标记则使用默认配置通知方式</p>
-					<p>例：sms:13012345678,email:12345678@qq.com,13012345670</p>
+					<p>Recipient,Multiple Recipient","15th，Add a custom notification tag,Use default configuration method unless otherwise noted</p>
+					<p>Example：sms:13012345678,email:12345678@qq.com,13012345670</p>
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">通知方式</label>
+				<label class="layui-form-label">Notify by</label>
 				<div class="layui-input-block">
 					<select name="noticeWay" id="noticeWay"></select>
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">通知类型</label>
+				<label class="layui-form-label">Notify type</label>
 				<div class="layui-input-block">
-					<input type="checkbox" lay-skin="primary" name="startNotice" title="流程开始" />
-					<input type="checkbox" lay-skin="primary" name="exceptionNotice" title="流程异常" />
-					<input type="checkbox" lay-skin="primary" name="endNotice" title="流程结束" />
+					<input type="checkbox" lay-skin="primary" name="startNotice" title="The process has started" />
+					<input type="checkbox" lay-skin="primary" name="exceptionNotice" title="Translation of the following text: Process exception" />
+					<input type="checkbox" lay-skin="primary" name="endNotice" title="Translation" />
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button type="button" class="layui-btn" id="save">保存</button>
+					<button type="button" class="layui-btn" id="save">Save</button>
 					<button type="button" class="layui-btn layui-btn-primary" id="cancel">取消</button>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 	</script>
 	<script type="text/javascript" src="js/setup.js" ></script>
 	<script type="text/javascript">
-		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+		var index = parent.layer.getFrameIndex(window.name); //Get window list
 		var id = getURLParameter("id");
 
 		function getURLParameter(name) {
@@ -69,7 +69,7 @@
 				url: '/flowNotice/getNoticeWay',
 				success: successFun,
 				error: function () {
-					parent.layer.msg('获取通知方式类型失败');
+					parent.layer.msg('Getting notification types failed');
 				}
 			});
 		}
@@ -82,7 +82,7 @@
 				},
 				success: successFun,
 				error: function () {
-					parent.layer.msg('获取通知详情失败');
+					parent.layer.msg('Failed to get notification details');
 				}
 			});
 		}
@@ -104,7 +104,7 @@
 			});
 		});
 
-		//保存按钮
+		//Save button
 		$('#save').on('click', function () {
 			var data = {};
 			$("#formFlowNotice [name]").each(function () {
@@ -134,7 +134,7 @@
 					parent.layer.msg(result.message);
 				},
 				error: function () {
-					parent.layer.msg('保存通知详情失败');
+					parent.layer.msg('Save notification details failed');
 				}
 			});
 			return false;

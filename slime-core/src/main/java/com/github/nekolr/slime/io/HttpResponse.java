@@ -8,17 +8,17 @@ import java.io.InputStream;
 import java.util.Map;
 
 /**
- * 响应对象包装类
+ * Respondent Packaging Type
  */
 public class HttpResponse implements SpiderResponse {
 
     /**
-     * 响应
+     * Respond
      */
     private Response response;
 
     /**
-     * 状态码
+     * State code
      */
     private int statusCode;
 
@@ -28,17 +28,17 @@ public class HttpResponse implements SpiderResponse {
     private String urlLink;
 
     /**
-     * 响应的 HTML 内容
+     * Responding HTML 内容
      */
     private String htmlValue;
 
     /**
-     * 响应的标题
+     * Respondent
      */
     private String title;
 
     /**
-     * 响应的 json 内容
+     * Responding json 内容
      */
     private Object jsonValue;
 

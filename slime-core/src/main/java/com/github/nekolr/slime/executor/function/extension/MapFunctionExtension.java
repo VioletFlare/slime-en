@@ -17,7 +17,7 @@ public class MapFunctionExtension implements FunctionExtension {
         return Map.class;
     }
 
-    @Comment("将 map 转换为 List")
+    @Comment("Email map Convert to List")
     @Example("${mapVar.toList('=')}")
     public static List<String> toList(Map<?, ?> map, String separator) {
         return map.entrySet().stream().map(entry -> entry.getKey() + separator + entry.getValue()).collect(Collectors.toList());

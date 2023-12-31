@@ -7,53 +7,53 @@ import com.github.nekolr.slime.context.SpiderContext;
 import java.util.Map;
 
 /**
- * 节点执行器
+ * What is your name?
  */
 public interface NodeExecutor {
 
     /**
-     * 执行器具体执行的逻辑
+     * The following sources are available:
      *
-     * @param node      节点
-     * @param context   执行上下文
-     * @param variables 传递的变量与值
+     * @param node      15th Last
+     * @param context   Executable Context
+     * @param variables Passed Variable & Value
      */
     void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables);
 
     /**
-     * 是否允许执行下一个节点
+     * Whether to allow the next node to be executed
      *
-     * @param node      节点
-     * @param context   执行上下文
-     * @param variables 传递的变量与值
-     * @return 是否允许执行下一个节点
+     * @param node      15th Last
+     * @param context   Executable Context
+     * @param variables Passed Variable & Value
+     * @return Whether to allow the next node to be executed
      */
     default boolean allowExecuteNext(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
         return true;
     }
 
     /**
-     * 节点对应的图形（只有扩展节点才会有该数据）
+     * The corresponding graphical node（Only the Expand node has this data）
      *
-     * @return 节点对应的图形
+     * @return The corresponding graphical node
      */
     default Shape shape() {
         return null;
     }
 
     /**
-     * 是否能够异步执行
+     * Whether to execute in background
      *
-     * @return 是否开启新线程来执行
+     * @return Whether to launch a new thread for the command
      */
     default boolean isAsync() {
         return true;
     }
 
     /**
-     * 支持的节点类型
+     * Supported node types
      *
-     * @return 节点类型名称
+     * @return Action type name
      */
     String supportType();
 }

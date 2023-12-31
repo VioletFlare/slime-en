@@ -19,36 +19,36 @@ public class DataSourceDTO {
     private Long id;
 
     /**
-     * 数据源名称
+     * Data source name
      */
-    @NotBlank(message = "数据源的名称不能为空", groups = Save.class)
+    @NotBlank(message = "The name of the data source cannot be empty", groups = Save.class)
     private String name;
 
     /**
      * 驱动类
      */
-    @NotBlank(message = "驱动类的全限定名称不能为空", groups = {Test.class, Save.class})
+    @NotBlank(message = "The full class name of the driver cannot be empty.", groups = {Test.class, Save.class})
     private String driverClassName;
 
     /**
      * JDBC URL
      */
-    @NotBlank(message = "数据库的连接地址不能为空", groups = {Test.class, Save.class})
+    @NotBlank(message = "The connection address for the database cannot be empty", groups = {Test.class, Save.class})
     private String jdbcUrl;
 
     /**
-     * 用户名
+     * User Name
      */
     private String username;
 
     /**
-     * 密码
+     * Password
      */
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     /**
-     * 创建时间
+     * Answer the following questions as honestly as possible. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.
      */
     private Date createTime;
 

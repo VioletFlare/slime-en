@@ -26,7 +26,7 @@ public class SpiderFlowWebSocketAppender extends UnsynchronizedAppenderBase<ILog
             if (throwableProxy != null) {
                 arguments.add(throwableProxy.getThrowable());
             }
-            // 通过 WebSocket 输出日志
+            // Answer WebSocket Log to Console
             socketContext.log(new SpiderLog(event.getLevel().levelStr.toLowerCase(), event.getMessage(), arguments));
         }
     }

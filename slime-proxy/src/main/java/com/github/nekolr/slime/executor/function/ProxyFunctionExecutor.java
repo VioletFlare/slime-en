@@ -17,22 +17,22 @@ public class ProxyFunctionExecutor implements FunctionExecutor {
         return "proxy";
     }
 
-    @Comment("随机获取一个 http 代理")
+    @Comment("Get a random one http 代理")
     public static String http(boolean anonymous) {
         return convertToString(proxyManager.getHttpProxy(anonymous));
     }
 
-    @Comment("随机获取一个高匿 http 代理")
+    @Comment("Get a random high score http 代理")
     public static String http() {
         return http(true);
     }
 
-    @Comment("随机获取一个 https 代理")
+    @Comment("Get a random one https 代理")
     public static String https(boolean anonymous) {
         return convertToString(proxyManager.getHttpsProxy(anonymous));
     }
 
-    @Comment("随机获取一个高匿 https 代理")
+    @Comment("Get a random high score https 代理")
     public static String https() {
         return https(true);
     }
@@ -44,7 +44,7 @@ public class ProxyFunctionExecutor implements FunctionExecutor {
         return String.format("%s:%s", proxy.getIp(), proxy.getPort());
     }
 
-    @Comment("添加代理到内置代理池中")
+    @Comment("Add Proxy to Internal Proxy Pool")
     public void add(String ip, Integer port, String type, boolean anonymous) {
         ProxyDTO proxy = new ProxyDTO();
         proxy.setIp(ip);

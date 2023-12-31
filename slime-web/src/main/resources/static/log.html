@@ -165,20 +165,20 @@
 	</head>
 	<div class="log-container"></div>
     <div class="toolbox-container">
-        <span class="btn btn-download" title="下载日志">下载日志</span>
-        <input type="text" id="keywords" placeholder="请输入关键词搜索定位日志" class="input-text"/>
+        <span class="btn btn-download" title="Download Log">Download Log</span>
+        <input type="text" id="keywords" placeholder="Please enter a search term here" class="input-text"/>
         <input type="checkbox" id="reversed" checked class="input-checkbox"/>
-        <label for="reversed">反向搜索</label>
+        <label for="reversed">Reverse search</label>
         <input type="checkbox" id="matchcase" checked class="input-checkbox"/>
-        <label for="matchcase">区分大小写</label>
+        <label for="matchcase">Capitalize</label>
         <input type="checkbox" id="regx" class="input-checkbox"/>
-        <label for="regx">正则搜索</label>
-        <span class="btn btn-prev" title="上一个/上一行(↑)"></span>
-        <span class="btn btn-next" title="下一个/下一行(↓)"></span>
-        <span class="btn btn-page-prev" title="上一页(Page Up)"></span>
-        <span class="btn btn-page-next" title="下一页(Page Down)"></span>
-        <span class="btn btn-page-home" title="第一页/首页(Home)"></span>
-        <span class="btn btn-page-end" title="最后一页/尾页(End)"></span>
+        <label for="regx">Regex Match</label>
+        <span class="btn btn-prev" title="Last/Previous Line(↑)"></span>
+        <span class="btn btn-next" title="Next/Next Line(↓)"></span>
+        <span class="btn btn-page-prev" title="Previous Page(Page Up)"></span>
+        <span class="btn btn-page-next" title="Next Page(Page Down)"></span>
+        <span class="btn btn-page-home" title="First Page/Home(Home)"></span>
+        <span class="btn btn-page-end" title="Last Page/Footer(End)"></span>
     </div>
     <script type="text/javascript" src="js/setup.js" ></script>
 	<script type="text/javascript">
@@ -200,7 +200,7 @@
                 },
                 onLoad : function(hasData){
                     if(!hasData){
-                        layui.layer.alert('暂无日志数据');
+                        layui.layer.alert('No log data yet');
                     }
                 }
 			});

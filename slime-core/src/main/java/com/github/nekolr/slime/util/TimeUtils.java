@@ -12,10 +12,10 @@ import java.util.TimeZone;
 public class TimeUtils {
 
     /**
-     * 格式化日期
+     * Format Date
      *
-     * @param date 日期
-     * @return 格式化后的日期字符串
+     * @param date Date
+     * @return The date/ time format of the clock, or NULL to use the system default.
      */
     public static String format(Date date) {
         if (date == null) {
@@ -27,7 +27,7 @@ public class TimeUtils {
     /**
      * 获取之前的某个时间
      *
-     * @param duration 持续时间
+     * @param duration Duration
      * @return 之前的某个时间
      */
     public static Date getBeforeTime(Duration duration) {

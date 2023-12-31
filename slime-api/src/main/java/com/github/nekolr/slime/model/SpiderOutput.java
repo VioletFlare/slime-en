@@ -12,17 +12,17 @@ import java.util.List;
 public class SpiderOutput {
 
     /**
-     * 节点名称
+     * Question Name
      */
     private String nodeName;
 
     /**
-     * 节点 ID
+     * 15th Last ID
      */
     private String nodeId;
 
     /**
-     * 所有的输出项
+     * All Outputs
      */
     @Getter
     private List<OutputItem> outputItems = new ArrayList<>();
@@ -32,13 +32,13 @@ public class SpiderOutput {
     public static class OutputItem {
 
         /**
-         * 输出项的名称
+         * The name of the output item
          */
         @Getter
         private String name;
 
         /**
-         * 输出项的值
+         * Value of the output variable
          */
         @Getter
         private Object value;
@@ -54,10 +54,10 @@ public class SpiderOutput {
     }
 
     /**
-     * 添加一个输出项
+     * Add an output item
      *
-     * @param name  输出项的名称
-     * @param value 输出项的值
+     * @param name  The name of the output item
+     * @param value Value of the output variable
      */
     public void addItem(String name, Object value) {
         this.outputItems.add(new OutputItem(name, value));

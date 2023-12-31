@@ -134,7 +134,7 @@ public class Tokenizer {
                     stream.consume();
                 }
                 if (!matchedEndQuote) {
-                    ExpressionError.error("字符串没有结束符\'", stream.endSpan(), new StringLiteralException());
+                    ExpressionError.error("String doesn't end with a semicolon\'", stream.endSpan(), new StringLiteralException());
                 }
                 Span stringSpan = stream.endSpan();
                 stringSpan = new Span(stringSpan.getSource(), stringSpan.getStart() - 1, stringSpan.getEnd());
@@ -158,7 +158,7 @@ public class Tokenizer {
                     stream.consume();
                 }
                 if (!matchedEndQuote) {
-                    ExpressionError.error("字符串没有结束符\"", stream.endSpan(), new StringLiteralException());
+                    ExpressionError.error("String doesn't end with a semicolon\"", stream.endSpan(), new StringLiteralException());
                 }
                 Span stringSpan = stream.endSpan();
                 stringSpan = new Span(stringSpan.getSource(), stringSpan.getStart() - 1, stringSpan.getEnd());

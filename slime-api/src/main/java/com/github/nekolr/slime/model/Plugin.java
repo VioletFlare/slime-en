@@ -10,12 +10,12 @@ import lombok.Setter;
 public class Plugin {
 
     /**
-     * 插件名称
+     * Name of the plugin
      */
     private String name;
 
     /**
-     * 插件地址
+     * Plugin URIs
      */
     private String url;
 }

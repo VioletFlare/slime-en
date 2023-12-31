@@ -6,44 +6,44 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 线程池
+ * Threads
  */
 public class SpiderThreadPoolExecutor {
 
     /**
-     * 线程池最大线程数
+     * Maximum number of threads in thread pool
      */
     private int maxThreads;
 
     /**
-     * 线程存活时间，单位毫秒
+     * Thread lifespan，Seconds
      */
     private final long keepAliveTime = 10;
 
     /**
-     * 真正执行任务的线程池
+     * Priority to actually running threads
      */
     private final ThreadPoolExecutor threadPoolExecutor;
 
     /**
-     * 线程编号，从 1 开始
+     * Thread number，From 1 Start
      */
     private final AtomicInteger threadNumber = new AtomicInteger(1);
 
     /**
-     * 线程名前缀
+     * Thread name prefix
      */
     private final String SLIME_THREAD_NAME_PREFIX = Constants.SLIME_THREAD_NAME_PREFIX;
 
     /**
-     * 线程组
+     * Thread Group
      */
     private static final ThreadGroup SLIME_THREAD_GROUP = new ThreadGroup(Constants.SLIME_THREAD_GROUP_NAME);
 
     /**
-     * 线程池构造器
+     * Thread pool creator
      *
-     * @param maxThreads 最大线程数
+     * @param maxThreads Maximum number of threads
      */
     public SpiderThreadPoolExecutor(int maxThreads) {
         this.maxThreads = maxThreads;
@@ -53,75 +53,75 @@ public class SpiderThreadPoolExecutor {
                 keepAliveTime,
                 TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<>(),
-                // 重写线程组和线程名
+                // Rewriting thread group and thread name
                 r -> new Thread(SLIME_THREAD_GROUP, r, SLIME_THREAD_NAME_PREFIX + threadNumber.getAndIncrement())
         );
     }
 
     /**
-     * 直接提交任务到父线程池
+     * Submit tasks directly to the parent thread pool
      *
-     * @param runnable 任务
-     * @return 任务
+     * @param runnable Tasks
+     * @return Tasks
      */
     public Future<?> submit(Runnable runnable) {
         return threadPoolExecutor.submit(runnable);
     }
 
     /**
-     * 创建子线程池
+     * Create child thread pool
      *
-     * @param threads 子线程池的最大线程数
-     * @return 子线程池
+     * @param threads Maximum number of threads in thread pool
+     * @return Threads
      */
     public SubThreadPoolExecutor createSubThreadPoolExecutor(int threads) {
         return new SubThreadPoolExecutor(Math.min(this.maxThreads, threads));
     }
 
     /**
-     * 子线程池
+     * Threads
      */
     public class SubThreadPoolExecutor {
 
         /**
-         * 子线程池最大线程数量
+         * Maximum number of threads in thread pool
          */
         private int threads;
 
         /**
-         * 正在执行中的任务（已经提交到线程池中的任务）列表，它的作用是约束子线程池的线程数量
+         * In progress（Submit Task to Queue）List，Thread count limit
          */
         private Future<?>[] tasks;
 
         /**
-         * 等待任务完成的超时时间
+         * The amount of time after which the assistant will automatically answer incoming calls.
          */
         private final long waitTaskTimeout = 10;
 
         /**
-         * 子线程池是否正在运行中
+         * Is the child pool running
          */
         private volatile boolean running = true;
 
         /**
-         * 提交线程是否正在运行中
+         * Is the submit thread still running
          */
         private volatile boolean submitting = false;
 
         /**
-         * 正在执行中的任务数量
+         * Completed Task Count
          */
         private AtomicInteger executingTaskNumber = new AtomicInteger(0);
 
         /**
-         * 候选任务队列
+         * Candidate Task List
          */
         private LinkedBlockingQueue<FutureTask<?>> candidateTaskQueue;
 
         /**
-         * 子线程池构造器
+         * ThreadFactory
          *
-         * @param threads 子线程池大小
+         * @param threads Thread pool size
          */
         public SubThreadPoolExecutor(int threads) {
             this.threads = threads;
@@ -130,9 +130,9 @@ public class SpiderThreadPoolExecutor {
         }
 
         /**
-         * 获取当前能够提交任务的槽位
+         * Get the current list of shadows
          *
-         * @return -1 表示子线程池中所有的线程都正在执行任务，暂时没有空闲的线程提供
+         * @return -1 Indicates all threads in the thread pool are busy，No free threads available
          */
         private int index() {
             for (int i = 0; i < threads; i++) {
@@ -144,12 +144,12 @@ public class SpiderThreadPoolExecutor {
         }
 
         /**
-         * 删除已经完成的任务
+         * Delete completed tasks
          */
         private void removeDoneFuture() {
             for (int i = 0; i < threads; i++) {
                 try {
-                    // 尝试等待任务完成
+                    // Please wait until the task is complete
                     if (tasks[i] != null && tasks[i].get(waitTaskTimeout, TimeUnit.MILLISECONDS) == null) {
                         tasks[i] = null;
                     }
@@ -159,7 +159,7 @@ public class SpiderThreadPoolExecutor {
         }
 
         /**
-         * 等待空闲的线程
+         * Waiting for free threads
          */
         private void await() {
             while (index() == -1) {
@@ -168,49 +168,49 @@ public class SpiderThreadPoolExecutor {
         }
 
         /**
-         * 等待所有线程执行完毕
+         * Wait for all threads to finish
          */
         public void awaitTermination() {
-            // 等待所有的线程执行完毕
-            // 需要注意：在子线程池中有一个线程是调度线程，该线程会在所有的任务流程结束后才停止运行
+            // Wait for all threads to finish
+            // Attention required：One of the threads in the thread pool is the dispatcher thread.，This thread will be made available after all of the tasks in this flow have completed
             while (executingTaskNumber.get() > 1) {
                 removeDoneFuture();
             }
             running = false;
-            // 唤醒提交线程，使提交线程结束运行
+            // Wakeup call，Make the submit thread quit running
             synchronized (candidateTaskQueue) {
                 candidateTaskQueue.notifyAll();
             }
         }
 
         /**
-         * 异步提交任务
+         * Special thanks to:
          *
-         * @param runnable 任务
-         * @param value    任务返回值
-         * @param <T>      返回值类型
-         * @return 任务
+         * @param runnable Tasks
+         * @param value    Return Value
+         * @param <T>      Return Value Type
+         * @return Tasks
          */
         public <T> Future<T> submitAsync(Runnable runnable, T value) {
             FutureTask<T> futureTask = new FutureTask<>(() -> {
                 try {
-                    // 正在执行的任务数量 +1
+                    // Number of currently running tasks +1
                     executingTaskNumber.incrementAndGet();
                     // 执行任务
                     runnable.run();
                 } finally {
-                    // 正在执行的任务数量 -1
+                    // Number of currently running tasks -1
                     executingTaskNumber.decrementAndGet();
                 }
             }, value);
-            // 将任务添加到候选任务队列中
+            // Add the task to the candidate task list
             candidateTaskQueue.add(futureTask);
-            // 第一次调用时，提交线程还没有启动，启动提交线程
+            // The first time you call，Submit thread not started yet，Start Upload Thread
             if (!submitting) {
                 submitting = true;
                 CompletableFuture.runAsync(this::submit);
             }
-            // 通知继续从候选任务队列中获取任务提交到线程池中
+            // Notify that the task has been received from the scheduler and is now in the thread pool
             synchronized (candidateTaskQueue) {
                 candidateTaskQueue.notifyAll();
             }
@@ -218,22 +218,22 @@ public class SpiderThreadPoolExecutor {
         }
 
         /**
-         * 提交任务到线程池中
+         * Submit Task to Queue
          */
         private void submit() {
             while (running) {
                 synchronized (candidateTaskQueue) {
                     try {
-                        // 如果候选任务队列为空，则等待添加
+                        // If the task list is empty，Please wait while adding
                         if (candidateTaskQueue.isEmpty()) {
                             candidateTaskQueue.wait();
                         }
-                        // 当提交线程被唤醒后，从候选任务队列中获取所有的任务提交到线程池中
+                        // When a submit thread is awoken，Get all the tasks from the candidate task list and submit them to the thread pool
                         while (!candidateTaskQueue.isEmpty()) {
                             FutureTask<?> futureTask = candidateTaskQueue.remove();
-                            // 等待有空闲线程
+                            // Wait for a free thread
                             await();
-                            // 需要注意：使用这种方式提交的任务返回值始终为 null
+                            // Attention required：Tasks submitted this way always return the value null
                             tasks[index()] = threadPoolExecutor.submit(futureTask);
                         }
                     } catch (InterruptedException ignored) {

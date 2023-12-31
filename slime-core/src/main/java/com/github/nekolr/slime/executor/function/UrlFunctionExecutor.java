@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * url 按指定字符集进行编码/解码 默认字符集（UTF-8）
+ * url Character set to use in the encoding/Decrypt Default charset（UTF-8）
  */
 @Component
 public class UrlFunctionExecutor implements FunctionExecutor {
@@ -24,13 +24,13 @@ public class UrlFunctionExecutor implements FunctionExecutor {
         return "url";
     }
 
-    @Comment("获取 url 参数")
+    @Comment("Get url Parameters")
     @Example("${url.parameter('https://www.baidu.com/s?wd=spider-flow','wd')}")
     public static String parameter(String url, String key) {
         return parameterMap(url).get(key);
     }
 
-    @Comment("获取 url 全部参数")
+    @Comment("Get url All parameters")
     @Example("${url.parameterMap('https://www.baidu.com/s?wd=spider-flow&abbr=sf')}")
     public static Map<String, String> parameterMap(String url) {
         Map<String, String> map = new HashMap<String, String>();
@@ -61,13 +61,13 @@ public class UrlFunctionExecutor implements FunctionExecutor {
         return map;
     }
 
-    @Comment("url 编码")
+    @Comment("url Code")
     @Example("${url.encode('https://www.baidu.com/s?wd=spider-flow')}")
     public static String encode(String url) {
         return encode(url, Charset.defaultCharset().name());
     }
 
-    @Comment("url 编码")
+    @Comment("url Code")
     @Example("${url.encode('https://www.baidu.com/s?wd=spider-flow','UTF-8')}")
     public static String encode(String url, String charset) {
         try {
@@ -77,13 +77,13 @@ public class UrlFunctionExecutor implements FunctionExecutor {
         }
     }
 
-    @Comment("url 解码")
+    @Comment("url Decrypt")
     @Example("${url.decode(strVar)}")
     public static String decode(String url) {
         return decode(url, Charset.defaultCharset().name());
     }
 
-    @Comment("url 解码")
+    @Comment("url Decrypt")
     @Example("${url.decode(strVar,'UTF-8')}")
     public static String decode(String url, String charset) {
         try {

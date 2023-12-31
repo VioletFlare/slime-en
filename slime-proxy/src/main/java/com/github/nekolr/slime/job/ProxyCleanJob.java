@@ -32,7 +32,7 @@ public class ProxyCleanJob {
     private ProxyManager proxyManager;
 
     /**
-     * 在使用了 @EnableWebSocket 之后，自动配置类就不会生效，需要手动创建
+     * After @EnableWebSocket After，Just a moment, I'm thinking...，Needs manual creation
      */
     @Resource(name = "proxyCleanThreadPoolTaskScheduler")
     private ThreadPoolTaskScheduler scheduler;
@@ -46,7 +46,7 @@ public class ProxyCleanJob {
 
 
     public void run() {
-        // 延迟 10 秒再开始执行
+        // Delay 10 Seconds before executing
         Calendar now = Calendar.getInstance();
         now.add(Calendar.MILLISECOND, 10000);
         future = scheduler.scheduleWithFixedDelay(this::clean, now.getTime(), proxyConfig.getCheckInterval().toMillis());
@@ -68,7 +68,7 @@ public class ProxyCleanJob {
     }
 
     public void clean() {
-        log.debug("开始检测内置代理 IP 的有效性");
+        log.debug("Start scanning for embedded proxies IP Effective");
         List<ProxyDTO> proxies = proxyService.findAll();
         if (!proxies.isEmpty()) {
             for (ProxyDTO proxy : proxies) {
@@ -76,13 +76,13 @@ public class ProxyCleanJob {
                     if (proxyManager.check(proxy) == -1) {
                         proxyManager.remove(proxy);
                     } else {
-                        // 更新验证时间
+                        // Update Authentication
                         proxy.setValidTime(new Date());
                         proxyService.save(proxy);
                     }
                 });
             }
         }
-        log.debug("代理 IP 有效性检测完毕");
+        log.debug("代理 IP Effectiveness Check Complete");
     }
 }

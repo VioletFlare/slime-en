@@ -1,39 +1,39 @@
 <div class="layui-tab layui-tab-fixed layui-tab-brief">
   <ul class="layui-tab-title">
-    <li class="layui-this">配置</li>
+    <li class="layui-this">Configure KSpread...</li>
   </ul>
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
     	<form class="layui-form editor-form-node">
     		<div class="layui-form-item">
-    			<label class="layui-form-label">节点名称</label>
+    			<label class="layui-form-label">Question Name</label>
     			<div class="layui-input-block">
-    				<input type="text" name="value" placeholder="请输入节点名称" value="{{=d.value}}" autocomplete="off" class="layui-input">
+    				<input type="text" name="value" placeholder="Please enter the first alternative name" value="{{=d.value}}" autocomplete="off" class="layui-input">
     			</div>
     		</div>
     		<div class="layui-form-item">
-    			<label class="layui-form-label">循环变量</label>
+    			<label class="layui-form-label">Cycle Variable</label>
     			<div class="layui-input-block">
-    				<input type="text" name="loopIndex" placeholder="请输入循环变量" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
+    				<input type="text" name="loopIndex" placeholder="Please enter a loop variable" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
     			</div>
     		</div>
     		<div class="layui-form-item">
-    			<label class="layui-form-label">循环次数</label>
-    			<div class="layui-input-block" codemirror="loopCount" placeholder="请输入循环次数" data-value="{{=d.data.object.loopCount}}"></div>
+    			<label class="layui-form-label">Number of cycles</label>
+    			<div class="layui-input-block" codemirror="loopCount" placeholder="Enter the number of cycles" data-value="{{=d.data.object.loopCount}}"></div>
     		</div>
 			<hr>
 			{{# layui.each(d.data.object['function'],function(index,item){ }}
 			<div id="function{{=index}}" class="draggable" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
 				<div class="layui-form-item layui-form-relative">
 					<i class="layui-icon layui-icon-close function-remove"></i>
-					<label class="layui-form-label">执行函数</label>
-					<div class="layui-input-block array" codemirror="function" placeholder="执行函数" data-value="{{=d.data.object['function'][index]}}"></div>
+					<label class="layui-form-label">Answer Function</label>
+					<div class="layui-input-block array" codemirror="function" placeholder="Answer Function" data-value="{{=d.data.object['function'][index]}}"></div>
 				</div>
 			</div>
 			{{# }) }}
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn function-add" type="button">添加一个函数</button>
+					<button class="layui-btn function-add" type="button">Add a function</button>
 				</div>
 			</div>
     	</form>

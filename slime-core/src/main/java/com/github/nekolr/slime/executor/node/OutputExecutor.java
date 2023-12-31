@@ -31,17 +31,17 @@ import java.util.*;
 public class OutputExecutor implements NodeExecutor, SpiderListener {
 
     /**
-     * 输出其他变量
+     * Other Variables
      */
     String OUTPUT_OTHERS = "output-others";
 
     /**
-     * 输出项的名称
+     * The name of the output item
      */
     String OUTPUT_NAME = "output-name";
 
     /**
-     * 输出项的值
+     * Value of the output variable
      */
     String OUTPUT_VALUE = "output-value";
 
@@ -53,7 +53,7 @@ public class OutputExecutor implements NodeExecutor, SpiderListener {
     private OutputEventPublisher outputEventPublisher;
 
     /**
-     * 一个节点对应一个 CSVPrinter
+     * One node per CSVPrinter
      */
     @Getter
     private static Map<String, CSVPrinter> cachePrinter = new HashMap<>();
@@ -61,38 +61,38 @@ public class OutputExecutor implements NodeExecutor, SpiderListener {
 
     @Override
     public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
-        // 创建输出结果对象
+        // Generate output objects
         SpiderOutput output = new SpiderOutput();
         output.setNodeName(node.getNodeName());
         output.setNodeId(node.getNodeId());
-        // 是否需要输出其他变量（只在测试时输出）
+        // Do you need any other variables（Only output on test）
         boolean outputOthers = Constants.YES.equals(node.getJsonProperty(OUTPUT_OTHERS));
-        // 如果需要输出其他变量
+        // If you don't know the answer to a question, please don't share false information.
         if (outputOthers) {
-            // 输出其他变量
+            // Other Variables
             this.outputOtherVariables(output, variables);
         }
-        // 获取所有的输出项数据
+        // Get all output data
         List<OutputItem> outputItems = this.getOutputItems(variables, context, node);
-        // 发布输出事件
+        // An output event has occurred
         outputEventPublisher.publish(context, node, outputItems);
-        // 将所有的输出项放入
+        // Put all output items into
         output.getOutputItems().addAll(outputItems);
-        // 添加输出结果到上下文
+        // Add results to context
         context.addOutput(output);
     }
 
     /**
-     * 获取用户定义的所有输出项的数据
+     * Get all the data from all the output defined by the user
      *
-     * @param variables 传递的变量和值
-     * @param context   执行上下文
-     * @param node      节点
-     * @return 所有输出项的数据
+     * @param variables Passed Variable and Value
+     * @param context   Executable Context
+     * @param node      15th Last
+     * @return All data on all output types
      */
     private List<OutputItem> getOutputItems(Map<String, Object> variables, SpiderContext context, SpiderNode node) {
         List<OutputItem> outputItems = new ArrayList<>();
-        // 获取用户设置的所有输出项
+        // Get all the output of a user-defined command
         List<Map<String, String>> items = node.getJsonArrayProperty(OUTPUT_NAME, OUTPUT_VALUE);
         for (Map<String, String> item : items) {
             Object value = null;
@@ -101,9 +101,9 @@ public class OutputExecutor implements NodeExecutor, SpiderListener {
             try {
                 value = expressionParser.parse(itemValue, variables);
                 context.pause(node.getNodeId(), WebSocketEvent.COMMON_EVENT, itemName, value);
-                log.debug("解析输出项：{} = {}", itemName, value);
+                log.debug("Translate the following text to english：{} = {}", itemName, value);
             } catch (Exception e) {
-                log.error("解析数据项：{} 出错", itemName, e);
+                log.error("Analyze Data Item：{} Error", itemName, e);
             }
             outputItems.add(new OutputItem(itemName, value));
         }
@@ -112,10 +112,10 @@ public class OutputExecutor implements NodeExecutor, SpiderListener {
 
 
     /**
-     * 填充其他变量
+     * Fill in other variables
      *
-     * @param output    输出结果
-     * @param variables 传递的变量和值
+     * @param output    Output results
+     * @param variables Passed Variable and Value
      */
     private void outputOtherVariables(SpiderOutput output, Map<String, Object> variables) {
         for (Map.Entry<String, Object> item : variables.entrySet()) {
@@ -126,17 +126,17 @@ public class OutputExecutor implements NodeExecutor, SpiderListener {
                 output.addItem(item.getKey() + ".html", resp.getHtml());
                 continue;
             }
-            // 去除不输出的信息
+            // Remove non-output information
             if (Constants.EXCEPTION_VARIABLE.equals(item.getKey())) {
                 continue;
             }
-            // 去除不能序列化的参数
+            // Remove unsequenced parameters
             try {
                 JSON.toJSONString(value, FastJsonSerializer.serializeConfig);
             } catch (Exception e) {
                 continue;
             }
-            // 其他情况正常添加
+            // Other cases Add normally
             output.addItem(item.getKey(), item.getValue());
         }
     }
@@ -149,7 +149,7 @@ public class OutputExecutor implements NodeExecutor, SpiderListener {
     @Override
     public void afterEnd(SpiderContext context) {
         String key = context.getId();
-        // 执行完毕后释放缓存，只释放同一个执行上下文中的缓存
+        // After performing the above actions, please press the "Apply" button below to release the cache.，Only release one cache per execution context
         this.releasePrinter(key);
     }
 
@@ -171,7 +171,7 @@ public class OutputExecutor implements NodeExecutor, SpiderListener {
                         printer.close();
                         iterator.remove();
                     } catch (IOException e) {
-                        log.error("文件输出出现错误", e);
+                        log.error("The file output failed", e);
                         ExceptionUtils.wrapAndThrow(e);
                     }
                 }

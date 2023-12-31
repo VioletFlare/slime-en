@@ -29,9 +29,9 @@
 <body>
 	<form class="layui-form" autocomplete="off" lay-filter="form">
 		<div class="layui-form-item">
-   			<label class="layui-form-label">数据源名称</label>
+   			<label class="layui-form-label">Data source name</label>
    			<div class="layui-input-block">
-   				<input type="text" name="name" placeholder="请输入数据源名称" autocomplete="off" class="layui-input" lay-verify="required"/>
+   				<input type="text" name="name" placeholder="Please enter the name of the data source" autocomplete="off" class="layui-input" lay-verify="required"/>
    			</div>
    		</div>
 		<div class="layui-form-item">
@@ -47,27 +47,27 @@
    			</div>
    		</div>
 		<div class="layui-form-item">
-   			<label class="layui-form-label">数据库连接</label>
+   			<label class="layui-form-label">Data Store Connection</label>
    			<div class="layui-input-block">
-   				<input type="text" name="jdbcUrl" placeholder="请输入数据库连接" autocomplete="off" class="layui-input"  lay-verify="required"/>
+   				<input type="text" name="jdbcUrl" placeholder="Please enter a Database Connection" autocomplete="off" class="layui-input"  lay-verify="required"/>
    			</div>
    		</div>
    		<div class="layui-form-item">
-   			<label class="layui-form-label">用户名</label>
+   			<label class="layui-form-label">User Name</label>
    			<div class="layui-input-block">
-   				<input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input" />
+   				<input type="text" name="username" placeholder="Please enter the first alternative name" autocomplete="off" class="layui-input" />
    			</div>
    		</div>
    		<div class="layui-form-item">
-   			<label class="layui-form-label">密码</label>
+   			<label class="layui-form-label">Password</label>
    			<div class="layui-input-block">
-   				<input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input" lay-verify="required"/>
+   				<input type="password" name="password" placeholder="Please enter the password" autocomplete="off" class="layui-input" lay-verify="required"/>
    			</div>
    		</div>
    		<div class="btns-submit">
-			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">保存</button>
-			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="test" type="button">测试连接</button>
-			<button class="layui-btn layui-btn-primary btn-return" type="button" onclick="history.go(-1);">返回</button>
+			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">Save</button>
+			<button class="layui-btn layui-btn-normal" lay-submit lay-filter="test" type="button">Test connection</button>
+			<button class="layui-btn layui-btn-primary btn-return" type="button" onclick="history.go(-1);">Back</button>
 		</div>
 	</form>
 	<script>
@@ -83,9 +83,9 @@
 		});
 
 
-		// 移除search的blur事件，作用可以让用户手动输入
+		// Removesearch的blurEvents，Role can be manually triggered by the user
 		function resetSelect(selValue) {
-			// 移除事件
+			// Remove Events
 			var driverClassElement = $("select[name='driverClassName']").next().find("input");
 			driverClassElement.unbind("blur");
 			if(selValue){
@@ -94,7 +94,7 @@
 			return driverClassElement;
 		}
 
-		// 添加search监听,为了移除它默认选中最后一个
+		// AddsearchListen,Select the last one to remove it by default
 		function addSelectListener() {
 			$("select[name='driverClassName']").next().find("input").focus(function () {
 				window.setTimeout(function(){
@@ -135,14 +135,14 @@
 					password : $("input[name=password]").val()
 				},
 				success : function(){
-					layui.layer.msg('保存成功',{
+					layui.layer.msg('Save successful',{
 						time : 800
 					},function(){
 						location.href = 'datasources.html';
 					})
 				},
 				error : function(){
-					layui.layer.msg('请求失败');
+					layui.layer.msg('Text to translate: Request failed');
 				}
 			})
 			return false;
@@ -158,7 +158,7 @@
 					password : $("input[name=password]").val()
 				},
 				success : function(data) {
-					layui.layer.msg("连接成功");
+					layui.layer.msg("Connection successful");
 				},
 				error : function(errorInfo) {
 					if (errorInfo.responseText !== null && errorInfo.responseText !== '') {
@@ -167,7 +167,7 @@
 							layui.layer.msg(json.message);
 						}
 					} else {
-						layui.layer.msg('连接失败');
+						layui.layer.msg('The connection to the server has failed.');
 					}
 				}
 			});

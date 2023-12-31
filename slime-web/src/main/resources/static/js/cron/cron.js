@@ -1,5 +1,5 @@
 ﻿function btnFan() {
-	// 获取参数中表达式的值
+	// Get the value of the expression given as argument
 	var txt = $("#cron").val();
 	if (txt) {
 		var regs = txt.split(' ');
@@ -157,7 +157,7 @@ function initYear(strVal) {
 	}
 }
 /**
- * 每周期
+ * Every week
  */
 function everyTime(dom) {
 	var item = $("input[name=v_" + dom.name + "]");
@@ -166,7 +166,7 @@ function everyTime(dom) {
 }
 
 /**
- * 不指定
+ * No hint available
  */
 function unAppoint(dom) {
 	var name = dom.name;
@@ -183,7 +183,7 @@ function appoint(dom) {
 }
 
 /**
- * 周期
+ * Period
  */
 function cycle(dom) {
 	var name = dom.name;
@@ -196,7 +196,7 @@ function cycle(dom) {
 }
 
 /**
- * 从开始
+ * From Start
  */
 function startOn(dom) {
 	var name = dom.name;
@@ -254,8 +254,8 @@ $(function() {
 		vals.each(function() {
 			item.push(this.value);
 		});
-		// 修复表达式错误BUG，如果后一项不为* 那么前一项肯定不为为*，要不然就成了每秒执行了
-		// 获取当前选中tab
+		// Expression expectedBUG，If the latter is not true* 那么前一项肯定不为为*，Or else it would have been every second.
+		// Get the current selectiontab
 		var currentIndex = 0;
 		$(".tabs>li").each(function(i, item) {
 			if ($(item).hasClass("tabs-selected")) {
@@ -264,13 +264,13 @@ $(function() {
 			}
 
 		});
-		// 当前选中项之前的如果为*，则都设置成0
+		// If the previous item was*，Then set both to0
 		for (var i = currentIndex; i >= 1; i--) {
 			if (item[i] != "*" && item[i - 1] == "*") {
 				item[i - 1] = "0";
 			}
 		}
-		// 当前选中项之后的如果不为*则都设置成*
+		// If the current item is not selected, and the next item is*Then set both to*
 		if (item[currentIndex] == "*") {
 			for (var i = currentIndex + 1; i < item.length; i++) {
 				if (i == 5) {
@@ -284,9 +284,9 @@ $(function() {
 	});
 
 	cron.change(function() {
-		// 获取参数中表达式的值
+		// Get the value of the expression given as argument
 			btnFan();
-			// 设置最近五次运行时间
+			// What was the duration of the last 5 runs?
 			$.ajax({
 				type : 'get',
 				url : "/flow/recent5TriggerTime",

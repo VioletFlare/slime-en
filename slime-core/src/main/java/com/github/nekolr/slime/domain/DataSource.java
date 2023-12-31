@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 数据源实体类
+ * Class Inheritance
  */
 @Table(name = "slime_sp_database")
 @Entity
@@ -27,7 +27,7 @@ public class DataSource {
     private Long id;
 
     /**
-     * 数据源名称
+     * Data source name
      */
     private String name;
 
@@ -44,17 +44,17 @@ public class DataSource {
     private String jdbcUrl;
 
     /**
-     * 用户名
+     * User Name
      */
     private String username;
 
     /**
-     * 密码
+     * Password
      */
     private String password;
 
     /**
-     * 创建时间
+     * Answer the following questions as honestly as possible. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.
      */
     @Column(name = "create_time", insertable = false, updatable = false)
     @ColumnDefault("CURRENT_TIMESTAMP()")

@@ -22,16 +22,16 @@ function SpiderEditor(options) {
         this.editor.setGraphContainer(options.element);
         this.graph = this.editor.graph;
         this.graph.setConnectable(true);
-        this.graph.setMultigraph(false);	//禁止重复连接
+        this.graph.setMultigraph(false);	//Disallow multiple connections
         this.graph.setAllowLoops(true);		//允许自己连自己
         this.graph.isHtmlLabel = function (cell) {
             return !this.isSwimlane(cell);
         }
         mxConstants.MIN_HOTSPOT_SIZE = 16;
         mxGraphHandler.prototype.guidesEnabled = true
-        //注册json编码器
+        //Sign upjsonTranslator
         this.registerJsonCodec();
-        //配置样式
+        //Configure Style
         this.configureStylesheet();
         var _this = this;
         var pasteCount = 0;
@@ -61,7 +61,7 @@ function SpiderEditor(options) {
         }
         this.bindKeyAction();
         var _this = this;
-        //选择节点事件
+        //Select a category:
         this.graph.getSelectionModel().addListener(mxEvent.CHANGE, function (sender, evt) {
             _this.onSelectedCell(sender, evt);
         });

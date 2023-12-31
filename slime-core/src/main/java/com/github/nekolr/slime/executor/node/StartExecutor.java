@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * 开始执行器
+ * Start Executor
  */
 @Component
 public class StartExecutor implements NodeExecutor {

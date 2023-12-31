@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 爬虫任务实体类
+ * Crawling task entity
  */
 @Table(name = "slime_sp_task")
 @Entity
@@ -32,13 +32,13 @@ public class SpiderTask {
     private Long flowId;
 
     /**
-     * 开始时间
+     * Start time
      */
     @Column(name = "begin_time")
     private Date beginTime;
 
     /**
-     * 结束时间
+     * End time
      */
     @Column(name = "end_time")
     private Date endTime;

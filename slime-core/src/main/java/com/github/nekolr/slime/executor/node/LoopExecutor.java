@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * 循环执行器
+ * Repeating Executor
  */
 @Component
 public class LoopExecutor implements NodeExecutor {

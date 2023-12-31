@@ -3,21 +3,21 @@ package com.github.nekolr.slime.listener;
 import com.github.nekolr.slime.context.SpiderContext;
 
 /**
- * 任务执行监听器
+ * Mission Execution Listener
  */
 public interface SpiderListener {
 
     /**
-     * 在任务开始之前
+     * Before starting a task
      *
-     * @param context 执行上下文
+     * @param context Executable Context
      */
     void beforeStart(SpiderContext context);
 
     /**
-     * 在任务结束之后
+     * After the mission is over,
      *
-     * @param context 执行上下文
+     * @param context Executable Context
      */
     void afterEnd(SpiderContext context);
 }

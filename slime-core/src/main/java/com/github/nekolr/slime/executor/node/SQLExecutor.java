@@ -26,7 +26,7 @@ import java.sql.Statement;
 import java.util.*;
 
 /**
- * SQL 执行器
+ * SQL A_pplication
  */
 @Component
 @Slf4j
@@ -43,7 +43,7 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
     String STATEMENT_TYPE = "statementType";
 
     /**
-     * 是否输出到 SqlRowSet
+     * Do you want to import them from a file? SqlRowSet
      */
     String SELECT_RESULT_SQL_ROW_SET = "isSqlRowSet";
 
@@ -67,24 +67,24 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
         String dsId = node.getJsonProperty(Constants.DATASOURCE_ID);
         String sql = node.getJsonProperty(SQL);
         if (StringUtils.isBlank(dsId)) {
-            log.warn("数据源 ID 不能为空");
+            log.warn("Data Sources ID Cannot be empty");
         } else if (StringUtils.isBlank(sql)) {
-            log.warn("sql 不能为空");
+            log.warn("sql Cannot be empty");
         } else {
             JdbcTemplate template = new JdbcTemplate(dataSourceManager.getDataSource(Long.parseLong(dsId)));
-            // 把变量替换成占位符
+            // Replace & Variable with Placeholder
             List<String> parameters = ExtractUtils.getMatchers(sql, "#(.*?)#", true);
             sql = sql.replaceAll("#(.*?)#", "?");
             try {
                 Object sqlObject = expressionParser.parse(sql, variables);
                 if (sqlObject == null) {
-                    log.warn("获取的 sql 为空");
+                    log.warn("Get的 sql for empty");
                     return;
                 }
                 sql = sqlObject.toString();
                 context.pause(node.getNodeId(), WebSocketEvent.COMMON_EVENT, SQL, sql);
             } catch (Exception e) {
-                log.error("获取 sql 出错", e);
+                log.error("Get sql Error", e);
                 ExceptionUtils.wrapAndThrow(e);
             }
 
@@ -95,7 +95,7 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
             for (int i = 0; i < size; i++) {
                 Object parameter = expressionParser.parse(parameters.get(i), variables);
                 if (parameter != null) {
-                    // 当参数中存在 List 或者数组时，认为是批量操作
+                    // When a parameter contains List or array，We believe it was a bulk operation.
                     if (parameter instanceof List) {
                         hasList = true;
                         parameterSize = Math.max(parameterSize, ((List<?>) parameter).size());
@@ -119,7 +119,7 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
                     }
                 } catch (Exception e) {
                     variables.put(Constants.SQL_RESULT, null);
-                    log.error("执行 sql 出错", e);
+                    log.error("执行 sql Error", e);
                     ExceptionUtils.wrapAndThrow(e);
                 }
             } else if (STATEMENT_SELECT_ONE.equals(statementType)) {
@@ -129,7 +129,7 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
                     variables.put(Constants.SQL_RESULT, rs);
                 } catch (Exception e) {
                     variables.put(Constants.SQL_RESULT, null);
-                    log.error("执行 sql 出错", e);
+                    log.error("执行 sql Error", e);
                     ExceptionUtils.wrapAndThrow(e);
                 }
             } else if (STATEMENT_SELECT_INT.equals(statementType)) {
@@ -140,7 +140,7 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
                     variables.put(Constants.SQL_RESULT, rs);
                 } catch (Exception e) {
                     variables.put(Constants.SQL_RESULT, 0);
-                    log.error("执行 sql 出错", e);
+                    log.error("执行 sql Error", e);
                     ExceptionUtils.wrapAndThrow(e);
                 }
             } else if (STATEMENT_UPDATE.equals(statementType) || STATEMENT_INSERT.equals(statementType) || STATEMENT_DELETE.equals(statementType)) {
@@ -148,9 +148,9 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
                     int updateCount = 0;
                     if (hasList) {
 						/*
-						  批量操作时，将参数 Object[] 转化为 List<Object[]>
-						  当参数不为数组或 List 时，自动转为 Object[]
-						  当数组或 List 长度不足时，自动取最后一项补齐
+						  When doing bulk operations，Answer Object[] 转化为 List<Object[]>
+						  If parameter is not an array or not an object List 时，Auto switch to Object[]
+						  When array or List When the length is too short，Fill in Last Missing Item
 						 */
                         int[] rs = template.batchUpdate(sql, convertParameters(params, parameterSize));
                         if (rs.length > 0) {
@@ -161,7 +161,7 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
                     }
                     variables.put(Constants.SQL_RESULT, updateCount);
                 } catch (Exception e) {
-                    log.error("执行 sql 出错", e);
+                    log.error("执行 sql Error", e);
                     variables.put(Constants.SQL_RESULT, -1);
                     ExceptionUtils.wrapAndThrow(e);
                 }
@@ -176,7 +176,7 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
                     }, keyHolder);
                     variables.put(Constants.SQL_RESULT, keyHolder.getKey().intValue());
                 } catch (Exception e) {
-                    log.error("执行 sql 出错", e);
+                    log.error("执行 sql Error", e);
                     variables.put(Constants.SQL_RESULT, -1);
                     ExceptionUtils.wrapAndThrow(e);
                 }
@@ -225,7 +225,7 @@ public class SQLExecutor implements NodeExecutor, Grammarly {
     @Override
     public List<Grammar> grammars() {
         Grammar grammar = new Grammar();
-        grammar.setComment("执行 SQL 结果");
+        grammar.setComment("执行 SQL Outcome");
         grammar.setFunction(Constants.SQL_RESULT);
         grammar.setReturns(Arrays.asList("List<Map<String,Object>>", "int"));
         return Collections.singletonList(grammar);

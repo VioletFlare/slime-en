@@ -31,7 +31,7 @@ public class DefaultExpressionEngine implements ExpressionEngine {
     private List<FunctionExtension> functionExtensions;
 
     /**
-     * 扩展类型
+     * Extension type
      */
     private List<Class> extensionClasses = Arrays.asList(
             SpiderResponse.class,

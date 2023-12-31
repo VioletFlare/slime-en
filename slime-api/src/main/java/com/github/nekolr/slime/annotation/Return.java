@@ -3,7 +3,7 @@ package com.github.nekolr.slime.annotation;
 import java.lang.annotation.*;
 
 /**
- * 该注解用来标注自定义的方法注释，用来页面提示返回值类型
+ * The following attributes are available:，The type of the return value of the page
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

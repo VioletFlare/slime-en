@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="alternate icon" type="image/png" href="images/favicon.png">
     <script type="text/javascript" src="js/layui/layui.all.js"></script>
-    <title>登录</title>
+    <title>Log In</title>
     <style>
         * {
             margin: 0;
@@ -121,7 +121,7 @@
             height: 100%;
         }
 
-        /* 绘图 */
+        /* 3D */
         #login_img {
             width: 49%;
             min-height: 500px;
@@ -245,7 +245,7 @@
             margin-right: 0;
         }
 
-        /* 提示 */
+        /* Hint */
         #hint {
             width: 100%;
             line-height: 70px;
@@ -262,7 +262,7 @@
             z-index: 999;
         }
 
-        /* 响应式 */
+        /* Responses */
         @media screen and (max-width: 1000px ) {
             #login_img {
                 display: none;
@@ -310,25 +310,25 @@
 
 <body>
 <div id="bg">
-    <div id="hint"><!-- 提示框 -->
-        <p>登录失败</p>
+    <div id="hint"><!-- Hint Dialog -->
+        <p>Log In Failed</p>
     </div>
     <div id="login_wrap">
-        <div id="login"><!-- 登录注册切换动画 -->
+        <div id="login"><!-- Log In Animation -->
             <div id="status">
                 <i style="top: 0">Log</i>
                 <i style="right: 5px">in</i>
             </div>
             <span>
                 <form id="login_form" action="post">
-                    <p class="form"><input type="text" id="username" name="username" placeholder="用户名"></p>
-                    <p class="form"><input type="password" id="password" name="password" placeholder="密码"></p>
-                    <input type="button" value="登录" class="btn" onclick="login()" style="margin-right: 20px;">
+                    <p class="form"><input type="text" id="username" name="username" placeholder="User Name"></p>
+                    <p class="form"><input type="password" id="password" name="password" placeholder="Password"></p>
+                    <input type="button" value="Log In" class="btn" onclick="login()" style="margin-right: 20px;">
                 </form>
             </span>
         </div>
 
-        <div id="login_img"><!-- 图片绘制框 -->
+        <div id="login_img"><!-- Photo height -->
 <!--            <span class="circle">-->
 <!--                <span></span>-->
 <!--                <span></span>-->
@@ -359,7 +359,7 @@
     var $ = layui.$;
     var confirm = document.getElementsByClassName("confirm")[0]
 
-    // 自动居中 title
+    // Automatic Center title
     var name_c = document.getElementById("title")
     name = name_c.innerHTML.split("")
     name_c.innerHTML = ""
@@ -369,7 +369,7 @@
         }
     }
 
-    // 引用 hint() 在最上方弹出提示
+    // Quote hint() In the top-right corner of the screen
     function hint() {
         let hit = document.getElementById("hint")
         hit.style.display = "block"
@@ -378,7 +378,7 @@
         setTimeout('hit.style.display = "none"', 3000)
     }
 
-    //登录按钮
+    //Login button
     function login() {
         $.ajax({
             url: 'auth/login',

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@Comment("数据抽取常用方法")
+@Comment("Data extraction - Frequently asked questions")
 public class ExtractFunctionExecutor implements FunctionExecutor {
 
     @Override
@@ -21,79 +21,79 @@ public class ExtractFunctionExecutor implements FunctionExecutor {
         return "extract";
     }
 
-    @Comment("根据 jsonpath 提取内容")
+    @Comment("Based on jsonpath Extract Contents")
     @Example("${extract.jsonpath(resp.json,'$.code')}")
     public static Object jsonpath(Object root, String jsonpath) {
         return ExtractUtils.getValueByJsonPath(root, jsonpath);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${extract.regx(resp.html,'<title>(.*?)</title>')}")
     public static String regx(String content, String pattern) {
         return ExtractUtils.getFirstMatcher(content, pattern, true);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${extract.regx(resp.html,'<title>(.*?)</title>',1)}")
     public static String regx(String content, String pattern, int groupIndex) {
         return ExtractUtils.getFirstMatcher(content, pattern, groupIndex);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${extract.regx(resp.html,'<a href=\"(.*?)\">(.*?)</a>',[1,2])}")
     public static List<String> regx(String content, String pattern, List<Integer> groups) {
         return ExtractUtils.getFirstMatcher(content, pattern, groups);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${extract.regxs(resp.html,'<h2>(.*?)</h2>')}")
     public static List<String> regxs(String content, String pattern) {
         return ExtractUtils.getMatchers(content, pattern, true);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${extract.regxs(resp.html,'<h2>(.*?)</h2>',1)}")
     public static List<String> regxs(String content, String pattern, int groupIndex) {
         return ExtractUtils.getMatchers(content, pattern, groupIndex);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${extract.regxs(resp.html,'<a href=\"(.*?)\">(.*?)</a>',[1,2])}")
     public static List<List<String>> regxs(String content, String pattern, List<Integer> groups) {
         return ExtractUtils.getMatchers(content, pattern, groups);
     }
 
-    @Comment("根据 xpath 提取内容")
+    @Comment("Based on xpath Extract Contents")
     @Example("${extract.xpath(resp.element(),'//title/text()')}")
     public static String xpath(Element element, String xpath) {
         return ExtractUtils.getValueByXPath(element, xpath);
     }
 
-    @Comment("根据 xpath 提取内容")
+    @Comment("Based on xpath Extract Contents")
     @Example("${extract.xpath(resp.html,'//title/text()')}")
     public static String xpath(String content, String xpath) {
         return xpath(Jsoup.parse(content), xpath);
     }
 
-    @Comment("根据 xpaths 提取内容")
+    @Comment("Based on xpaths Extract Contents")
     @Example("${extract.xpaths(resp.element(),'//h2/text()')}")
     public static List<String> xpaths(Element element, String xpath) {
         return ExtractUtils.getValuesByXPath(element, xpath);
     }
 
-    @Comment("根据 xpaths 提取内容")
+    @Comment("Based on xpaths Extract Contents")
     @Example("${extract.xpaths(resp.html,'//h2/text()')}")
     public static List<String> xpaths(String content, String xpath) {
         return xpaths(Jsoup.parse(content), xpath);
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${extract.selectors(resp.html,'div > a')}")
     public static List<String> selectors(Object object, String selector) {
         return ExtractUtils.getHTMLBySelector(getElement(object), selector);
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${extract.selector(resp.html,'div > a','text')}")
     public static Object selector(Object object, String selector, String type) {
         if ("element".equals(type)) {
@@ -106,7 +106,7 @@ public class ExtractFunctionExecutor implements FunctionExecutor {
         return null;
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${extract.selector(resp.html,'div > a','attr','href')}")
     public static String selector(Object object, String selector, String type, String attrValue) {
         if ("attr".equals(type)) {
@@ -115,13 +115,13 @@ public class ExtractFunctionExecutor implements FunctionExecutor {
         return null;
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${extract.selector(resp.html,'div > a')}")
     public static String selector(Object object, String selector) {
         return ExtractUtils.getFirstHTMLBySelector(getElement(object), selector);
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${extract.selectors(resp.html,'div > a','element')}")
     public static Object selectors(Object object, String selector, String type) {
         if ("element".equals(type)) {
@@ -134,7 +134,7 @@ public class ExtractFunctionExecutor implements FunctionExecutor {
         return null;
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${extract.selectors(resp.html,'div > a','attr','href')}")
     public static Object selectors(Object object, String selector, String type, String attrValue) {
         if ("attr".equals(type)) {
@@ -143,7 +143,7 @@ public class ExtractFunctionExecutor implements FunctionExecutor {
         return null;
     }
 
-    @Comment("通过响应内容构建 feed 抽取器")
+    @Comment("Build by responding to content feed Assistant Phone")
     @Example("${extract.feed(resp.html)}")
     public static SyndFeed feed(Object xml) {
         return FeedUtils.getFeed((String) xml);

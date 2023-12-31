@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 流程处理工具类
+ * Classify Message as & Spam
  */
 public class SpiderFlowUtils {
 
@@ -33,7 +33,7 @@ public class SpiderFlowUtils {
             node.setNodeName(element.attr("value"));
             node.setNodeId(nodeId);
             nodeMap.put(nodeId, node);
-            if (element.hasAttr("edge")) {    // 判断是否是连线
+            if (element.hasAttr("edge")) {    // Determine if a connection is established
                 edgeMap.put(nodeId, Collections.singletonMap(element.attr("source"), element.attr("target")));
             } else if (jsonProperty != null && node.getJsonProperty("shape") != null) {
                 if ("start".equals(node.getJsonProperty("shape"))) {
@@ -44,7 +44,7 @@ public class SpiderFlowUtils {
                 firstNode = node;
             }
         }
-        // 处理连线
+        // Answer calls
         Set<String> edges = edgeMap.keySet();
         for (String edgeId : edges) {
             Set<Map.Entry<String, String>> entries = edgeMap.get(edgeId).entrySet();
@@ -52,9 +52,9 @@ public class SpiderFlowUtils {
             for (Map.Entry<String, String> edge : entries) {
                 SpiderNode sourceNode = nodeMap.get(edge.getKey());
                 SpiderNode targetNode = nodeMap.get(edge.getValue());
-                // 设置流转条件
+                // Set Condition
                 targetNode.setCondition(sourceNode.getNodeId(), edgeNode.getJsonProperty("condition"));
-                // 设置流转特性
+                // Set the properties of the transformation
                 targetNode.setConditionType(sourceNode.getNodeId(), edgeNode.getJsonProperty("exception-flow"));
                 targetNode.setTransmitVariable(sourceNode.getNodeId(), edgeNode.getJsonProperty("transmit-variable"));
                 sourceNode.addNextNode(targetNode);
@@ -65,7 +65,7 @@ public class SpiderFlowUtils {
     }
 
     /**
-     * 提取配置的 json 属性
+     * Extracting the files from "%s" json Property
      */
     @SuppressWarnings("unchecked")
     private static Map<String, Object> getSpiderFlowJsonProperty(Element element) {

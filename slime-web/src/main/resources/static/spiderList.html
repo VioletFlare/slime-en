@@ -9,15 +9,15 @@
 </head>
 <body style="padding:5px;">
 <div class="layui-form-item">
-    <label class="layui-form-label">爬虫名称</label>
+    <label class="layui-form-label">Crawler name</label>
     <div class="layui-input-inline">
-        <input type="text" name="name" required lay-verify="required" placeholder="请输入爬虫名称" autocomplete="off"
+        <input type="text" name="name" required lay-verify="required" placeholder="Please enter the name of the article" autocomplete="off"
                class="layui-input">
     </div>
     <div class="layui-input-inline" style="margin-top:5px">
         <a class="layui-btn layui-btn-sm layui-btn-normal btn-search"><i class="layui-icon">&#xe615;</i> 搜索</a>
         <a class="layui-btn layui-btn-sm layui-btn-normal" href="editor.html"><i class="layui-icon">&#xe654;</i>
-            添加爬虫</a>
+            Add a new category</a>
     </div>
 </div>
 
@@ -41,12 +41,12 @@
             }
         },
         cols: [[{
-            title: '序号',
+            title: 'Serial Number',
             width: 35,
             type: 'numbers',
             align: 'center'
         }, {
-            title: '爬虫名称',
+            title: 'Crawler name',
             field: 'name',
             templet: function (row) {
                 return '<a class="layui-btn layui-btn-sm btn-details" data-name="' + row.name + '" data-id="' + row.id + '">' + row.name + '</a>';
@@ -57,38 +57,38 @@
             align: 'center',
             width: 130,
             templet: function (row) {
-                return '<a class="layui-btn layui-btn-sm btn-edit-cron" data-id="' + row.id + '" data-cron="' + row.cron + '">' + (row.cron || '编辑 cron') + '</a>';
+                return '<a class="layui-btn layui-btn-sm btn-edit-cron" data-id="' + row.id + '" data-cron="' + row.cron + '">' + (row.cron || 'Edit cron') + '</a>';
             }
         }, {
-            title: '定时/长任务',
+            title: 'Scheduled/Long Task',
             field: 'jobEnabled',
             width: 105,
             templet: function (row) {
-                return '<input type="checkbox" data-cron="' + (row.cron || '') + '" name="switch" lay-skin="switch" lay-text="定时|长任务" value="' + row.id + '" ' + (row.jobEnabled == true ? 'checked' : '') + '>';
+                return '<input type="checkbox" data-cron="' + (row.cron || '') + '" name="switch" lay-skin="switch" lay-text="Scheduled|Long Task" value="' + row.id + '" ' + (row.jobEnabled == true ? 'checked' : '') + '>';
             }
         }, {
-            title: '创建时间',
+            title: 'Answer the following questions as honestly as possible. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.',
             width: 160,
             field: 'createTime',
             align: 'center'
         }, {
-            title: '上次执行时间',
+            title: 'Next time the reminder is triggered',
             width: 160,
             field: 'lastExecuteTime',
             align: 'center'
         }, {
-            title: '运行中/已完成',
+            title: 'In progress/Completed',
             width: 120,
             field: 'executeCount',
             align: 'center',
             templet: '#execute-count'
         }, {
-            title: '下次执行时间',
+            title: 'Next execution time',
             width: 160,
             field: 'nextExecuteTime',
             align: 'center'
         }, {
-            title: '操作',
+            title: 'Operation',
             width: 195,
             align: 'center',
             templet: '#buttons'
@@ -96,7 +96,7 @@
     })
     layui.form.on('switch', function (e) {
         if (e.elem.checked && !$(e.elem).data('cron')) {
-            layui.layer.msg('cron表达式不能为空！');
+            layui.layer.msg('cronThe expression cannot be empty.！');
             e.elem.checked = false;
             layui.form.render();
             return;
@@ -108,11 +108,11 @@
                 id: e.value
             },
             success: function () {
-                layui.layer.msg((e.elem.checked ? '切换为定时任务' : '切换为长任务') + '成功');
+                layui.layer.msg((e.elem.checked ? 'Switch to timed mode' : 'Switch to long task') + 'Successfully translated');
                 reloadTable();
             },
             error: function () {
-                layui.layer.msg((e.elem.checked ? '切换为定时任务' : '切换为长任务') + '成功');
+                layui.layer.msg((e.elem.checked ? 'Switch to timed mode' : 'Switch to long task') + 'Successfully translated');
                 reloadTable();
             }
         })
@@ -133,8 +133,8 @@
         reloadTable();
     }).on('click', '.btn-remove', function () {
         var id = $(this).data('id');
-        layui.layer.confirm('您确定要删除此爬虫吗？', {
-            title: '删除'
+        layui.layer.confirm('Are you sure you want to delete this bug report?？', {
+            title: '12'
         }, function (index) {
             $table.reload();
             $.ajax({
@@ -144,20 +144,20 @@
                     id: id
                 },
                 success: function () {
-                    layui.layer.msg('删除成功', {time: 500}, function () {
+                    layui.layer.msg('The following text has been successfully translated:', {time: 500}, function () {
                         $table.reload();
                     })
                 },
                 error: function () {
-                    layui.layer.msg('删除失败')
+                    layui.layer.msg('Failed to delete.')
                 }
             })
             layui.layer.close(index);
         })
     }).on('click', '.btn-run', function () {
         var id = $(this).data('id');
-        layui.layer.confirm('您确定要手动运行一次该爬虫吗？', {
-            title: '运行任务'
+        layui.layer.confirm('Are you sure you want to run the script manually？', {
+            title: 'Run a task'
         }, function (index) {
             $table.reload();
             $.ajax({
@@ -167,20 +167,20 @@
                     id: id
                 },
                 success: function () {
-                    layui.layer.msg('手动运行成功,后台运行中', {time: 500}, function () {
+                    layui.layer.msg('Manually ran successfully,Background running', {time: 500}, function () {
                         $table.reload();
                     })
                 },
                 error: function () {
-                    layui.layer.msg('手动运行失败')
+                    layui.layer.msg('Failed to run command')
                 }
             })
             layui.layer.close(index);
         })
     }).on('click', '.btn-task', function () {
-        parent.openTab($(this).data('name') + '-任务详情', $(this).data('id') + '-task', 'task.html?id=' + $(this).data('id') + '&name=' + encodeURIComponent(encodeURIComponent($(this).data('name'))));
+        parent.openTab($(this).data('name') + '-Details of the task', $(this).data('id') + '-task', 'task.html?id=' + $(this).data('id') + '&name=' + encodeURIComponent(encodeURIComponent($(this).data('name'))));
     }).on('click', '.btn-log', function () {
-        parent.openTab($(this).data('name') + '-日志', $(this).data('id') + '-log', 'log.html?id=' + $(this).data('id'));
+        parent.openTab($(this).data('name') + '-Log', $(this).data('id') + '-log', 'log.html?id=' + $(this).data('id'));
     }).on('click', '.btn-edit-cron', function () {
         var id = $(this).data('id');
         var value = $(this).data('cron') || '';
@@ -193,7 +193,7 @@
             content: 'editCron.html?id=' + id + '&cron=' + value
         });
     }).on('click', '.btn-details', function () {
-        parent.openTab($(this).data('name') + '-编辑', $(this).data('id') + '-edit', 'editor.html?id=' + $(this).data('id'));
+        parent.openTab($(this).data('name') + '-Edit', $(this).data('id') + '-edit', 'editor.html?id=' + $(this).data('id'));
     }).on('click', '.btn-notice', function () {
         var id = $(this).data('id');
         parent.$table = $table;
@@ -210,11 +210,11 @@
     <a class="layui-btn layui-btn-sm btn-task" data-name="{{d.name}}" data-id="{{d.id}}">{{d.runningCount || 0}}/{{d.executeCount || 0}}</a>
 </script>
 <script type="text/html" id="buttons">
-    <a class="layui-btn layui-btn-sm btn-details" data-id="{{d.id}}" data-name="{{d.name}}" title="查看"><i class="layui-icon">&#xe615;</i></a>
-    <a class="layui-btn layui-btn-sm btn-notice" data-id="{{d.id}}" title="通知设置"><i class="layui-icon">&#xe667;</i></a>
-    <a class="layui-btn layui-btn-sm btn-run" data-id="{{d.id}}" title="手动运行"><i class="layui-icon">&#xe623;</i></a>
-    <a class="layui-btn layui-btn-sm btn-log" data-name="{{d.name}}" data-id="{{d.id}}" title="日志"><i class="layui-icon">&#xe60e;</i></a>
-    <a class="layui-btn layui-btn-sm btn-remove" data-id="{{d.id}}" title="删除"><i class="layui-icon">&#xe640;</i></a>
+    <a class="layui-btn layui-btn-sm btn-details" data-id="{{d.id}}" data-name="{{d.name}}" title="Check"><i class="layui-icon">&#xe615;</i></a>
+    <a class="layui-btn layui-btn-sm btn-notice" data-id="{{d.id}}" title="Notification Settings"><i class="layui-icon">&#xe667;</i></a>
+    <a class="layui-btn layui-btn-sm btn-run" data-id="{{d.id}}" title="Manually"><i class="layui-icon">&#xe623;</i></a>
+    <a class="layui-btn layui-btn-sm btn-log" data-name="{{d.name}}" data-id="{{d.id}}" title="Log"><i class="layui-icon">&#xe60e;</i></a>
+    <a class="layui-btn layui-btn-sm btn-remove" data-id="{{d.id}}" title="12"><i class="layui-icon">&#xe640;</i></a>
 </script>
 </body>
 </html>

@@ -3,22 +3,22 @@ package com.github.nekolr.slime.constant;
 import lombok.Getter;
 
 /**
- * 流转条件类型
+ * Condition type
  */
 public enum ConditionType {
 
-    DIRECTION("直接流转", "0"),
-    ON_EXCEPTION("当出现异常时流转", "1"),
-    NO_EXCEPTION("当没有出现异常时流转", "2");
+    DIRECTION("Text to translate: Zunächst einmal möchte ich mich bei allen für die vielen Kommentare und Fragen bedanken, die wir seit gestern erhalten haben.", "0"),
+    ON_EXCEPTION("When an exception occurs forward", "1"),
+    NO_EXCEPTION("Rotate when no abnormalities are present", "2");
 
     /**
-     * 描述
+     * Description
      */
     @Getter
     String description;
 
     /**
-     * 编码
+     * Code
      */
     @Getter
     String code;

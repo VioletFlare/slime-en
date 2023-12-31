@@ -18,80 +18,80 @@ public class ElementFunctionExtension implements FunctionExtension {
         return Element.class;
     }
 
-    @Comment("根据 xpath 提取内容")
+    @Comment("Based on xpath Extract Contents")
     @Example("${elementVar.xpath('//title/text()')}")
     public static String xpath(Element element, String xpath) {
         return ExtractUtils.getValueByXPath(element, xpath);
     }
 
 
-    @Comment("根据 xpath 提取内容")
+    @Comment("Based on xpath Extract Contents")
     @Example("${elementVar.xpaths('//h2/text()')}")
     public static List<String> xpaths(Element element, String xpath) {
         return ExtractUtils.getValuesByXPath(element, xpath);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementVar.regx('<title>(.*?)</title>')}")
     public static String regx(Element element, String regx) {
         return ExtractUtils.getFirstMatcher(element.html(), regx, true);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementVar.regx('<title>(.*?)</title>',1)}")
     public static String regx(Element element, String regx, int groupIndex) {
         return ExtractUtils.getFirstMatcher(element.html(), regx, groupIndex);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementVar.regx('<a href=\"(.*?)\">(.*?)</a>',[1,2])}")
     public static List<String> regx(Element element, String regx, List<Integer> groups) {
         return ExtractUtils.getFirstMatcher(element.html(), regx, groups);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementVar.regxs('<h2>(.*?)</h2>')}")
     public static List<String> regxs(Element element, String regx) {
         return ExtractUtils.getMatchers(element.html(), regx, true);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementVar.regxs('<h2>(.*?)</h2>',1)}")
     public static List<String> regxs(Element element, String regx, int groupIndex) {
         return ExtractUtils.getMatchers(element.html(), regx, groupIndex);
     }
 
-    @Comment("根据正则表达式提取内容")
+    @Comment("Extract based on regular expression")
     @Example("${elementVar.regxs('<a href=\"(.*?)\">(.*?)</a>',[1,2])}")
     public static List<List<String>> regxs(Element element, String regx, List<Integer> groups) {
         return ExtractUtils.getMatchers(element.html(), regx, groups);
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${elementVar.selector('div > a')}")
     public static Element selector(Element element, String cssQuery) {
         return element.selectFirst(cssQuery);
     }
 
-    @Comment("根据 css 选择器提取内容")
+    @Comment("Based on css Selector Extraction")
     @Example("${elementVar.selectors('div > a')}")
     public static Elements selectors(Element element, String cssQuery) {
         return element.select(cssQuery);
     }
 
-    @Comment("获取同级节点")
+    @Comment("Get Peers")
     @Example("${elementVar.subling()}")
     public static Elements subling(Element element) {
         return element.siblingElements();
     }
 
-    @Comment("获取上级节点")
+    @Comment("Get parent node")
     @Example("${elementVar.parent()}")
     public static Element parent(Element element) {
         return element.parent();
     }
 
-    @Comment("获取上级节点")
+    @Comment("Get parent node")
     @Example("${elementVar.parents()}")
     public static Elements parents(Element element) {
         return element.parents();

@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 等待执行结束执行器
+ * Wait for the execution to complete
  */
 @Component
 public class JoinExecutor implements NodeExecutor {
 
     /**
-     * 缓存已完成节点的变量
+     * Variable completed node cache
      */
     private Map<String, Map<String, Object>> cachedVariables = new HashMap<>();
 
@@ -30,7 +30,7 @@ public class JoinExecutor implements NodeExecutor {
         synchronized (cachedVariables) {
             boolean isDone = node.isDone();
             Map<String, Object> cached = cachedVariables.get(key);
-            // 所有的节点未完成
+            // All nodes are uncompleted
             if (!isDone) {
                 if (cached == null) {
                     cached = new HashMap<>();
@@ -38,7 +38,7 @@ public class JoinExecutor implements NodeExecutor {
                 }
                 cached.putAll(variables);
             } else if (cached != null) {
-                // 将缓存的变量存入到当前变量中，传递给下一级
+                // Save the current variable into the cache，Pass to Next Level
                 variables.putAll(cached);
                 cachedVariables.remove(key);
             }

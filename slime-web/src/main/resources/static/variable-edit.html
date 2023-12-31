@@ -31,24 +31,24 @@
 	<div class="layui-form-item">
 		<label class="layui-form-label">变量名</label>
 		<div class="layui-input-block">
-			<input type="text" name="name" placeholder="请输入变量名" autocomplete="off" class="layui-input" lay-verify="required"/>
+			<input type="text" name="name" placeholder="Please enter a variable name" autocomplete="off" class="layui-input" lay-verify="required"/>
 		</div>
 	</div>
 	<div class="layui-form-item">
 		<label class="layui-form-label">变量值</label>
 		<div class="layui-input-block">
-			<input type="text" name="val" placeholder="请输入变量值" autocomplete="off" class="layui-input" lay-verify="required"/>
+			<input type="text" name="val" placeholder="Please enter a variable value" autocomplete="off" class="layui-input" lay-verify="required"/>
 		</div>
 	</div>
 	<div class="layui-form-item layui-form-text">
 		<label class="layui-form-label">变量说明</label>
 		<div class="layui-input-block">
-			<textarea name="description" placeholder="请输入变量说明" autocomplete="off" class="layui-textarea"  lay-verify="required"></textarea>
+			<textarea name="description" placeholder="Please enter a description for the variable" autocomplete="off" class="layui-textarea"  lay-verify="required"></textarea>
 		</div>
 	</div>
 	<div class="btns-submit">
-		<button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">保存</button>
-		<button class="layui-btn layui-btn-primary btn-return" type="button" onclick="history.go(-1);">返回</button>
+		<button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">Save</button>
+		<button class="layui-btn layui-btn-primary btn-return" type="button" onclick="history.go(-1);">Back</button>
 	</div>
 </form>
 <script>
@@ -79,14 +79,14 @@
 				description : $("textarea[name=description]").val()
 			},
 			success : function(){
-				layui.layer.msg('保存成功',{
+				layui.layer.msg('Save successful',{
 					time : 800
 				},function(){
 					location.href = 'variables.html';
 				})
 			},
 			error : function(){
-				layui.layer.msg('请求失败');
+				layui.layer.msg('Text to translate: Request failed');
 			}
 		})
 		return false;

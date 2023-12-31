@@ -1,6 +1,6 @@
 <div class="layui-tab layui-tab-fixed layui-tab-brief">
   <ul class="layui-tab-title">
-    <li class="layui-this">配置</li>
+    <li class="layui-this">Configure KSpread...</li>
   </ul>
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
@@ -8,31 +8,31 @@
 			<div class="layui-row">
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">节点名称</label>
+						<label class="layui-form-label">Question Name</label>
 						<div class="layui-input-block">
-							<input type="text" name="value" placeholder="请输入节点名称" value="{{=d.value}}" autocomplete="off" class="layui-input">
+							<input type="text" name="value" placeholder="Please enter the first alternative name" value="{{=d.value}}" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">循环变量</label>
+						<label class="layui-form-label">Cycle Variable</label>
 						<div class="layui-input-block">
-							<input type="text" name="loopIndex" placeholder="请输入循环变量" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
+							<input type="text" name="loopIndex" placeholder="Please enter a loop variable" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
 						</div>
 					</div>
 				</div>
 				<div class="layui-col-md4">
 					<div class="layui-form-item">
-						<label class="layui-form-label">循环次数</label>
-						<div class="layui-input-block" codemirror="loopCount" placeholder="请输入循环次数" data-value="{{=d.data.object.loopCount}}"></div>
+						<label class="layui-form-label">Number of cycles</label>
+						<div class="layui-input-block" codemirror="loopCount" placeholder="Enter the number of cycles" data-value="{{=d.data.object.loopCount}}"></div>
 					</div>
 				</div>
 			</div>
 			<table class="layui-table" id="spider-variable" data-cell="{{=d.cell.id}}" data-keys="variable-name,variable-value,variable-description"></table>
     		<div class="layui-form-item">
     			<div class="layui-input-inline">
-	    			<button class="layui-btn table-row-add" type="button" for="spider-variable">添加一个变量</button>
+	    			<button class="layui-btn table-row-add" type="button" for="spider-variable">Add a variable</button>
 	    		</div>
 	    	</div>
     	</form>
@@ -55,18 +55,18 @@
 					minWidth : 400,
 					templet : '#variable-value-tmpl'
 				},{
-					title : '描述',
+					title : 'Description',
 					width : 250,
 					templet : '#variable-description-tmpl'
 				},{
-					title : '操作',
+					title : 'Operation',
 					width : 120,
 					align : 'center',
 					templet : '#common-operation'
 				}]],
 				data : data,
 				text : {
-					none : '暂未设置变量'
+					none : 'Assistant: Variable not set'
 				}
 			})
 		}

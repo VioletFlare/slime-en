@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 数据源管理
+ * Data Source Management
  */
 @Component
 public class DataSourceManager {

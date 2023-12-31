@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public LoginVo login(User user) {
         User entity = findByUsername(user.getUsername());
         if (Objects.isNull(entity) || !user.getPassword().equals(entity.getPassword())) {
-            throw new BadRequestException("无效的用户名或密码");
+            throw new BadRequestException("Invalid username or password");
         }
         String token = tokenProvider.createToken(user.getUsername());
         return new LoginVo(token, user);

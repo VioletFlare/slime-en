@@ -50,16 +50,16 @@ function searchGrammer(keyword,isClass){
 			var grammer = arr[i];
 			html+= '<div class="hint-grammer">'
 				if(grammer.owner){
-					html+= '<div class="hint-owner">所属类：<span>'+grammer.owner.replace('<','&lt;')+'</span></div>';					
+					html+= '<div class="hint-owner">Class Membership：<span>'+grammer.owner.replace('<','&lt;')+'</span></div>';					
 				}
 				if(grammer.comment){
-					html+= '<div class="hint-comment">说明：<span>'+grammer.comment.replace('<','&lt;')+'</span></div>';	
+					html+= '<div class="hint-comment"> Say：<span>'+grammer.comment.replace('<','&lt;')+'</span></div>';	
 				}
 				if(grammer.example){
 					html+= '<div class="hint-example">'+grammer.example.replace('<','&lt;')+'</span></div>';
 				}
 				if(grammer.returns){
-					html+= '<div class="hint-return">返回值：<span>'+grammer.returns.join("/").replace('<','&lt;')+'</span></div>';
+					html+= '<div class="hint-return">Return Value：<span>'+grammer.returns.join("/").replace('<','&lt;')+'</span></div>';
 				}
 			html+= '</div>';
 		}

@@ -21,26 +21,26 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 public class GlobalExceptionHandler {
 
     /**
-     * 处理所有未知异常
+     * All unknown exceptions will be handled
      */
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
-        log.error("出现未知异常", e);
+        log.error("Unknown exception occurred", e);
         ErrorResponse errorResponse = new ErrorResponse(INTERNAL_SERVER_ERROR.value(), ExceptionUtils.getStackTrace(e));
         return this.buildResponseEntity(errorResponse);
     }
 
     /**
-     * 处理无效的请求方法异常
+     * Invalid request handling method
      */
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ErrorResponse> handleHttpRequestMethodNotSupportedException(Exception e) {
-        ErrorResponse errorResponse = new ErrorResponse(INTERNAL_SERVER_ERROR.value(), "无效的请求方法");
+        ErrorResponse errorResponse = new ErrorResponse(INTERNAL_SERVER_ERROR.value(), "Invalid Request Method");
         return this.buildResponseEntity(errorResponse);
     }
 
     /**
-     * 处理所有无效请求异常
+     * Catch all exceptions
      */
     @ExceptionHandler(value = BadRequestException.class)
     public ResponseEntity<ErrorResponse> handleBadRequestException(BadRequestException e) {
@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * 处理运行时异常
+     * An error occurred while trying to print:
      */
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<ErrorResponse> handleRuntimeException(Exception e) {
@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * 处理参数绑定异常
+     * An error occurred while trying to access %1: %2
      */
     @ExceptionHandler(value = BindException.class)
     public ResponseEntity<ErrorResponse> handleBindException(BindException e) {
@@ -70,7 +70,7 @@ public class GlobalExceptionHandler {
 
 
     /**
-     * 获取错误消息
+     * Get error messages
      *
      * @param errorList
      * @return
@@ -86,7 +86,7 @@ public class GlobalExceptionHandler {
 
 
     /**
-     * 创建响应实体
+     * Generate entity response
      *
      * @param errorResponse
      * @return

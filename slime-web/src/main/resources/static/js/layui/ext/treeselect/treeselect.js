@@ -1,5 +1,5 @@
 
-layui.define(['form', 'jquery'], function (exports) { //提示：模块也可以依赖其它模块，如：layui.define('layer', callback);
+layui.define(['form', 'jquery'], function (exports) { //Hint：Also modules can depend on other modules.，Like：layui.define('layer', callback);
   var jQuery = layui.jquery,
       $ = jQuery,
       form = layui.form,
@@ -204,20 +204,20 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
 
   TreeSelect.prototype.render = function (options) {
     var elem = options.elem,
-      // 请求地址
+      // Address Request
       data = options.data,
-      // 请求方式
+      // Request Method
       type = options.type === undefined ? 'GET' : options.type,
-      // 节点点击回调
+      // Callback on node click
       click = options.click,
-      // 渲染成功后的回调函数
+      // Translation of the following text to english
       success = options.success,
-      // 占位符（提示信息）
-      placeholder = options.placeholder === undefined ? '请选择' : options.placeholder,
-      // 是否开启搜索
+      // Placeholder（Hint Information）
+      placeholder = options.placeholder === undefined ? 'Please select' : options.placeholder,
+      // Whether to launch the search
       search = options.search === undefined ? false : options.search,
       process = options.process;
-      // 样式配置项
+      // Configuration Item
       style = options.style,
       // 唯一id
       tmp = new Date().getTime(),
@@ -264,7 +264,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
         });
         return a;
       },
-      // 检查input是否有默认值
+      // CheckinputAre there any defaults
       checkDefaultValue: function () {
 
       },
@@ -334,7 +334,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
         return a;
       },
       /**
-       * 展开/折叠下拉框
+       * Expand/Sorry, I don't know the answer to this question.
        */
       toggleSelect: function () {
         var item = '#' + TREE_SELECT_TITLE_ID;
@@ -344,7 +344,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
             $select.removeClass(selected);
             $('#' + TREE_INPUT_ID).blur();
           } else {
-            // 隐藏其他picker
+            // Hide Otherspicker
             $('.layui-form-select').removeClass(selected);
             // 显示当前picker
             $select.addClass(selected);
@@ -360,7 +360,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
         });
         return a;
       },
-      // 模糊查询
+      // Fuzzy Sketch
       searchParam: function () {
         if (!search) {
           return;
@@ -465,7 +465,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
             pid = o.parentTId,
             tid = o.tId;
           if (pid !== null) {
-            // 获取父节点
+            // Get parent node
             $('#' + pid).addClass(TREE_SELECT_SEARCHED_CLASS);
             var pNode = TREE_OBJ.getNodesByParam("tId", pid, null);
             TREE_OBJ.expandNode(pNode[0], true, false, true);
@@ -473,7 +473,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
           $('#' + tid).addClass(TREE_SELECT_SEARCHED_CLASS);
         }
       },
-      // 阻止Layui的一些默认事件
+      // StopLayuiSome of the default events
       preventEvent: function () {
         var item = '#' + TREE_SELECT_ID + ' .layui-anim';
         a.event('click', item, function (e) {
@@ -512,7 +512,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
   };
 
   /**
-   * 重新加载trerSelect
+   * ReloadtrerSelect
    * @param filter
    */
   TreeSelect.prototype.refresh = function (filter) {
@@ -521,9 +521,9 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
   };
 
   /**
-   * 选中节点，因为tree是异步加载，所以必须在success回调中调用checkNode函数，否则无法获取生成的DOM元素
-   * @param filter lay-filter属性
-   * @param id 选中的id
+   * Select a Time，BecausetreeLoading in parallel，So it has to be insuccessCallback oncheckNodeFunction，Otherwise we cannot get the generatedDOM元素
+   * @param filter lay-filterProperty
+   * @param id Selectedid
    */
   TreeSelect.prototype.checkNode = function(filter, id){
     var o = obj.filter(filter),
@@ -538,9 +538,9 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
   };
 
   /**
-   * 撤销选中的节点
-   * @param filter lay-filter属性
-   * @param fn 回调函数
+   * Select the next sheet object
+   * @param filter lay-filterProperty
+   * @param fn Callback Function
    */
   TreeSelect.prototype.revokeNode = function(filter, fn){
     var o = obj.filter(filter);
@@ -556,7 +556,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
   }
 
   /**
-   * 销毁组件
+   * Component to destroy
    */
   TreeSelect.prototype.destroy = function(filter) {
     var o = obj.filter(filter);
@@ -565,7 +565,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
   }
 
   /**
-   * 获取zTree对象，可调用所有zTree函数
+   * GetzTree对象，Accessible RolezTreeFunction
    * @param filter
    */
   TreeSelect.prototype.zTree = function (filter) {
@@ -575,7 +575,7 @@ function(c,a,b,f){(!a||!d.isHidden(c,a))&&s.apply(e,arguments)};var t=e.repairPa
   var obj = {
     get: function(filter){
       if (!filter) {
-        layui.hint().error('filter 不能为空');
+        layui.hint().error('filter Cannot be empty');
       }
       return $('*[lay-filter='+ filter +']');
     },

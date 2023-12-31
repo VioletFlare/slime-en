@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<title>Cron表达式生成器</title>
+<title>CronQuestion Generator</title>
 <link href="js/cron/easyui.min.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 .line {
@@ -47,30 +47,30 @@ li {
 		<div class="easyui-layout" style="width: 830px; height: 548px; border: 1px rgb(202, 196, 196) solid; border-radius: 5px;">
 			<div style="height: 100%;">
 				<div class="easyui-tabs" data-options="fit:true,border:false">
-					<div title="秒">
+					<div title="Seconds">
 						<div class="line">
 							<input type="radio" checked="checked" name="second"
-								onclick="everyTime(this)"> 每秒 允许的通配符[, - * /]
+								onclick="everyTime(this)"> Every second Allowed Accessors[, - * /]
 						</div>
 						<div class="line">
 							<input type="radio" name="second" onclick="cycle(this)">
-							周期从 <input class="numberspinner" style="width: 60px;"
+							Periodic Payment <input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:58" value="1" id="secondStart_0">
 							- <input class="numberspinner" style="width: 60px;"
 								data-options="min:2,max:59" value="2" id="secondEnd_0">
-							秒
+							Seconds
 						</div>
 						<div class="line">
 							<input type="radio" name="second" onclick="startOn(this)">
-							从 <input class="numberspinner" style="width: 60px;"
+							From <input class="numberspinner" style="width: 60px;"
 								data-options="min:0,max:59" value="0" id="secondStart_1">
-							秒开始,每 <input class="numberspinner" style="width: 60px;"
+							Seconds,Every <input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:59" value="1" id="secondEnd_1">
-							秒执行一次
+							Seconds to execute a command
 						</div>
 						<div class="line">
 							<input type="radio" name="second" id="sencond_appoint">
-							指定
+							2
 						</div>
 						<div class="imp secondList">
 							<input type="checkbox" value="0">00 <input
@@ -133,28 +133,28 @@ li {
 								type="checkbox" value="59">59
 						</div>
 					</div>
-					<div title="分钟">
+					<div title="2 minutes">
 						<div class="line">
 							<input type="radio" checked="checked" name="min"
-								onclick="everyTime(this)"> 分钟 允许的通配符[, - * /]
+								onclick="everyTime(this)"> 2 minutes Allowed Accessors[, - * /]
 						</div>
 						<div class="line">
-							<input type="radio" name="min" onclick="cycle(this)"> 周期从
+							<input type="radio" name="min" onclick="cycle(this)"> Periodic Payment
 							<input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:58" value="1" id="minStart_0"> -
 							<input class="numberspinner" style="width: 60px;"
-								data-options="min:2,max:59" value="2" id="minEnd_0"> 分钟
+								data-options="min:2,max:59" value="2" id="minEnd_0"> 2 minutes
 						</div>
 						<div class="line">
-							<input type="radio" name="min" onclick="startOn(this)"> 从
+							<input type="radio" name="min" onclick="startOn(this)"> From
 							<input class="numberspinner" style="width: 60px;"
 								data-options="min:0,max:59" value="0" id="minStart_1">
-							分钟开始,每 <input class="numberspinner" style="width: 60px;"
+							30 minutes left,Every <input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:59" value="1" id="minEnd_1">
-							分钟执行一次
+							Run a command
 						</div>
 						<div class="line">
-							<input type="radio" name="min" id="min_appoint"> 指定
+							<input type="radio" name="min" id="min_appoint"> 2
 						</div>
 						<div class="imp minList">
 							<input type="checkbox" value="0">00 <input
@@ -217,28 +217,28 @@ li {
 								type="checkbox" value="59">59
 						</div>
 					</div>
-					<div title="小时">
+					<div title="In how many hours?">
 						<div class="line">
 							<input type="radio" checked="checked" name="hour"
-								onclick="everyTime(this)"> 小时 允许的通配符[, - * /]
+								onclick="everyTime(this)"> In how many hours? Allowed Accessors[, - * /]
 						</div>
 						<div class="line">
 							<input type="radio" name="hour" onclick="cycle(this)">
-							周期从 <input class="numberspinner" style="width: 60px;"
+							Periodic Payment <input class="numberspinner" style="width: 60px;"
 								data-options="min:0,max:23" value="0" id="hourStart_0">
 							- <input class="numberspinner" style="width: 60px;"
-								data-options="min:2,max:23" value="2" id="hourEnd_0"> 小时
+								data-options="min:2,max:23" value="2" id="hourEnd_0"> In how many hours?
 						</div>
 						<div class="line">
 							<input type="radio" name="hour" onclick="startOn(this)">
-							从 <input class="numberspinner" style="width: 60px;"
+							From <input class="numberspinner" style="width: 60px;"
 								data-options="min:0,max:23" value="0" id="hourStart_1">
-							小时开始,每 <input class="numberspinner" style="width: 60px;"
+							Start time,Every <input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:23" value="1" id="hourEnd_1">
-							小时执行一次
+							Exactly one hour before every appointment
 						</div>
 						<div class="line">
-							<input type="radio" name="hour" id="hour_appoint"> 指定
+							<input type="radio" name="hour" id="hour_appoint"> 2
 						</div>
 						<div class="imp hourList">
 							AM: <input type="checkbox" value="0">00 <input
@@ -263,42 +263,42 @@ li {
 								value="22">22 <input type="checkbox" value="23">23
 						</div>
 					</div>
-					<div title="日">
+					<div title="Sun">
 						<div class="line">
 							<input type="radio" checked="checked" name="day"
-								onclick="everyTime(this)"> 日 允许的通配符[, - * / L W]
+								onclick="everyTime(this)"> Sun Allowed Accessors[, - * / L W]
 						</div>
 						<div class="line">
 							<input type="radio" name="day" onclick="unAppoint(this)">
-							不指定
+							No hint available
 						</div>
 						<div class="line">
-							<input type="radio" name="day" onclick="cycle(this)"> 周期从
+							<input type="radio" name="day" onclick="cycle(this)"> Periodic Payment
 							<input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:31" value="1" id="dayStart_0"> -
 							<input class="numberspinner" style="width: 60px;"
-								data-options="min:2,max:31" value="2" id="dayEnd_0"> 日
+								data-options="min:2,max:31" value="2" id="dayEnd_0"> Sun
 						</div>
 						<div class="line">
-							<input type="radio" name="day" onclick="startOn(this)"> 从
+							<input type="radio" name="day" onclick="startOn(this)"> From
 							<input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:31" value="1" id="dayStart_1">
-							日开始,每 <input class="numberspinner" style="width: 60px;"
+							Start Date,Every <input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:31" value="1" id="dayEnd_1">
-							天执行一次
+							Run once
 						</div>
 						<div class="line">
 							<input type="radio" name="day" onclick="workDay(this)">
-							每月 <input class="numberspinner" style="width: 60px;"
+							Every month <input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:31" value="1" id="dayStart_2">
-							号最近的那个工作日
+							Next Sat
 						</div>
 						<div class="line">
 							<input type="radio" name="day" onclick="lastDay(this)">
-							每月最后一天
+							Last day of the month
 						</div>
 						<div class="line">
-							<input type="radio" name="day" id="day_appoint"> 指定
+							<input type="radio" name="day" id="day_appoint"> 2
 						</div>
 						<div class="imp dayList">
 							<input type="checkbox" value="1">1 <input type="checkbox"
@@ -328,32 +328,32 @@ li {
 								value="31">31
 						</div>
 					</div>
-					<div title="月">
+					<div title="Month">
 						<div class="line">
 							<input type="radio" checked="checked" name="mouth"
-								onclick="everyTime(this)"> 月 允许的通配符[, - * /]
+								onclick="everyTime(this)"> Month Allowed Accessors[, - * /]
 						</div>
 						<div class="line">
 							<input type="radio" name="mouth" onclick="unAppoint(this)">
-							不指定
+							No hint available
 						</div>
 						<div class="line">
 							<input type="radio" name="mouth" onclick="cycle(this)">
-							周期从 <input class="numberspinner" style="width: 60px;"
+							Periodic Payment <input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:12" value="1" id="mouthStart_0">
 							- <input class="numberspinner" style="width: 60px;"
-								data-options="min:2,max:12" value="2" id="mouthEnd_0"> 月
+								data-options="min:2,max:12" value="2" id="mouthEnd_0"> Month
 						</div>
 						<div class="line">
 							<input type="radio" name="mouth" onclick="startOn(this)">
-							从 <input class="numberspinner" style="width: 60px;"
+							From <input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:12" value="1" id="mouthStart_1">
-							日开始,每 <input class="numberspinner" style="width: 60px;"
+							Start Date,Every <input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:12" value="1" id="mouthEnd_1">
-							月执行一次
+							Last Week
 						</div>
 						<div class="line">
-							<input type="radio" name="mouth" id="mouth_appoint"> 指定
+							<input type="radio" name="mouth" id="mouth_appoint"> 2
 						</div>
 						<div class="imp mouthList">
 							<input type="checkbox" value="1">1 <input type="checkbox"
@@ -366,36 +366,36 @@ li {
 								value="11">11 <input type="checkbox" value="12">12
 						</div>
 					</div>
-					<div title="周">
+					<div title="Week">
 						<div class="line">
 							<input type="radio" checked="checked" name="week"
-								onclick="everyTime(this)"> 周 允许的通配符[, - * / L #]
+								onclick="everyTime(this)"> Week Allowed Accessors[, - * / L #]
 						</div>
 						<div class="line">
 							<input type="radio" name="week" onclick="unAppoint(this)">
-							不指定
+							No hint available
 						</div>
 						<div class="line">
 							<input type="radio" name="week" onclick="startOn(this)">
-							周期 从星期<input class="numberspinner" style="width: 60px;"
+							Period From Week<input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:7" id="weekStart_0" value="1"> -
 							<input class="numberspinner" style="width: 60px;"
 								data-options="min:2,max:7" value="2" id="weekEnd_0">
 						</div>
 						<div class="line">
 							<input type="radio" name="week" onclick="weekOfDay(this)">
-							第<input class="numberspinner" style="width: 60px;"
-								data-options="min:1,max:4" value="1" id="weekStart_1"> 周
-							的星期<input class="numberspinner" style="width: 60px;"
+							1st<input class="numberspinner" style="width: 60px;"
+								data-options="min:1,max:4" value="1" id="weekStart_1"> Week
+							In week %d of %d<input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:7" id="weekEnd_1" value="1">
 						</div>
 						<div class="line">
 							<input type="radio" name="week" onclick="lastWeek(this)">
-							本月最后一个星期<input class="numberspinner" style="width: 60px;"
+							Last week of this month<input class="numberspinner" style="width: 60px;"
 								data-options="min:1,max:7" id="weekStart_2" value="1">
 						</div>
 						<div class="line">
-							<input type="radio" name="week" id="week_appoint"> 指定
+							<input type="radio" name="week" id="week_appoint"> 2
 						</div>
 						<div class="imp weekList">
 							<input type="checkbox" value="1">1 <input type="checkbox"
@@ -405,18 +405,18 @@ li {
 								type="checkbox" value="7">7
 						</div>
 					</div>
-					<div title="年">
+					<div title="Year">
 						<div class="line">
 							<input type="radio" checked="checked" name="year"
-								onclick="unAppoint(this)"> 不指定 允许的通配符[, - * /] 非必填
+								onclick="unAppoint(this)"> No hint available Allowed Accessors[, - * /] 非必填
 						</div>
 						<div class="line">
 							<input type="radio" name="year" onclick="everyTime(this)">
-							每年
+							Every year
 						</div>
 						<div class="line">
-							<input type="radio" name="year" onclick="cycle(this)">周期
-							从 <input class="numberspinner" style="width: 90px;"
+							<input type="radio" name="year" onclick="cycle(this)">Period
+							From <input class="numberspinner" style="width: 90px;"
 								data-options="min:2013,max:3000" id="yearStart_0" value="2013">
 							- <input class="numberspinner" style="width: 90px;"
 								data-options="min:2014,max:3000" id="yearEnd_0" value="2014">
@@ -426,22 +426,22 @@ li {
 			</div>
 			<div data-options="region:'south',border:false" style="height: 270px">
 				<fieldset style="border-radius: 3px; height: 250px;">
-					<legend>表达式</legend>
+					<legend>Answer</legend>
 					<table style="height: 100px;">
 						<tbody>
 							<tr>
 								<td></td>
-								<td align="center">秒</td>
-								<td align="center">分钟</td>
-								<td align="center">小时</td>
-								<td align="center">日</td>
-								<td align="center">月<br />
+								<td align="center">Seconds</td>
+								<td align="center">2 minutes</td>
+								<td align="center">In how many hours?</td>
+								<td align="center">Sun</td>
+								<td align="center">Month<br />
 								</td>
-								<td align="center">星期</td>
-								<td align="center">年</td>
+								<td align="center">Week</td>
+								<td align="center">Year</td>
 							</tr>
 							<tr>
-								<td>表达式字段:</td>
+								<td>Answer字段:</td>
 								<td><input type="text" name="v_second" class="col"
 									value="*" readonly="readonly" /></td>
 								<td><input type="text" name="v_min" class="col" value="*"
@@ -458,16 +458,16 @@ li {
 									readonly="readonly" /></td>
 							</tr>
 							<tr>
-								<td>Cron 表达式:</td>
+								<td>Cron Answer:</td>
 								<td colspan="6">
 									<input type="text" name="cron" style="width: 100%;" value="* * * * * ?" id="cron" />
 								</td>
 								<td>
-									<input type="button" value="反解析到UI " style="margin-left: 10px;" id="btnFan" onclick="btnFan()" />
+									<input type="button" value="Analyze toUI " style="margin-left: 10px;" id="btnFan" onclick="btnFan()" />
 								</td>
 							</tr>
 							<tr>
-								<td colspan="8">最近5次运行时间:</td>
+								<td colspan="8">Recent5Next Run Time:</td>
 							</tr>
 							<tr>
 								<td colspan="8" id="runTime"></td>
@@ -488,7 +488,7 @@ li {
 	<script type="text/javascript" src="js/layui/layui.all.js"></script>
 	<script type="text/javascript" src="js/setup.js" ></script>
 	<script>
-	 var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+	 var index = parent.layer.getFrameIndex(window.name); // Get window list
 	    var parentCron = getURLParameter("cron");
 	    var id = getURLParameter("id");
 	    window.onload = function () {
@@ -519,12 +519,12 @@ li {
 			            },
 			            success : function(){
 			                var $parent = parent;
-			                parent.layer.msg('修改成功',{time : 500},function(e){
+			                parent.layer.msg('The modification was successful.',{time : 500},function(e){
 			                    $parent.$table.reload();
 			                })
 			            },
 			            error : function(){
-			                parent.layer.msg('修改失败')
+			                parent.layer.msg('Failed to edit.')
 			            }
 			        });
 			        parent.layer.close(index);

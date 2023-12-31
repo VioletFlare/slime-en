@@ -39,7 +39,7 @@ public class ScriptManager {
         try {
             scriptEngine.eval(script.toString());
         } catch (ScriptException e) {
-            log.error("注册 _eval 函数失败", e);
+            log.error("Sign up _eval Function failed", e);
         }
     }
 
@@ -63,9 +63,9 @@ public class ScriptManager {
         try {
             engine.eval(concatScript(functionName, parameters, script));
             functions.add(functionName);
-            log.info("注册自定义函数 {} 成功", functionName);
+            log.info("Register Custom Function {} Successfully translated", functionName);
         } catch (ScriptException e) {
-            log.warn("注册自定义函数 {} 失败", functionName, e);
+            log.warn("Register Custom Function {} Failure", functionName, e);
         }
     }
 
@@ -97,7 +97,7 @@ public class ScriptManager {
     public static Object eval(ExpressionTemplateContext context, String functionName, Object... args) throws ScriptException, NoSuchMethodException {
         if ("_eval".equals(functionName)) {
             if (args == null || args.length != 1) {
-                throw new ScriptException("_eval 必须要有一个参数");
+                throw new ScriptException("_eval There must be at least one attendee");
             } else {
                 return ExpressionTemplate.create(args[0].toString()).render(context);
             }
@@ -128,7 +128,7 @@ public class ScriptManager {
                 if ("Date".equalsIgnoreCase(className)) {
                     return new Date(mirror.to(Long.class));
                 }
-                //其它类型待处理
+                //Other types pending
             }
         }
         return object;

@@ -56,7 +56,7 @@ public class SpiderJob extends QuartzJobBean {
     }
 
     /**
-     * 执行流程
+     * Executable
      *
      * @param flowId 流程 ID
      */
@@ -65,37 +65,37 @@ public class SpiderJob extends QuartzJobBean {
     }
 
     /**
-     * 执行流程
+     * Executable
      *
      * @param flow     流程
-     * @param nextTime 下一次执行的时间
+     * @param nextTime Next time the reminder will be triggered
      */
     private void run(SpiderFlow flow, Date nextTime) {
-        // 当前时间
+        // Current Time
         Date now = new Date();
-        // 创建一个流程任务
+        // Create a new process task
         SpiderTask task = createSpiderTask(flow.getId());
-        // 创建执行上下文
+        // Create Executable Context
         SpiderJobContext context = null;
         try {
             context = SpiderJobContext.create(spiderConfig.getWorkspace(), flow.getId(), task.getId(), false);
             SpiderContextHolder.set(context);
-            log.info("流程：{} 开始执行，任务 ID 为：{}", flow.getName(), task.getId());
+            log.info("流程：{} Start Implementation，Tasks ID 为：{}", flow.getName(), task.getId());
             contextMap.put(task.getId(), context);
             spider.run(flow, context);
-            log.info("流程：{} 执行完毕，任务 ID 为：{}，下次执行时间：{}", flow.getName(), task.getId(), TimeUtils.format(nextTime));
+            log.info("流程：{} Finished，Tasks ID 为：{}，Next execution time：{}", flow.getName(), task.getId(), TimeUtils.format(nextTime));
         } catch (FileNotFoundException e) {
-            log.error("创建日志文件失败", e);
+            log.error("Failed to create log file.", e);
         } catch (Throwable t) {
-            log.error("流程：{} 执行出错，任务 ID 为：{}", flow.getName(), task.getId());
+            log.error("流程：{} Executable，Tasks ID 为：{}", flow.getName(), task.getId());
         } finally {
-            // 关闭流
+            // Close stream
             if (context != null) {
                 context.close();
             }
             contextMap.remove(task.getId());
             SpiderContextHolder.remove();
-            // 更新任务结束时间
+            // Update the task end time
             task.setEndTime(new Date());
             spiderTaskService.save(task);
         }
@@ -103,10 +103,10 @@ public class SpiderJob extends QuartzJobBean {
     }
 
     /**
-     * 创建一个流程任务
+     * Create a new process task
      *
      * @param flowId 流程 ID
-     * @return 流程任务
+     * @return Process Task
      */
     private SpiderTask createSpiderTask(Long flowId) {
         SpiderTask task = new SpiderTask();
@@ -117,10 +117,10 @@ public class SpiderJob extends QuartzJobBean {
     }
 
     /**
-     * 获取执行上下文
+     * Get contexts
      *
-     * @param taskId 任务 ID
-     * @return 执行上下文
+     * @param taskId Tasks ID
+     * @return Executable Context
      */
     public static SpiderContext getSpiderContext(Long taskId) {
         return contextMap.get(taskId);

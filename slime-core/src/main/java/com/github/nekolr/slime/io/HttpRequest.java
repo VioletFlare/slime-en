@@ -10,7 +10,7 @@ import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 
 /**
- * 请求对象包装类
+ * Request object packaging class
  */
 public class HttpRequest {
 
@@ -22,9 +22,9 @@ public class HttpRequest {
 
     public HttpRequest url(String url) {
         this.connection = Jsoup.connect(url);
-        // 默认 GET
+        // Default GET
         this.connection.method(Method.GET);
-        // 请求超时 30s
+        // Request timed out 30s
         this.connection.timeout(30000);
         return this;
     }
@@ -115,9 +115,9 @@ public class HttpRequest {
     public HttpResponse execute() throws IOException {
         // 忽略 ContentType
         this.connection.ignoreContentType(true);
-        // 忽略请求错误
+        // Ignore request error
         this.connection.ignoreHttpErrors(true);
-        // 读取 body 中的最大字节数，0 为不限量
+        // Speak body The maximum number of bytes to translate，0 For unlimited
         this.connection.maxBodySize(0);
 
         Response response = connection.execute();

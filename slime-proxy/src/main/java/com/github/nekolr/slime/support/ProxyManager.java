@@ -51,7 +51,7 @@ public class ProxyManager {
     }
 
     /**
-     * 随机获取一个 http 代理
+     * Get a random one http 代理
      *
      * @return
      */
@@ -60,7 +60,7 @@ public class ProxyManager {
     }
 
     /**
-     * 随机获取一个 https 代理
+     * Get a random one https 代理
      *
      * @return
      */
@@ -69,7 +69,7 @@ public class ProxyManager {
     }
 
     /**
-     * 随机获取一个 http 代理
+     * Get a random one http 代理
      *
      * @return
      */
@@ -78,7 +78,7 @@ public class ProxyManager {
     }
 
     /**
-     * 随机获取一个 HTTPS 代理
+     * Get a random one HTTPS 代理
      *
      * @return
      */
@@ -87,9 +87,9 @@ public class ProxyManager {
     }
 
     /**
-     * 从代理列表中随机返回一个代理
+     * Randomly returns a proxy from the list of proxies
      *
-     * @param proxies 代理列表
+     * @param proxies List of proxies
      * @return 一个代理
      */
     private ProxyDTO random(List<ProxyDTO> proxies) {
@@ -101,11 +101,11 @@ public class ProxyManager {
     }
 
     /**
-     * 查询符合条件的代理 IP 列表
+     * Query the state of a given proxy profile IP List
      *
-     * @param type      代理类型 http 或 https
-     * @param anonymous 是否支持匿名连接
-     * @return 代理 IP 列表
+     * @param type      Proxy Type http or https
+     * @param anonymous Whether to support anonymous connections
+     * @return 代理 IP List
      */
     private List<ProxyDTO> get(String type, boolean anonymous) {
         List<ProxyDTO> proxyList = new ArrayList<>();
@@ -120,10 +120,10 @@ public class ProxyManager {
     }
 
     /**
-     * 检测代理
+     *  Checking proxy
      *
      * @param proxy 代理
-     * @return 延迟时间
+     * @return Delay time
      */
     public long check(ProxyDTO proxy) {
         try {
@@ -135,10 +135,10 @@ public class ProxyManager {
                     .proxy(proxy.getIp(), proxy.getPort())
                     .execute();
             st = System.currentTimeMillis() - st;
-            log.info("检测代理：{}:{}，延迟：{} ms", proxy.getIp(), proxy.getPort(), st);
+            log.info(" Checking proxy：{}:{}，Delay：{} ms", proxy.getIp(), proxy.getPort(), st);
             return st;
         } catch (Exception e) {
-            log.info("检测代理：{}:{}，超时", proxy.getIp(), proxy.getPort());
+            log.info(" Checking proxy：{}:{}，Time Elapsed", proxy.getIp(), proxy.getPort());
             return -1;
         }
     }

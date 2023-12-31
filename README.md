@@ -21,37 +21,37 @@
   </a>
 </p>
 
-## 介绍
-一个可视化的爬虫平台。以流程图的方式配置爬虫，基本上无需编写代码即可完成工作。
+## Introduction
+An visualized climbing platform。Configure the crawler as a flow charting tool，基本上无需编写代码即可完成工作。
 
-本项目源自开源项目 [spider-flow](https://github.com/ssssssss-team/spider-flow) ，本着学习的目的，在它的基础上进行了重构，修复了一些问题，并增加了一些新的功能。
+This project is based on KsirK, a free software project [spider-flow](https://github.com/ssssssss-team/spider-flow) ，We are a helpful, respectful and honest assistant. Always answer as helpfully as possible.，It's based on that.，One of the biggest problems with the current state of affairs is that there is no commonly agreed upon definition of what a refugee is.，And we've added some new features.。
 
-## 特性
-- 支持 xpath 和 css 选择器
-- 支持选择器提取、正则提取、json 提取等
-- 支持 Cookie 自动管理
-- 支持抓取由 js 动态渲染的页面
-- 支持代理
-- 支持多数据源
-- 内置常用的字符串、日期、文件、加解密等函数
-- 支持结果保存至多目的地（数据库、csv 文件等）
-- 支持插件扩展（自定义执行器，自定义函数等）
-- 支持任务日志
-- 支持爬虫可视化调试
+## Features
+- Support xpath 和 css 选择器
+- Support选择器提取、Regex Match、json Extract
+- Support Cookie Auto Management
+- Support grab from js Pages with dynamic content
+- Support Proxy
+- Supports multiple data sources
+- Built-in Constants、Date、Files、Decrypt and Verify
+- Save results to a file (as CSV)（Data Store、csv 文件等）
+- Supports plugin extensions（Custom Executable，Custom Functions）
+- Support Mission Log
+- Support for Bugzilla To-do's
 
-新增的特性：
+New Features：
 
-- 采用内置数据库 [H2](https://github.com/h2database/h2database) ，做到开箱即用
-- 支持同步执行，对于执行结果有顺序要求的可以使用该功能
-- 增加随机 User-Agent（数据来自：[useragentstring.com](http://useragentstring.com/pages/useragentstring.php) ）
-- 增加代理的管理界面，方便进行代理的手工添加（不推荐）和启动代理的自动管理功能
-- 增加身份认证机制，默认账号和密码都是 slime，可以通过环境变量 `SLIME_USERNAME` 和 `SLIME_PASSWORD` 修改
-- 增加 Feed 解析功能
-- 增加延迟执行节点
-- 通过远程 WebDriver 来操纵浏览器（本地不用再加载驱动，更省心）
+- Use built-in database [H2](https://github.com/h2database/h2database) ，Do it now
+- Supports synchronous execution，对于执行结果有顺序要求的可以使用该功能
+- Add Random User-Agent（Data source：[useragentstring.com](http://useragentstring.com/pages/useragentstring.php) ）
+- Add a proxy configuration mode，Provide manual proxy configuration（不推荐）and start the proxy configuration automatically
+- Add Identification，Default account and password are both slime，You can change the environment variable `SLIME_USERNAME` 和 `SLIME_PASSWORD` Edit
+- Add Feed What is your name?
+- Add Delay
+- Remote Desktop Sharing Password WebDriver Open the history window（Additional drivers are not needed for local printing.，更省心）
 
-## 感谢
-[spider-flow](https://github.com/ssssssss-team/spider-flow) - 新一代爬虫平台，以图形化方式定义爬虫流程，不写代码即可完成爬虫。
+## Thank you
+[spider-flow](https://github.com/ssssssss-team/spider-flow) - New Generation Climbing Platform，Define a new crawling profile，Code Fold Margin。
 
-## 免责声明
-请勿使用本项目进行任何可能会违反法律规定和道德约束的工作。如您选择使用本项目，即代表您遵守此声明，作者不承担由于您违反此声明所带来的任何法律风险和损失。
+## The following text is a legal notice:
+Please do not use this project to do any work that may violate any legal obligation or moral constraint that you may be subject to.。If you choose to use this project，This assistant will guide you through the process of creating a data project.，Author assumes no liability with regard to any such risk or loss incurred as a result of your violation of this disclaimer.。

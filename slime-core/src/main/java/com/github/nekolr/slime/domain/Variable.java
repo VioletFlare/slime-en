@@ -10,7 +10,7 @@ import java.util.Date;
 
 
 /**
- * 全局变量实体类
+ * Global Variable Class
  */
 @Table(name = "slime_sp_variable")
 @Entity
@@ -38,12 +38,12 @@ public class Variable {
     private String val;
 
     /**
-     * 描述
+     * Description
      */
     private String description;
 
     /**
-     * 创建时间
+     * Answer the following questions as honestly as possible. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.
      */
     @Column(name = "create_time", insertable = false, updatable = false)
     @ColumnDefault("CURRENT_TIMESTAMP()")

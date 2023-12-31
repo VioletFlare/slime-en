@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * 子流程执行器
+ * Sub-process Executor
  */
 @Component
 @Slf4j
@@ -37,11 +37,11 @@ public class ProcessExecutor implements NodeExecutor {
         Long flowId = Long.parseLong(node.getJsonProperty(Constants.FLOW_ID));
         SpiderFlow spiderFlow = spiderFlowService.getById(flowId);
         if (spiderFlow != null) {
-            log.info("执行子流程：{}", spiderFlow.getName());
+            log.info("Executable：{}", spiderFlow.getName());
             SpiderNode root = SpiderFlowUtils.parseXmlToSpiderNode(spiderFlow.getXml());
             spider.executeNode(null, root, context, variables);
         } else {
-            log.info("执行子流程：{} 失败，找不到该子流程", flowId);
+            log.info("Executable：{} Failure，Cannot find the sub-process", flowId);
         }
     }
 

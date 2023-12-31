@@ -12,7 +12,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * 执行上下文
+ * Executable Context
  */
 public class SpiderContext {
 
@@ -23,21 +23,21 @@ public class SpiderContext {
     private String id = UUID.randomUUID().toString().replace("-", "");
 
     /**
-     * 流程任务是否正在运行中（由用户或死锁检测等控制）
+     * Is the process task still running（If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.）
      */
     @Getter
     @Setter
     private volatile boolean running = true;
 
     /**
-     * 子线程池
+     * Threads
      */
     @Getter
     @Setter
     private SubThreadPoolExecutor subThreadPool;
 
     /**
-     * 根节点
+     * 根15th Last
      */
     @Getter
     @Setter
@@ -51,58 +51,58 @@ public class SpiderContext {
     private Long flowId;
 
     /**
-     * Cookie 上下文
+     * Cookie Contexte
      */
     @Getter
     private Map<String, String> cookieContext = new HashMap<>();
 
     /**
-     * 扩展集合，方便放入一些自定义的属性和值
+     * Extension Collections，Add a new property
      */
     @Getter
     private Map<String, Object> extends_map = new ConcurrentHashMap<>();
 
     /**
-     * 当前正在执行的任务队列
+     * Currently executing task list
      */
     @Getter
     private LinkedBlockingQueue<Future<?>> futureTaskQueue = new LinkedBlockingQueue<>();
 
     /**
-     * 获取输出结果
+     * Get result
      *
-     * @return 默认返回空数组
+     * @return Default to empty array
      */
     public List<SpiderOutput> getOutputs() {
         return Collections.emptyList();
     }
 
     /**
-     * 暂停运行
+     * Paused
      *
-     * @param nodeId 节点 ID
-     * @param event  事件
-     * @param key    属性名称
-     * @param value  属性值
+     * @param nodeId 15th Last ID
+     * @param event  Events
+     * @param key    Property name
+     * @param value  Property Value
      */
     public void pause(String nodeId, String event, String key, Object value) {
-        // 默认空实现，由子类重写
+        // Default empty implementation，By Extension
     }
 
     /**
-     * 恢复，继续执行
+     * Recover，继续执行
      */
     public void resume() {
     }
 
     /**
-     * 停止运行
+     * Stop Operation
      */
     public void stop() {
     }
 
     /**
-     * 添加输出结果
+     * Add Output Result
      *
      * @param output 输出结果实体
      */

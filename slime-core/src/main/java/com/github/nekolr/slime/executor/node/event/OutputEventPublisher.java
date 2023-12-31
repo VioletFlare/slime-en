@@ -22,11 +22,11 @@ public class OutputEventPublisher {
     private ApplicationEventPublisher eventPublisher;
 
     /**
-     * 发布输出事件
+     * An output event has occurred
      *
-     * @param context     执行上下文
-     * @param node        节点
-     * @param outputItems 所有的输出项数据
+     * @param context     Executable Context
+     * @param node        15th Last
+     * @param outputItems All data output
      */
     public void publish(SpiderContext context, SpiderNode node, List<OutputItem> outputItems) {
         OutputType[] outputTypes = OutputType.values();

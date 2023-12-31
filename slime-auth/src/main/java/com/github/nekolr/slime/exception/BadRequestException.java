@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
- * 无效或错误的请求
+ * Invalid or incorrect request
  */
 @Getter
 public class BadRequestException extends RuntimeException {
