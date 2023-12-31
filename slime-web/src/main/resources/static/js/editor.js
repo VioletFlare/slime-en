@@ -168,7 +168,7 @@ function resizeSlideBar() {
 function validXML(callback) {
     var cell = editor.valid();
     if (cell) {
-        layui.layer.confirm("Checking for unconnected arrows，Are you sure you want to delete the meeting titled '{0}'?？", {
+        layui.layer.confirm("Checking for unconnected arrows，are you sure you want to delete '{0}' ?", {
             title: 'Anomaly Handling',
             btn: ['Answer', '忽略'],
         }, function (index) {
@@ -287,7 +287,7 @@ $(function () {
             serializeForm();
         });
         layui.table.on('tool', function (obj) {
-            layui.layer.confirm('Are you sure you want to delete the meeting titled '{0}'?？', {
+            layui.layer.confirm("Are you sure you want to delete '{0}'?", {
                 title: '12'
             }, function (index) {
                 obj.del();

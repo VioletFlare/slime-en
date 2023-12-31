@@ -9,6 +9,6 @@ public class ProxyPlugin implements Pluggable {
 
     @Override
     public Plugin plugin() {
-        return new Plugin("Proxy Management", "proxy.html");
+        return new Plugin("ProxyManagement", "proxy.html");
     }
 }

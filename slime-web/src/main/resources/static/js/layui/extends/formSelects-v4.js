@@ -427,8 +427,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 		var ajaxConfig = ajaxs[id] ? ajaxs[id] : ajax;
 		var ajaxData = $.extend(true, {}, ajaxConfig.data);
 		ajaxData[ajaxConfig.searchName] = inputValue;
-		//Are you sure you want to delete the meeting titled '{0}'?ajaxAdd Random Time
-		//ajaxData['_'] = Date.now();
 		$.ajax({
 			type: ajaxConfig.type,
 			headers: ajaxConfig.header,
