@@ -83,6 +83,6 @@ public class ProxyCleanJob {
                 });
             }
         }
-        log.debug("代理 IP Effectiveness Check Complete");
+        log.debug("proxy IP Effectiveness Check Complete");
     }
 }

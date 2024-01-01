@@ -51,7 +51,7 @@ public class ProxyManager {
     }
 
     /**
-     * Get a random one http 代理
+     * Get a random one http proxy
      *
      * @return
      */
@@ -60,7 +60,7 @@ public class ProxyManager {
     }
 
     /**
-     * Get a random one https 代理
+     * Get a random one https proxy
      *
      * @return
      */
@@ -69,7 +69,7 @@ public class ProxyManager {
     }
 
     /**
-     * Get a random one http 代理
+     * Get a random one http proxy
      *
      * @return
      */
@@ -78,7 +78,7 @@ public class ProxyManager {
     }
 
     /**
-     * Get a random one HTTPS 代理
+     * Get a random one HTTPS proxy
      *
      * @return
      */
@@ -90,7 +90,7 @@ public class ProxyManager {
      * Randomly returns a proxy from the list of proxies
      *
      * @param proxies List of proxies
-     * @return 一个代理
+     * @return a proxy
      */
     private ProxyDTO random(List<ProxyDTO> proxies) {
         int size;
@@ -105,7 +105,7 @@ public class ProxyManager {
      *
      * @param type      Proxy Type http or https
      * @param anonymous Whether to support anonymous connections
-     * @return 代理 IP List
+     * @return proxy IP List
      */
     private List<ProxyDTO> get(String type, boolean anonymous) {
         List<ProxyDTO> proxyList = new ArrayList<>();
@@ -122,7 +122,7 @@ public class ProxyManager {
     /**
      *  Checking proxy
      *
-     * @param proxy 代理
+     * @param proxy proxy
      * @return Delay time
      */
     public long check(ProxyDTO proxy) {

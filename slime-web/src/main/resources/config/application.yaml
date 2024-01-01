@@ -60,7 +60,7 @@ spider:
   job:
     # 是否开启
     enabled: true
-  # 代理
+  # proxy
   proxy:
     # 检测代理是否有效时使用的地址
     check-url: https://www.baidu.com

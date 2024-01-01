@@ -91,7 +91,7 @@ public interface DriverProvider {
      * Get WebDriver
      *
      * @param node     15th Last
-     * @param proxyStr 代理
+     * @param proxyStr proxy
      * @return WebDriver
      */
     WebDriver getWebDriver(SpiderNode node, String proxyStr) throws MalformedURLException;

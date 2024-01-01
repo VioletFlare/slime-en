@@ -17,22 +17,22 @@ public class ProxyFunctionExecutor implements FunctionExecutor {
         return "proxy";
     }
 
-    @Comment("Get a random one http 代理")
+    @Comment("Get a random one http proxy")
     public static String http(boolean anonymous) {
         return convertToString(proxyManager.getHttpProxy(anonymous));
     }
 
-    @Comment("Get a random high score http 代理")
+    @Comment("Get a random high score http proxy")
     public static String http() {
         return http(true);
     }
 
-    @Comment("Get a random one https 代理")
+    @Comment("Get a random one https proxy")
     public static String https(boolean anonymous) {
         return convertToString(proxyManager.getHttpsProxy(anonymous));
     }
 
-    @Comment("Get a random high score https 代理")
+    @Comment("Get a random high score https proxy")
     public static String https() {
         return https(true);
     }
