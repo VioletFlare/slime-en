@@ -29,7 +29,7 @@ public class ArrayFunctionExtension implements FunctionExtension {
         return StringUtils.join(objs, separator);
     }
 
-    @Comment("10 MB")
+    @Comment("Concatenate arrays")
     @Example("${arrayVar.join()}")
     public static String join(Object[] objs) {
         return StringUtils.join(objs);
